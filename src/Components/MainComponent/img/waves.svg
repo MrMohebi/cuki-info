@@ -1,0 +1,19 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="1080.028" height="858.182"
+     viewBox="0 0 1080.028 858.182">
+    <defs>
+        <clipPath id="clip-path">
+            <rect x="139" y="28" width="1080.028" height="854.781" fill="none"/>
+        </clipPath>
+    </defs>
+    <g id="Group_19" transform="translate(0.028 -1064.848)">
+        <path id="Path_2"
+              d="M0,1101.212c1.212,43.636,0,821.818,0,821.818H1080V1064.848s-41.212,118.788-160,256.97-145.455,160-196.364,167.273S609.7,1435.757,558.788,1353.333s-186.667-31.515-186.667-31.515-161.061,52.253-269.091-14.545C10.909,1263.636-.474,1084.15,0,1101.212Z"
+              fill="#8dcaf6"/>
+        <g id="Scroll_Group_2" transform="translate(-139.028 1037.219)" clip-path="url(#clip-path)"
+           style="isolation: isolate">
+            <path id="Path_1"
+                  d="M.178,2020.193h1147.4V1221.184S891.884,1769,690.427,1625.85,510,1475.344,374.246,1509.284s-283.775,9.85-400-235.151S.178,1188.15.178,1188.15"
+                  transform="translate(71.449 -1137.412)" fill="#44b4f5"/>
+        </g>
+    </g>
+</svg>

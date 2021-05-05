@@ -1,0 +1,113 @@
+.main-website-container {
+  background-color: #E8EDF8;
+  width: 100%;
+
+  .bottom-waves {
+    width: 100%;
+    height: 50vh;
+    background: url("../img/waves.svg");
+    background-size: cover;
+    position: fixed;
+    bottom: 0;
+  }
+
+  .main-dialog {
+    background-color: #fff;
+    bottom: 0;
+    height: 0%;
+    width: 93%;
+    margin: auto;
+    position: fixed;
+    right: 50%;
+    transform: translateX(50%);
+    border-radius: 15px 15px 0 0;
+    overflow: visible;
+  }
+
+  .show-demo-button {
+    position: fixed;
+    width: 90%;
+    height: 50px;
+    background-color: #0E3FA6;
+    right: 50%;
+    transform: translateX(50%);
+    border-radius: 12px;
+    bottom: 7px;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    font-family: AppIranSans;
+  }
+
+  .svg-container {
+    width: 150px;
+    height: 120px;
+    margin-top: -90px;
+  }
+
+  .svg-container2 {
+    width: 150px;
+    height: 120px;
+    opacity: 0;
+
+  }
+
+  .svg-container3 {
+    width: 150px;
+    height: 120px;
+    opacity: 0;
+  }
+
+  .each-slide-texts {
+    //margin-top: -70px;
+  }
+
+  .each-slide-head-text {
+    font-family: AppIranSansBold, sans-serif;
+    font-size: 1.2rem;
+  }
+
+  .each-slide-title-text {
+    font-family: AppIranSans, sans-serif;
+    font-size: 0.9rem;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .animation-triggers {
+    height: 100vh;
+    //border-top: solid black 10px;
+
+  }
+  .intro-logo{
+    width: 150px;
+    height: 150px;
+
+  }
+  .intro-head-text{
+    font-family: AppIranSansBold;
+  }
+  .intro-head-title{
+  font-family: AppIranSans;
+    width:90%;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+  .go-up-button{
+    font-family: "AppIranSans";
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    color: white;
+    bottom: 90px;
+    left: 20px;
+    border-radius: 10px;
+    border: white solid 1px ;
+    line-height: 7px;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+}
