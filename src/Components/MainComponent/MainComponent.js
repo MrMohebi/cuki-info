@@ -122,6 +122,7 @@ function MainComponent(props) {
 
     return (
         <>
+            <h1 className={'d-none'}>منوی دیجیتال کوکی</h1>
             <div className={"main-website-container "}>
                 {texts.map((eachText, index) => {
                     console.log(eachText)
@@ -136,8 +137,8 @@ function MainComponent(props) {
                                             backgroundPosition: 'center',
                                             backgroundSize: 'cover'
                                         }}/>
-                                        <span
-                                            className={'intro-head-text mt-3'}> الان دیگه وقت راحت تر شدن کار هاست</span>
+                                        <h5
+                                            className={'intro-head-text mt-3'}> الان دیگه وقت راحت تر شدن کار هاست</h5>
                                         <span className={'intro-head-title mt-2'}>کوکی برای رفع نیاز ها و  سرعت دهی به کار ها طراحی شده
  که هم مشتری ها راضی باشن هم صاحبان کسب وکار</span>
                                     </div>
