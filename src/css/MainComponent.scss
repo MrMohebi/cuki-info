@@ -1,3 +1,12 @@
+@font-face {
+  font-family: AppIranSans;
+  src: url(/fonts/MobileFonts/IRANSansMobile.ttf) format('truetype') ;
+}
+@font-face {
+  font-family: AppIranSansBold;
+  src: url(/fonts/MobileFonts/IRANSansMobile_Bold.ttf) format('truetype') ;
+}
+
 .main-website-container {
   background-color: #E8EDF8;
   width: 100%;
@@ -5,14 +14,15 @@
   .bottom-waves {
     width: 100%;
     height: 50vh;
-    background: url("../img/waves.svg");
+    background: url("/img/waves.svg");
     background-size: cover;
     position: fixed;
     bottom: 0;
   }
 
+
   .main-dialog {
-    background-color: #fff;
+    background-color: white;
     bottom: 0;
     height: 0%;
     width: 93%;
