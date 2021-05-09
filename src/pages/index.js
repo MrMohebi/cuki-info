@@ -13,7 +13,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 const IndexPage = () => {
     let dialog = useRef(null)
     let svgHolder1 = useRef(null)
-    let svgHolder2 = useRef(null)
     let ShowTheDemo = () => {
     }
     //main texts
@@ -49,6 +48,7 @@ const IndexPage = () => {
         })
         gsap.to(".go-up-button", {
             opacity: 1,
+            ease:'Power4.out',
             scrollTrigger: {
                 trigger: '#trigger11',
                 scrub: 1
@@ -88,6 +88,11 @@ const IndexPage = () => {
                     text: {
                         value: texts[index - 1] ? texts[index - 1][0] : '',
                     },
+                }).to('.each-slide-title-text',{
+                    duration:0,
+                    text: {
+                        value: texts[index - 1] ? texts[index - 1][1] : '',
+                    },
                 }).to('.each-slide-head-text', {
                     opacity: 0,
                     x: 120,
@@ -106,8 +111,7 @@ const IndexPage = () => {
 
                     opacity: 0,
                     y: -120,
-                    delay: 1,
-
+                    delay:1,
                 }).to('.svg-container', {
                     backgroundImage: "url(/svgs/" + image + ")",
                     duration:0
@@ -139,7 +143,7 @@ const IndexPage = () => {
                             <div id={'trigger' + index} key={index} className={'animation-triggers ' + className}>
                                 {index === 0 ?
                                     <div className={'d-flex flex-column align-items-center intro'}>
-                                        <img src={'/Logo.png'} className={'intro-logo mt-4'} style={{
+                                        <img src={'/img/Logo.png'} className={'intro-logo mt-4'} style={{
                                             backgroundPosition: 'center',
                                             backgroundSize: 'cover'
                                         }}/>
@@ -170,7 +174,13 @@ const IndexPage = () => {
                     </div>
                 </div>
                 <div className={"bottom-waves"}>
-                    <div className={'go-up-button d-flex flex-row justify-content-center align-items-center'}>
+                    <div className={'go-up-button d-flex flex-row justify-content-center align-items-center'} onClick={()=>{
+                        console.log('clicked up')
+                        gsap.to(window,{
+                            scrollTo:'#trigger0',
+                            duration:3
+                        })
+                    }}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                              className="bi bi-arrow-up  " viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
