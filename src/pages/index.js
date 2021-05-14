@@ -5,6 +5,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollTo from "gsap/ScrollToPlugin";
 import TextPlugin from "gsap/TextPlugin";
+import { Helmet } from "react-helmet"
 //css files
 import '../css/MainComponent.css'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -133,6 +134,10 @@ const IndexPage = () => {
 
     return (
         <main>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Cuki</title>
+            </Helmet>
             <h1 className={'d-none'}>منوی دیجیتال کوکی</h1>
             <div className={"main-website-container "}>
                 {texts.map((eachText, index) => {
