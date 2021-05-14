@@ -17,7 +17,7 @@
   "license": "0BSD",
   "dependencies": {
     "bootstrap": "^5.0.0",
-    "gatsby": "^3.4.1",
+    "gatsby": "^3.5.0",
     "gsap": "^3.6.1",
     "jquery": "^3.6.0",
     "react": "^17.0.1",
