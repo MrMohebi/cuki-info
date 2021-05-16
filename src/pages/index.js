@@ -17,7 +17,7 @@ const IndexPage = () => {
     let ShowTheDemo = () => {
     }
     //main texts
-    let texts = [["واریز وجه 2 تا 4 روز ", "بعد از پرداخت مشتری حداکثر 2 تا 4 روز مبلغ به حساب شما واریز میشود", "1.svg"], ["باشگاه مشتریان", "بانک جامع اطلاعاتی و تحلیل داده های موجود مشتریان برای خدمات ویژه", "2.svg"], ["منوی همراه مشتری", "مشتریان میتوانند با اسکن کد موجود روی کارت ویزیت اختصاصی شما همیشه و همه جا به منو دسترسی داشته باشند", "3.svg"], ["متصل به نرم افزار های حسابداری", "سفارشات تایید شده در کوکی به صورت خودکار در نرم افزار حسابداری شما ثبت خواهد شد", "4.svg"], ["سرعت بالا در سفارش غذا", "کاربر برای ثبت سفارش نیاز به انتظار های خسته کننده وطولانی نخواهد داشت", "5.svg"], ["پرداخت دونگی", "این ویژگی جدید و خلاقانه برای پرداخت های گروهی و جمع های دوستانه بسیار کاربردی است و باعث تقسیم حساب بسیار راحت تر مشتریان میشود پای صندوقتون هم خلوت تر میشه :)", "6.svg"], ["تور مجازی", "کاربر برای ثبت سفارش نیاز به انتظار های خسته کننده وطولانی نخواهد داشت", "7.svg"], ["تخفیف های استثنایی", "جوایز و تخفیف های متنوع از طرف کوکی به مشتریان و صاحبان رستوران", "8.svg"], ["سفارش بدون ثبت نام", "برای یک سفارش معمولی اجبار به ثبت نام و طی کردن یک روند خسته کننده وجود ندارد", "9.svg"], ["رابط کاربری زیبا و ساده", "طراحی اپیکیشن به صورتی بوده که کاربر به راحتی بتواند سفارش خود را ثبت کند", "10.svg"], ["جزعیات در اپیکیشن", "قبل از هر سفارش کاربر میتواند عکس هر غذا را با بالاترین کیفیت ببیند، جزییات هر غذا را بداند و از نظرات و تجربه ی سایر کاربران آگاه شود", "11.svg"], ["پشتیبانی سریع و 24 ساعته", "تیم کوکی در هر زمانی برای پشتیبانی همراه شماست", "12.svg"], []]
+    let texts = [["واریز وجه 2 تا 4 روز ", "بعد از پرداخت مشتری حداکثر 2 تا 4 روز \nمبلغ به حساب شما واریز میشود", "1.svg"], ["باشگاه مشتریان", "بانک جامع اطلاعاتی و تحلیل داده های موجود مشتریان\n برای خدمات ویژه", "2.svg"], ["منوی همراه مشتری", "مشتریان میتوانند با اسکن کد موجود روی \n کارت ویزیت اختصاصی شما \n همیشه و همه جا به منو دسترسی داشته باشند", "3.svg"], ["متصل به نرم افزار های حسابداری", "سفارشات تایید شده در کوکی به صورت خودکار\n در نرم افزار حسابداری شما ثبت خواهد شد", "4.svg"], ["سرعت بالا در سفارش غذا", "کاربر برای ثبت سفارش نیاز به انتظار های خسته کننده\n وطولانی نخواهد داشت", "5.svg"], ["پرداخت دونگی", "این ویژگی جدید و خلاقانه برای پرداخت های گروهی\n و جمع های دوستانه بسیار کاربردی است و باعث\n تقسیم حساب بسیار راحت تر مشتریان میشود\n پای صندوقتون هم خلوت تر میشه :)", "6.svg"], ["تور مجازی", "کاربر برای ثبت سفارش نیاز به انتظار های خسته کننده\n وطولانی نخواهد داشت", "7.svg"], ["تخفیف های استثنایی", "جوایز و تخفیف های متنوع از طرف کوکی به مشتریان\n و صاحبان رستوران", "8.svg"], ["سفارش بدون ثبت نام", "برای یک سفارش معمولی اجبار به ثبت نام و طی کردن\n یک روند خسته کننده وجود ندارد", "9.svg"], ["رابط کاربری زیبا و ساده", "طراحی اپیکیشن به صورتی بوده که کاربر به راحتی بتواند\n سفارش خود را ثبت کند", "10.svg"], ["جزعیات در اپیکیشن", "قبل از هر سفارش کاربر میتواند عکس هر غذا را با بالاترین\n کیفیت ببیند، جزییات هر غذا را بداند و از نظرات و تجربه ی\n سایر کاربران آگاه شود", "11.svg"], ["پشتیبانی سریع و 24 ساعته", "تیم کوکی در هر زمانی برای پشتیبانی همراه شماست", "12.svg"],[]]
     let allowToScroll = true;
     let lastScrollPosition = 0;
     let currentSlide = 0;
@@ -28,21 +28,26 @@ const IndexPage = () => {
 
     useEffect(() => {
 
+        gsap.to('.intro-logo',{
+            scrollTrigger:{
+                trigger:'#trigger0',
+                scrub:1,
+                start:window.screen.height/5,
+                end:"200"
+            },
+            x:"135%",
+            y:"-35%",
+            scale:0.5
 
+        })
         window.addEventListener("scroll", (e) => {
             e.preventDefault()
 
-            if (window.scrollY > window.screen.height / 3) {
+            if (window.scrollY > window.screen.height / 4) {
                 gsap.to(".main-dialog", {
                     height: '75vh',
                 })
-                gsap.to(".intro", {
-                    opacity: 0,
-                    ease: 'Power4.out'
-                })
-                gsap.to(".little-logo", {
-                    x: 0
-                })
+
 
                 if (allowToScroll) {
                     document.body.style.overflow = "hidden"
@@ -81,12 +86,14 @@ const IndexPage = () => {
                 gsap.to(".main-dialog", {
                     height: '0vh'
                 })
-                gsap.to(".intro", {
-                    opacity: 1,
-                    ease: 'Power4.out'
-                })
-                gsap.to(".little-logo", {
-                    x: 120
+                // gsap.to(".intro", {
+                //     opacity: 1,
+                //     ease: 'Power4.out'
+                // })
+                gsap.to(".svg-container", {
+                    backgroundImage:'',
+                    duration:0.1,
+                    ease:"steps(1)"
                 })
                 currentSlide = 0;
             }
@@ -134,7 +141,7 @@ const IndexPage = () => {
                     duration: 0.01,
 
                     text: {
-                        value: texts[slide - 1] ? texts[slide - 1][1] : '',
+                        value:  texts[slide - 1] ? texts[slide - 1][1].replaceAll("\n","<br>") : '',
                     },
                 }, 0.2).to('.svg-container', {
                     duration: 0.01,
@@ -236,7 +243,7 @@ const IndexPage = () => {
                     duration: 0.01,
 
                     text: {
-                        value: texts[slide - 1] ? texts[slide - 1][1] : '',
+                        value: texts[slide - 1] ? texts[slide - 1][1].replaceAll("\n","<br>") : '',
                     },
                 }, 0.2).to('.svg-container', {
                     duration: 0.01,
@@ -296,12 +303,11 @@ const IndexPage = () => {
                             <div id={'trigger' + index} key={index} className={'animation-triggers ' + className}>
                                 {index === 0 ?
                                     <div>
-                                        <div className={'position-fixed little-logo'}/>
+                                        <img src={'/img/Logo.png'} className={'intro-logo mt-4'} style={{
+                                            backgroundPosition: 'center',
+                                            backgroundSize: 'cover'
+                                        }} alt={"Cuki"}/>
                                         <div className={'d-flex flex-column align-items-center intro'}>
-                                            <img src={'/img/Logo.png'} className={'intro-logo mt-4'} style={{
-                                                backgroundPosition: 'center',
-                                                backgroundSize: 'cover'
-                                            }} alt={"Cuki"}/>
                                             <h5
                                                 className={'intro-head-text mt-3'}> الان دیگه وقت راحت تر شدن کار
                                                 هاست</h5>
@@ -328,7 +334,7 @@ const IndexPage = () => {
                     }}/>
                     <div className={'each-slide-texts mt-5 d-flex flex-column text-center '}>
                         <span className={'each-slide-head-text'}>واریز وجه 2 تا 4 روز </span>
-                        <span className={'each-slide-title-text mt-3'}>بعد از پرداخت مشتری حداکثر 2 تا 4 روز مبلغ به حساب شما واریز میشود</span>
+                            <p style={{whiteSpace: 'nowrap'}} className={'each-slide-title-text mt-3 d-flex flex-column justify-content-center align-items-center'}>بعد از پرداخت مشتری حداکثر 2 تا 4 روز مبلغ به حساب شما واریز میشود</p>
                     </div>
                 </div>
                 <div className={"bottom-waves"}>

@@ -17,7 +17,6 @@
   background-size: cover;
   position: fixed;
   bottom: 0;
-  transform: scaleX(2);
 }
 .main-website-container .little-logo {
   width: 40px;
@@ -91,6 +90,12 @@
 .main-website-container .intro-logo {
   width: 150px;
   height: 150px;
+  position: fixed;
+  right: 50%;
+  transform: translate3d(50%, 0px, 0px);
+}
+.main-website-container .intro {
+  margin-top: 180px;
 }
 .main-website-container .intro-head-text {
   font-family: AppIranSansBold;
