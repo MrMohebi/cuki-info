@@ -17,6 +17,17 @@
   background-size: cover;
   position: fixed;
   bottom: 0;
+  transform: scaleX(2);
+}
+.main-website-container .little-logo {
+  width: 40px;
+  height: 40px;
+  right: 10px;
+  top: 10px;
+  background: url("/img/Logo.png");
+  background-position: center;
+  background-size: cover;
+  transform: translateX(120px);
 }
 .main-website-container .main-dialog {
   background-color: white;
@@ -29,6 +40,10 @@
   transform: translateX(50%);
   border-radius: 15px 15px 0 0;
   overflow: visible;
+}
+.main-website-container * {
+  transition: none;
+  scroll-behavior: auto;
 }
 .main-website-container .show-demo-button {
   position: fixed;
