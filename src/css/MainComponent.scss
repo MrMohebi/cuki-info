@@ -39,7 +39,7 @@
   .main-dialog {
     background-color: white;
     bottom: 0;
-    height: 0%;
+    height: 20vh;
     width: 93%;
     margin: auto;
     position: fixed;
@@ -128,6 +128,10 @@
   }
   .intro{
     margin-top: 150px;
+    position: fixed;
+    width:100%;
+    right: 50%;
+    transform: translateX(50%);
   }
   .intro-head-text{
     font-family: AppIranSansBold;
