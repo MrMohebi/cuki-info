@@ -10,6 +10,10 @@
   font-family: "Yellowtail";
   src: url("../fonts/Yellowtail.ttf") format("truetype");
 }
+#svgs{
+  margin-left: 20px;
+  margin-top: -50px;
+}
 .main-website-container {
   background-color: #E8EDF8;
   width: 100%;
@@ -35,7 +39,7 @@
 .main-website-container .main-dialog {
   background-color: white;
   bottom: 0;
-  height: 0%;
+  height: 20vh;
   width: 93%;
   margin: auto;
   position: fixed;
@@ -106,6 +110,10 @@
 }
 .main-website-container .intro {
   margin-top: 150px;
+  position: fixed;
+  width: 100%;
+  right: 50%;
+  transform: translateX(50%);
 }
 .main-website-container .intro-head-text {
   font-family: AppIranSansBold;
