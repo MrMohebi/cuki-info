@@ -28,24 +28,35 @@ const IndexPage = () => {
 
     useEffect(() => {
 
-        gsap.to('.intro-logo',{
+        gsap.set(".intro-logo",{
+            right:"50%"
+        })
+
+       let LogoTL =  gsap.timeline({
             scrollTrigger:{
                 trigger:'#trigger0',
                 scrub:1,
-                start:window.screen.height/5,
+                start:window.screen.height/6,
                 end:"200"
             },
-            x:"135%",
-            y:"-35%",
-            scale:0.5
-
+            // x:"60vw",
+            // y:"-35%",
         })
+           LogoTL.to('.intro-logo',{
+               right:"10%",
+               top:-55,
+               scale:0.3,
+               rotateZ:360
+           },"-=0.2")
         window.addEventListener("scroll", (e) => {
             e.preventDefault()
 
             if (window.scrollY > window.screen.height / 4) {
                 gsap.to(".main-dialog", {
                     height: '75vh',
+                })
+                gsap.to(".intro", {
+                    opacity: 0,
                 })
 
 
@@ -86,10 +97,10 @@ const IndexPage = () => {
                 gsap.to(".main-dialog", {
                     height: '0vh'
                 })
-                // gsap.to(".intro", {
-                //     opacity: 1,
-                //     ease: 'Power4.out'
-                // })
+                gsap.to(".intro", {
+                    opacity: 1,
+                    ease: 'Power4.out'
+                })
                 gsap.to(".svg-container", {
                     backgroundImage:'',
                     duration:0.1,
@@ -307,7 +318,8 @@ const IndexPage = () => {
                                             backgroundPosition: 'center',
                                             backgroundSize: 'cover'
                                         }} alt={"Cuki"}/>
-                                        <div className={'d-flex flex-column align-items-center intro'}>
+                                        <div className={'d-flex flex-column align-items-center  intro'}>
+                                            <h1 className={'cuki-head-text'} style={{transform:'scale(1.5)'}}>Cuki</h1>
                                             <h5
                                                 className={'intro-head-text mt-3'}> الان دیگه وقت راحت تر شدن کار
                                                 هاست</h5>

@@ -6,6 +6,10 @@
   font-family: AppIranSansBold;
   src: url(/fonts/MobileFonts/IRANSansMobile_Bold.ttf) format('truetype') ;
 }
+@font-face {
+  font-family: "Yellowtail";
+  src: url("../fonts/Yellowtail.ttf") format("truetype");
+}
 
 .main-website-container {
   background-color: #E8EDF8;
@@ -47,6 +51,11 @@
   *{
     transition: none;
     scroll-behavior: auto;
+
+  }
+  .cuki-head-text{
+    font-family: Yellowtail;
+    filter: drop-shadow(2px 4px 6px #6f6f6f);
 
   }
 
@@ -106,15 +115,19 @@
     //border-top: solid black 10px;
 
   }
+
   .intro-logo{
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     position: fixed;
     right: 50%;
     transform: translate3d(50%, 0px, 0px);
+    filter: drop-shadow(2px 4px 6px #6f6f6f);
+    z-index: 99;
+
   }
   .intro{
-    margin-top: 180px;
+    margin-top: 150px;
   }
   .intro-head-text{
     font-family: AppIranSansBold;
