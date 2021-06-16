@@ -25,13 +25,13 @@
   display: flex;
 }
 .Iransans{
-  font-family: AppIranSans;
+  font-family: AppIranSans, serif;
 }
 .IransansBold{
-  font-family: AppIranSansBold;
+  font-family: AppIranSansBold, serif;
 }
 .IransansLight{
-  font-family: AppIranSansLight;
+  font-family: AppIranSansLight, serif;
 }
 
 .info-margin{
@@ -62,12 +62,11 @@
   align-items: center;
   font-family: AppIranSansBold, sans-serif;
   font-size: 0.8rem;
-  background: black;
   background-size: 200% 200%;
-  background-position: 200%;
+  background: black 200%;
 }
 .contact-us-button-desktop:hover{
-  box-shadow: #ffc9d2 0px 0px 10px;
+  box-shadow: #ffc9d2 0 0 10px;
   transform: scale(1.05);
 }
 .demo-button-desktop {
@@ -96,11 +95,14 @@
   text-align: right;
   line-height: 2.5rem;
 }
+.h-999{
+  height: 999px;
+}
 
 .demo-button-desktop:hover {
   background-position: 200%;
   color: white;
-  box-shadow: #ffc9d2 0px 0px 10px;
+  box-shadow: #ffc9d2 0 0 10px;
   span{
     opacity: 1 !important;
   }
@@ -379,4 +381,12 @@ br {
     pointer-events: none;
   }
 
+}
+
+.body::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }

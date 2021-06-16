@@ -2105,20 +2105,295 @@ export const upButton = {
 export const contactUs =
     <svg version="1.1" id="Capa_1"
          viewBox="0 0 512 512" fill="white">
-<g>
-	<g>
-		<path d="M482,233.808V225C482,99.803,378.544,0,255,0C130.643,0,30,100.632,30,225v8.808C10.78,251.61,0,276.097,0,302
-			c0,49.626,40.374,90,90,90c14.061,0,5.523,0,45,0c24.813,0,45-20.187,45-45v-92c0-24.813-20.187-45-45-45h-14.162
-			C128.324,142.595,185.631,90,255,90c70.396,0,128.553,52.595,136.15,120H377c-24.813,0-45,20.187-45,45v92
-			c0,24.813,20.187,45,45,45h15v15c0,24.813-20.187,45-45,45h-17.58c-6.192-17.458-22.865-30-42.42-30h-32
-			c-24.813,0-45,20.187-45,45s20.187,45,45,45h32c19.555,0,36.228-12.542,42.42-30H347c41.355,0,75-33.645,75-75v-15
-			c49.626,0,90-40.374,90-90C512,276.139,501.25,251.638,482,233.808z M287,482h-32c-8.271,0-15-6.729-15-15s6.729-15,15-15h32
-			c8.271,0,15,6.729,15,15S295.271,482,287,482z M90,362c-33.084,0-60-26.916-60-60c0-33.607,27.477-62,60-62V362z M135,240
-			c8.271,0,15,6.729,15,15v92c0,8.271-6.729,15-15,15h-15V240H135z M392,362h-15c-8.271,0-15-6.729-15-15v-92
-			c0-8.271,6.729-15,15-15h15V362z M421.303,210C413.634,126.44,341.763,60,255,60c-85.925,0-156.707,66.022-164.311,150H90
-			c-10.276,0-20.302,1.796-29.755,5.236C65.349,112.231,150.751,30,255,30c105.318,0,191.595,82.23,196.753,185.235
-			C442.3,211.796,432.275,210,422,210H421.303z M422,362V240c32.523,0,60,28.393,60,62C482,335.084,455.084,362,422,362z"/>
-	</g>
-</g>
+        <g>
+            <g>
+                <path d="M482,233.808V225C482,99.803,378.544,0,255,0C130.643,0,30,100.632,30,225v8.808C10.78,251.61,0,276.097,0,302
+                    c0,49.626,40.374,90,90,90c14.061,0,5.523,0,45,0c24.813,0,45-20.187,45-45v-92c0-24.813-20.187-45-45-45h-14.162
+                    C128.324,142.595,185.631,90,255,90c70.396,0,128.553,52.595,136.15,120H377c-24.813,0-45,20.187-45,45v92
+                    c0,24.813,20.187,45,45,45h15v15c0,24.813-20.187,45-45,45h-17.58c-6.192-17.458-22.865-30-42.42-30h-32
+                    c-24.813,0-45,20.187-45,45s20.187,45,45,45h32c19.555,0,36.228-12.542,42.42-30H347c41.355,0,75-33.645,75-75v-15
+                    c49.626,0,90-40.374,90-90C512,276.139,501.25,251.638,482,233.808z M287,482h-32c-8.271,0-15-6.729-15-15s6.729-15,15-15h32
+                    c8.271,0,15,6.729,15,15S295.271,482,287,482z M90,362c-33.084,0-60-26.916-60-60c0-33.607,27.477-62,60-62V362z M135,240
+                    c8.271,0,15,6.729,15,15v92c0,8.271-6.729,15-15,15h-15V240H135z M392,362h-15c-8.271,0-15-6.729-15-15v-92
+                    c0-8.271,6.729-15,15-15h15V362z M421.303,210C413.634,126.44,341.763,60,255,60c-85.925,0-156.707,66.022-164.311,150H90
+                    c-10.276,0-20.302,1.796-29.755,5.236C65.349,112.231,150.751,30,255,30c105.318,0,191.595,82.23,196.753,185.235
+                    C442.3,211.796,432.275,210,422,210H421.303z M422,362V240c32.523,0,60,28.393,60,62C482,335.084,455.084,362,422,362z"/>
+            </g>
+        </g>
+    </svg>
+
+export const blueDots = <svg className={'svgDots'} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 202">
+    <g transform="translate(-98 -423.882)">
+        <circle cx="3" cy="3" r="3" transform="translate(98 423.882)" fill="#96d9e9"/>
+        <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 423.882)"
+                 fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(141 423.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(163 423.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(185 423.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(207 423.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(207 445.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(207 467.882)" fill="#96d9e9"/>
+        <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(207 489.882)"
+                 fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(207 510.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(207 532.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(207 554.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(207 576.882)" fill="#96d9e9"/>
+        <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(207 598.882)"
+                 fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(207 619.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(185 619.882)" fill="#96d9e9"/>
+        <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(185 598.882)"
+                 fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(185 576.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(185 554.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(163 554.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(163 576.882)" fill="#96d9e9"/>
+        <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(163 598.882)"
+                 fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(163 619.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(141 619.882)" fill="#96d9e9"/>
+        <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(141 598.882)"
+                 fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(141 576.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(141 554.882)" fill="#96d9e9"/>
+        <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 554.882)"
+                 fill="#96d9e9"/>
+        <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 576.882)"
+                 fill="#96d9e9"/>
+        <circle cx="2.5" cy="2.5" r="2.5" transform="translate(120 598.882)" fill="#96d9e9"/>
+        <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 619.882)"
+                 fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(98 619.882)" fill="#96d9e9"/>
+        <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(98 598.882)"
+                 fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(98 576.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(98 554.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(185 445.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(163 445.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(141 445.882)" fill="#96d9e9"/>
+        <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 445.882)"
+                 fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(98 445.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(98 467.882)" fill="#96d9e9"/>
+        <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 467.882)"
+                 fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(141 467.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(163 467.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(185 467.882)" fill="#96d9e9"/>
+        <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(185 489.882)"
+                 fill="#96d9e9"/>
+        <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(163 489.882)"
+                 fill="#96d9e9"/>
+        <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(141 489.882)"
+                 fill="#96d9e9"/>
+        <circle cx="2.5" cy="2.5" r="2.5" transform="translate(120 489.882)" fill="#96d9e9"/>
+        <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(98 489.882)"
+                 fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(98 510.882)" fill="#96d9e9"/>
+        <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 510.882)"
+                 fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(141 510.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(163 510.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(185 510.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(185 532.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(163 532.882)" fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(141 532.882)" fill="#96d9e9"/>
+        <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 532.882)"
+                 fill="#96d9e9"/>
+        <circle cx="3" cy="3" r="3" transform="translate(98 532.882)" fill="#96d9e9"/>
+    </g>
 </svg>
+
+export const upOrangeDots =
+    <svg className={'svgDots'} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 115">
+        <defs>
+            <clipPath id="a">
+                <rect width="202" height="115" fill="none"/>
+            </clipPath>
+        </defs>
+        <g>
+            <g transform="translate(-880 -450)">
+                <g transform="translate(456.118 663) rotate(-90)">
+                    <circle cx="3" cy="3" r="3" transform="translate(98 423.882)" fill="#ffc5cb"/>
+                    <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 423.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(141 423.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(163 423.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(185 423.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(207 423.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(207 445.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(207 467.882)" fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(207 489.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(207 510.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(207 532.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(207 554.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(207 576.882)" fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(207 598.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(207 619.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(185 619.882)" fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(185 598.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(185 576.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(185 554.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(163 554.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(163 576.882)" fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(163 598.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(163 619.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(141 619.882)" fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(141 598.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(141 576.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(141 554.882)" fill="#ffc5cb"/>
+                    <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 554.882)"
+                             fill="#ffc5cb"/>
+                    <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 576.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="2.5" cy="2.5" r="2.5" transform="translate(120 598.882)"
+                            fill="#ffc5cb"/>
+                    <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 619.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(98 619.882)" fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(98 598.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(98 576.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(98 554.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(185 445.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(163 445.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(141 445.882)" fill="#ffc5cb"/>
+                    <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 445.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(98 445.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(98 467.882)" fill="#ffc5cb"/>
+                    <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 467.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(141 467.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(163 467.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(185 467.882)" fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(185 489.882)"
+                             fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(163 489.882)"
+                             fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(141 489.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="2.5" cy="2.5" r="2.5" transform="translate(120 489.882)"
+                            fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(98 489.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(98 510.882)" fill="#ffc5cb"/>
+                    <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 510.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(141 510.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(163 510.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(185 510.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(185 532.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(163 532.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(141 532.882)" fill="#ffc5cb"/>
+                    <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 532.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(98 532.882)" fill="#ffc5cb"/>
+                </g>
+            </g>
+        </g>
+    </svg>
+
+export const centerOrangeDots =
+    <svg className={'svgDots'} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 115">
+        <defs>
+            <clipPath id="a">
+                <rect width="202" height="115" fill="none"/>
+            </clipPath>
+        </defs>
+        <g>
+            <g transform="translate(-880 -450)">
+                <g transform="translate(456.118 663) rotate(-90)">
+                    <circle cx="3" cy="3" r="3" transform="translate(98 423.882)" fill="#ffc5cb"/>
+                    <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 423.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(141 423.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(163 423.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(185 423.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(207 423.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(207 445.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(207 467.882)" fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(207 489.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(207 510.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(207 532.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(207 554.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(207 576.882)" fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(207 598.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(207 619.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(185 619.882)" fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(185 598.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(185 576.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(185 554.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(163 554.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(163 576.882)" fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(163 598.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(163 619.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(141 619.882)" fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(141 598.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(141 576.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(141 554.882)" fill="#ffc5cb"/>
+                    <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 554.882)"
+                             fill="#ffc5cb"/>
+                    <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 576.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="2.5" cy="2.5" r="2.5" transform="translate(120 598.882)"
+                            fill="#ffc5cb"/>
+                    <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 619.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(98 619.882)" fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(98 598.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(98 576.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(98 554.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(185 445.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(163 445.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(141 445.882)" fill="#ffc5cb"/>
+                    <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 445.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(98 445.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(98 467.882)" fill="#ffc5cb"/>
+                    <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 467.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(141 467.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(163 467.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(185 467.882)" fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(185 489.882)"
+                             fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(163 489.882)"
+                             fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(141 489.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="2.5" cy="2.5" r="2.5" transform="translate(120 489.882)"
+                            fill="#ffc5cb"/>
+                    <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(98 489.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(98 510.882)" fill="#ffc5cb"/>
+                    <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 510.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(141 510.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(163 510.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(185 510.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(185 532.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(163 532.882)" fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(141 532.882)" fill="#ffc5cb"/>
+                    <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 532.882)"
+                             fill="#ffc5cb"/>
+                    <circle cx="3" cy="3" r="3" transform="translate(98 532.882)" fill="#ffc5cb"/>
+                </g>
+            </g>
+        </g>
+    </svg>
+
+
 
