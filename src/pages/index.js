@@ -7,12 +7,17 @@ import {MotionPathPlugin} from "gsap/MotionPathPlugin";
 import ScrollTo from "gsap/ScrollToPlugin";
 import TextPlugin from "gsap/TextPlugin";
 import Lottie from 'react-lottie';
-import * as svgs from '../svg/svgs'
+import * as svgs from '../svg/svgs';
+import tippy from "tippy.js";
 
 //css files
 import '../css/MainComponent.css'
+import '../css/reset.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import {Helmet} from "react-helmet";
+import 'tippy.js/dist/tippy.css';
+import 'tippy.js/animations/shift-toward.css'; // optional for styling
+
 
 //included files
 import {cardElements} from "../cards/cards";
@@ -85,6 +90,11 @@ const IndexPage = () => {
                 delay: i * 0.1,
                 duration: 0.9,
                 opacity: 1,
+                onComplete:()=>{
+                    gsap.to(cards[i], {
+                        transition:'transform 0.2s ease'
+                    })
+                },
                 ease: "power4.inOut"
             })
         }
@@ -93,6 +103,7 @@ const IndexPage = () => {
     }
 
     let cardPositions = 0.0;
+    let cusToolTipped = false;
 
     let nextCard = (next) => {
         let animDuration = 1;
@@ -125,9 +136,18 @@ const IndexPage = () => {
                         bottom: '20px',
                         left: '20px',
                         width: '50px',
-                        onComplete:()=>{
-                            document.querySelector('.contact-us-button-desktop span').style.display='none'
-                            document.querySelector('.contact-us-button-desktop div').style.display='flex'
+                        onComplete: () => {
+                            document.querySelector('.contact-us-button-desktop span').style.display = 'none'
+                            document.querySelector('.contact-us-button-desktop div').style.display = 'flex'
+                            if (!cusToolTipped){
+                                cusToolTipped = true;
+                                tippy('.contact-us-button-desktop',{
+                                    animation:'shift-toward',
+                                    allowHTML:true,
+                                    content:'<span class="Iransans"> ارتباط با ما</span>'
+                                })
+                            }
+
 
                         },
                         height: '50px',
@@ -144,8 +164,14 @@ const IndexPage = () => {
                     gsap.to(".contact-us-button-desktop", {
                         duration: 0,
                         onComplete: () => {
-                            document.querySelector('.contact-us-button-desktop span').style.display='flex'
-                            document.querySelector('.contact-us-button-desktop div').style.display='none'
+                            document.querySelector('.contact-us-button-desktop span').style.display = 'flex'
+                            document.querySelector('.contact-us-button-desktop div').style.display = 'none'
+                            if (cusToolTipped){
+                                let instance = document.querySelector('.contact-us-button-desktop')
+                                instance = instance._tippy
+                                instance.disable()
+                                cusToolTipped = false
+                            }
 
                             gsap.to('.contact-us-button-desktop', {
                                 duration: 1,
@@ -155,6 +181,9 @@ const IndexPage = () => {
                                 height: '',
                                 marginLeft: '',
                                 borderRadius: '',
+                                onComplete:()=>{
+
+                                }
                             })
                         }
                     })
@@ -173,7 +202,8 @@ const IndexPage = () => {
                     })
                     gsap.to(cardsDom[i], 1, {
                         transition: 'transform 0.1',
-                        x: (-window.visualViewport.width / 2.2) + "px",
+                        // x: (-window.visualViewport.width / 2.2) + "px",
+                        x: (-window.innerWidth / 2.2) + "px",
                         y: '0',
                         ease: "power3.inOut",
                         transformOrigin: 'center',
@@ -277,7 +307,10 @@ const IndexPage = () => {
                 nextCard(false)
             }
         })
+setTimeout(
+()=>{
 
+},2000)
 
         gsap.set(".intro-logo", {
             right: "50%"
@@ -377,9 +410,10 @@ const IndexPage = () => {
     }, [])
 
     let checkMob = () => {
-        if (window.visualViewport.width <= 700) {
+        console.log(window.innerWidth)
+
+        if (window.innerWidth <= 700) {
             console.log('it is mobile')
-            console.log(window.visualViewport.width)
             try {
                 setViewMode('mobile')
                 viewMode2 = 'mobile'
@@ -728,13 +762,16 @@ const IndexPage = () => {
                             که هم مشتری ها راضی باشن هم صاحبان کسب وکار
                         </h5>
                     </div>
-                    <div className={'contact-us-button-desktop mt-3'}>
-                        <span>   ارتباط با ما</span>
-                        <div className={'w-75 h-75'} style={{display:'none'}}>
-                            {svgs.contactUs}
+
+
+                        <div className={'contact-us-button-desktop mt-3'}>
+                            <span> ارتباط با ما</span>
+                            <div className={'w-75 h-75'} style={{display: 'none'}}>
+                                {svgs.contactUs}
+                            </div>
                         </div>
 
-                    </div>
+
 
                 </div>
 
@@ -742,10 +779,9 @@ const IndexPage = () => {
                 <div className={'right-side-desktop w-50'}>
 
                     <div className={'main-desktop-container'} id={'cont'}>
-
                         <div id={'card1'} style={{
                             opacity: 0,
-                            scale: '0.5',
+                            // scale: '0.5',
                             position: 'absolute',
                             display: 'flex',
                             justifyContent: 'center',
@@ -756,7 +792,7 @@ const IndexPage = () => {
                         </div>
                         <div id={'card2'} style={{
                             opacity: 0,
-                            scale: '0.5',
+                            // scale: '0.5',
                             position: 'absolute',
                             display: 'flex',
                             justifyContent: 'center',
@@ -767,7 +803,7 @@ const IndexPage = () => {
                         </div>
                         <div id={'card3'} style={{
                             opacity: 0,
-                            scale: '0.5',
+                            // scale: '0.5',
                             position: 'absolute',
                             display: 'flex',
                             justifyContent: 'center',
@@ -778,7 +814,7 @@ const IndexPage = () => {
                         </div>
                         <div id={'card4'} style={{
                             opacity: 0,
-                            scale: '0.5',
+                            // scale: '0.5',
                             position: 'absolute',
                             display: 'flex',
                             justifyContent: 'center',
@@ -790,7 +826,7 @@ const IndexPage = () => {
 
                         <div id={'card5'} style={{
                             opacity: 0,
-                            scale: '0.5',
+                            // scale: '0.5',
                             position: 'absolute',
                             display: 'flex',
                             justifyContent: 'center',
