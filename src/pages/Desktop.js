@@ -1,22 +1,19 @@
 //react
-import React, {useEffect, useRef} from "react";
+import React, {useEffect} from "react";
 //plugins
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import {MotionPathPlugin} from "gsap/MotionPathPlugin";
 import ScrollTo from "gsap/ScrollToPlugin";
 import TextPlugin from "gsap/TextPlugin";
-import Lottie from 'react-lottie';
 import tippy from "tippy.js";
-import * as svgs from '../svg/svgs'
+import * as svgs from '../svg/svgs';
 
 // import tippy from "tippy.js";
-
 //css files
 import '../css/MainComponent.css'
 import '../css/reset.css'
 import 'bootstrap/dist/css/bootstrap.css'
-import {Helmet} from "react-helmet";
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/shift-toward.css';
 
@@ -29,7 +26,7 @@ const Desktop = () => {
     let ShowTheDemo = () => {
     }
 
-
+    let plansVisible = false;
     let allowToScroll = true;
     let lastScrollPosition = 0;
     let currentSlide = 0;
@@ -39,13 +36,12 @@ const Desktop = () => {
     let endReached = false;
     let initialized = true;
     let cardsDom = [];
-    let plansOpened = false;
     let defaultCardsScale = 0.7;
     let lastCameInCard = 0;
     let [arrowDirection, setArrowDirection] = React.useState(1)
     let [arrowStop, setArrowStop] = React.useState(false)
     let [plans, setPlans] = React.useState(<div/>)
-    let [scrollSectionsClass,setSSClass] = React.useState('')
+    let [scrollSectionsClass, setSSClass] = React.useState('')
 
 
     //register Gsap Plugins
@@ -120,16 +116,7 @@ const Desktop = () => {
 
     let nextCard = (next) => {
 
-        if (!next) {
-            endReached = false;
-        }
-        if (next && endReached) {
-            allowToScroll = false;
-            plansOpened = false;
-            openPlansSectionHandler()
-            plansOpened = true;
-            return 1
-        }
+
 
         let animDuration = 1;
         if (!next && cardPositions === 0) {
@@ -139,6 +126,7 @@ const Desktop = () => {
             if (!next) {
                 cardPositions--;
             }
+            console.log('here up of the for to turn')
             for (let i = 0; i < cardsDom.length; i++) {
                 let startPosition,
                     endPosition
@@ -171,8 +159,6 @@ const Desktop = () => {
                                     content: '<span class="Iransans"> ارتباط با ما</span>'
                                 })
                             }
-
-
                         },
                         height: '50px',
                         marginLeft: '0',
@@ -264,7 +250,7 @@ const Desktop = () => {
 
             }
             setTimeout(() => {
-                if (!plansOpened) {
+                if (!isPlansSectionOpened()) {
                     allowForNextCard = true;
                     changeScrollStatus(true)
                     allowToScroll = true;
@@ -277,9 +263,7 @@ const Desktop = () => {
             // if (cardPositions === 10) {
             //     cardPositions = 5;
             // }
-            if (cardPositions === cardElements.length) {
-                endReached = true
-            }
+
 
             if (cardPositions > 3) {
                 if ((cardPositions - 5) % 5 === 0) {
@@ -297,6 +281,11 @@ const Desktop = () => {
                 if ((cardPositions - 4) % 5 === 0) {
                     ChangeCard(1, lastCameInCard + 1)
                 }
+            }
+            if (cardPositions === cardElements.length) {
+                // openPlansSectionHandler()
+                openPlansSectionHandler()
+                return 1
             }
         }
     }
@@ -340,7 +329,6 @@ const Desktop = () => {
             y: '200',
             duration: '0.2',
             onComplete: () => {
-
                 gsap.to('.plans-container', {
                     display: 'none'
                 })
@@ -368,20 +356,23 @@ const Desktop = () => {
         })
     }
 
-    let openPlansSectionHandler = () => {
-        if (plansOpened) {
-            closePlansSection()
-            plansOpened = false
-            // endReached = false;
-            // changeScrollStatus(true)
-            // allowForNextCard = true;
+    function isPlansSectionOpened () {
+        return !!parseInt(document.getElementsByClassName('plans-section')[0].style.height);
+    }
 
+    let openPlansSectionHandler = (open) => {
+        if (isPlansSectionOpened()) {
+            closePlansSection()
+            changeScrollStatus(true)
+            allowForNextCard = true;
+            allowToScroll = true;
 
         } else {
             openPlansSection()
-            plansOpened = true
+            changeScrollStatus(false)
+            allowForNextCard = false;
+            allowToScroll = false;
         }
-
     }
 
     let changeScrollStatus = (enable) => {
@@ -410,37 +401,29 @@ const Desktop = () => {
 
             if (window.scrollY > lastScrollPosition) {
             } else {
-                if (plansOpened === false) {
+                if (plansVisible === false) {
                     allowToScroll = true;
                     changeScrollStatus(true)
-                    console.log('closed going up')
                 }
             }
 
-            if (true) {
-                if (allowToScroll) {
-                    if (window.scrollY > lastScrollPosition) {
-                        nextCard(true)
-                    } else {
-                        // allowForNextCard = true;
-                        nextCard(false)
-                        console.log('trigger enabled')
 
-                    }
-                    changeScrollStatus(false)
-
+            if (allowToScroll) {
+                if (window.scrollY > lastScrollPosition) {
+                    nextCard(true)
                 } else {
-                    if (window.scrollY < lastScrollPosition) {
-                        nextCard(false)
-                        changeScrollStatus(true)
-                        allowToScroll = true;
-                    }
+                    nextCard(false)
                 }
+                changeScrollStatus(false)
+
             } else {
-                allowToScroll = true
-                changeScrollStatus(true)
-                currentSlide = 0;
+                if (window.scrollY < lastScrollPosition) {
+                    nextCard(false)
+                    changeScrollStatus(true)
+                    allowToScroll = true;
+                }
             }
+
             lastScrollPosition = window.scrollY;
         })
 
@@ -453,6 +436,7 @@ const Desktop = () => {
                 className={' plans-toggle-button d-flex justify-content-center align-content-center'}
                 onClick={() => {
                     openPlansSectionHandler()
+
                 }}>
                 <span className={'Iransans'}>پلن ها</span>
             </div>
@@ -712,7 +696,6 @@ const Desktop = () => {
             <div className={scrollSectionsClass}/>
             <div className={scrollSectionsClass}/>
             <div className={scrollSectionsClass}/>
-
 
 
         </main>
