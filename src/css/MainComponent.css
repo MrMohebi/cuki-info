@@ -8,14 +8,18 @@
 }
 @font-face {
   font-family: AppIranSansLight;
-  src: url(/fonts/MobileFonts/IRANSansMobile_Light.ttf);
+  src: url(/fonts/MobileFonts/IRANSansMobile_Light.ttf) format("truetype");
+}
+@font-face {
+  font-family: AppIranSansMedium;
+  src: url(/fonts/MobileFonts/IRANSansMobile_Medium.ttf);
 }
 @font-face {
   font-family: "Yellowtail";
   src: url("../fonts/Yellowtail.ttf") format("truetype");
 }
 .cuki-info {
-  position: absolute;
+  position: fixed;
   margin-left: 20px;
   margin-top: 20px;
   top: 0;
@@ -33,6 +37,10 @@
 
 .IransansLight {
   font-family: AppIranSansLight, serif;
+}
+
+.IransansMedium {
+  font-family: AppIranSansMedium, serif;
 }
 
 .info-margin {
@@ -73,7 +81,7 @@
   padding-right: 10px;
   transition: all 0.2s ease;
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   top: 20px;
   right: 20px;
   width: 110px;
@@ -130,6 +138,7 @@ body {
 }
 
 .sample-card {
+  user-select: none;
   z-index: 1;
   opacity: 1;
   position: absolute;
@@ -343,15 +352,122 @@ br {
   pointer-events: none;
 }
 
-.body::-webkit-scrollbar {
+.plans-container {
+  display: none;
+  opacity: 0;
+  transform: translate(0, 200px);
+}
+
+.plans-toggle-button {
+  cursor: pointer;
+  width: 50px;
+  color: dimgray;
+  height: 50px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  bottom: 20px;
+  transform: translate(50%, 0);
+  right: 50%;
+  position: fixed;
+  z-index: 9999;
+}
+
+.main-desktop {
+  position: initial;
+}
+
+.plans-section {
+  z-index: 99;
+  height: 0vh;
+  transform: translate(50%, 0);
+  right: 50%;
+  width: 400px;
+  background-color: white;
+  bottom: 0;
+  position: fixed;
+}
+
+.plan-container {
+  transition: all 0.2s ease;
+  display: flex;
+  flex-flow: column;
+  border-radius: 15px;
+  height: 500px;
+  width: 300px;
+  background-color: white;
+  box-shadow: 0 0 3px 0 #a0a0a0;
+  position: relative;
+  overflow: hidden;
+  margin: 0 20px;
+}
+
+.plan-container:hover {
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: 0 0 10px 1px #b3a9e7;
+}
+.plan-container:hover .plan-submit-button {
+  background-color: #4476FE;
+  color: white;
+}
+
+.plan-header {
+  text-align: right;
+  padding: 0 20px;
+  margin-top: 20px;
+}
+
+.plan-details {
+  text-align: right;
+  padding: 5px 20px;
+  font-family: AppIranSans;
+}
+
+.plan-options {
+  display: flex;
+  flex-flow: column;
+  padding: 0 20px;
+  margin-top: 20px;
+  max-height: 250px;
+  overflow-y: scroll;
+}
+
+.plan-options::-webkit-scrollbar {
   display: none;
 }
 
-* {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
+.plan-option-circle {
+  height: 10px;
+  width: 10px;
+  background-color: #69A4DC;
+  border-radius: 100%;
+  margin-left: 10px;
+}
+
+.plan-option {
+  margin: 2px 0;
+}
+
+.plan-submit-button {
+  transition: all 0.2s ease;
+  cursor: pointer;
+  width: 90%;
+  margin: auto;
+  background-color: #DAE4FF;
+  height: 50px;
+  position: absolute;
+  right: 50%;
+  transform: translate(50%, 0);
+  bottom: 20px;
+  border-radius: 10px;
+  color: #416FEE;
+}
+
+.plan-price {
+  position: absolute;
+  bottom: 80px;
+  right: 20px;
+  text-align: right;
 }
 
 /*# sourceMappingURL=MainComponent.css.map */
