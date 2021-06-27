@@ -1,30 +1,9 @@
-//react
-import React, {useEffect} from "react";
-//plugins
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import {MotionPathPlugin} from "gsap/MotionPathPlugin";
-import ScrollTo from "gsap/ScrollToPlugin";
-import TextPlugin from "gsap/TextPlugin";
-import tippy from "tippy.js";
-import * as svgs from '../svg/svgs';
+import React from "react";
+import * as svgs from "../svg/svgs";
 import * as texts from '../texts'
-// import tippy from "tippy.js";
-//css files
-import '../css/MainComponent.css'
-import '../css/reset.css'
 import 'bootstrap/dist/css/bootstrap.css'
-import 'tippy.js/dist/tippy.css';
-import 'tippy.js/animations/shift-toward.css';
 
-
-//included files
-import {cardElements} from "../cards/cards";
-import * as ReactDOMServer from "react-dom/server";
-
-const Desktop = () => {
-    let ShowTheDemo = () => {
-    }
+const Mobile = ()=>{
 
     let plansVisible = false;
     let allowToScroll = true;
@@ -44,402 +23,12 @@ const Desktop = () => {
     let [scrollSectionsClass, setSSClass] = React.useState('')
 
 
-    //register Gsap Plugins
-    gsap.registerPlugin(ScrollTrigger)
-    gsap.registerPlugin(ScrollTo)
-    gsap.registerPlugin(TextPlugin)
-    gsap.registerPlugin(MotionPathPlugin)
-
-    let CheckCardsInterval = setInterval(() => {
-        getCards()
-    }, 1000)
-
-
-    let plansData = [
-        {
-            price: 1900000,
-            details: 'با هزینه اندک میتوانید منوی آنلاین اختصاصی خود را داشته باشید',
-            options: [
-                'منو',
-                "کامنت و نظرات",
-                "منوی همراه"
-            ]
-        }
-        ,
-    ]
-
-    function createPlans() {
-
-
-    }
-
-    let getCards = () => {
-        cardsDom = document.getElementById('cont').childNodes
-        if (document.getElementById('allCards') && initialized) {
-            afterCardsFetched(cardsDom)
-            clearInterval(CheckCardsInterval)
-        }
-    }
-
-
-    let afterCardsFetched = (cards) => {
-        document.getElementById('card1').firstChild.replaceWith(document.createRange().createContextualFragment(ReactDOMServer.renderToStaticMarkup(cardElements[0])))
-        for (let i = 0; i < cards.length; i++) {
-            document.getElementById('card' + (i + 1)) ? document.getElementById('card' + (i + 1)).firstChild.replaceWith(document.createRange().createContextualFragment(ReactDOMServer.renderToStaticMarkup(cardElements[i]))) : console.log('hello')
-            gsap.to(cards[i], {
-                motionPath: {
-                    path: "#path",
-                    align: "#path",
-                    autoRotate: false,
-                    alignOrigin: [0.5, 0.5],
-                    start: (1 / cards.length) * i,
-                    end: (1 / cards.length) * i
-                },
-                delay: i * 0.1,
-                duration: 0.9,
-                opacity: 1,
-                onComplete: () => {
-                    gsap.to(cards[i], {
-                        transition: 'transform 0.2s ease'
-                    })
-                },
-                ease: "power4.inOut"
-            })
-        }
-        lastCameInCard = cards.length
-
-
-    }
-    //
-    let cardPositions = 0;
-    let cusToolTipped = false;
-
-    let nextCard = (next) => {
-
-        let animDuration = 1;
-        console.log(allowForNextCard)
-        if (!next && cardPositions === 0) {
-            // console.log('prev card position 0')
-        } else if (allowForNextCard && cardPositions >= 0) {
-            console.log('next card should call')
-            allowForNextCard = false;
-            if (!next) {
-                cardPositions--;
-            }
-            // console.log('here up of the for to turn')
-            for (let i = 0; i < cardsDom.length; i++) {
-                let startPosition,
-                    endPosition
-                if (next) {
-                    startPosition = ((1 / cardsDom.length) * i + cardPositions * (1 / cardsDom.length)).toFixed(2) + 0 //just for duplicate Error +0
-                    endPosition = ((1 / cardsDom.length) * i + (1 / cardsDom.length) + cardPositions * (1 / cardsDom.length)).toFixed(2)
-                } else {
-                    endPosition = ((1 / cardsDom.length) * i + cardPositions * (1 / cardsDom.length)).toFixed(2)
-                    startPosition = ((1 / cardsDom.length) * i + (1 / cardsDom.length) + cardPositions * (1 / cardsDom.length)).toFixed(2)
-                }
-                if (cardPositions === 0 && next) {
-                    gsap.to('.intro-desktop-texts', {
-                        opacity: '0',
-                        ease: 'power2.Out',
-                        duration: 0.2,
-                    })
-                    gsap.to('.contact-us-button-desktop', {
-                        duration: 0.1,
-                        bottom: '20px',
-                        left: '20px',
-                        width: '50px',
-                        onComplete: () => {
-                            document.querySelector('.contact-us-button-desktop span').style.display = 'none'
-                            document.querySelector('.contact-us-button-desktop div').style.display = 'flex'
-                            if (!cusToolTipped) {
-                                cusToolTipped = true;
-                                tippy('.contact-us-button-desktop', {
-                                    animation: 'shift-toward',
-                                    allowHTML: true,
-                                    content: '<span class="Iransans"> ارتباط با ما</span>'
-                                })
-                            }
-                        },
-                        height: '50px',
-                        marginLeft: '0',
-                        borderRadius: '50%',
-                    })
-
-                } else if (cardPositions === 0 && !next) {
-                    gsap.to('.intro-desktop-texts', {
-                        opacity: '1',
-                        ease: 'power2.Out',
-                        duration: 0.7,
-                    })
-                    gsap.to(".contact-us-button-desktop", {
-                        duration: 0,
-                        onComplete: () => {
-                            document.querySelector('.contact-us-button-desktop span').style.display = 'flex'
-                            document.querySelector('.contact-us-button-desktop div').style.display = 'none'
-                            if (cusToolTipped) {
-                                let instance = document.querySelector('.contact-us-button-desktop')
-                                instance = instance._tippy
-                                instance.disable()
-                                cusToolTipped = false
-                            }
-
-                            gsap.to('.contact-us-button-desktop', {
-                                duration: 1,
-                                bottom: '',
-                                left: '',
-                                width: '',
-                                height: '',
-                                marginLeft: '',
-                                borderRadius: '',
-                                onComplete: () => {
-
-                                }
-                            })
-                        }
-                    })
-                }
-                if (startPosition.toString().slice('.')[2][0] === '4' && next) {
-                    gsap.to(cardsDom[i], {
-                        scale: defaultCardsScale,
-                        duration: 0.2
-                    })
-                }
-
-                if ((startPosition.toString().slice(".")[2][0] === '2' && next) || (startPosition.toString().slice('.')[2][0] === '6' && !next) && cardPositions !== 0) {
-                    gsap.to(cardsDom[i], {
-                        zIndex: cardPositions,
-                        duration: 0,
-                    })
-                    gsap.to(cardsDom[i], {
-                        transition: 'transform 0.1',
-                        // x: (-window.visualViewport.width / 2.2) + "px",
-                        x: (-window.innerWidth / 2.2) + "px",
-                        y: '0',
-                        ease: "power3.inOut",
-                        transformOrigin: 'center',
-                    })
-                    gsap.to(cardsDom[i], {
-                        zIndex: '3',
-                        scale: 1.3,
-                        duration: 0.1,
-                        ease: 'power4.out'
-                    })
-
-                } else {
-                    gsap.to(cardsDom[i], {
-                        zIndex: 0,
-                        duration: 0,
-                    })
-                    gsap.to(cardsDom[i], {
-                        transition: 'transform 0.1',
-                        motionPath: {
-                            path: "#path",
-                            align: "#path",
-                            autoRotate: false,
-                            alignOrigin: [0.5, 0.5],
-                            start: startPosition,
-                            end: endPosition,
-                            curviness: 2
-                        },
-                        zIndex: '1',
-                        scale: defaultCardsScale,
-                        duration: animDuration,
-                        ease: "power3.inOut"
-                    })
-                }
-
-            }
-            setTimeout(() => {
-                // if (!isPlansSectionOpened()) {
-                allowForNextCard = true;
-                changeScrollStatus(true)
-                allowToScroll = true;
-                // }
-
-            }, animDuration * 1000)
-            if (next) {
-                cardPositions++;
-            }
-            // if (cardPositions === 10) {
-            //     cardPositions = 5;
-            // }
-
-
-            if (cardPositions > 3) {
-                if ((cardPositions - 5) % 5 === 0) {
-                    ChangeCard(5, lastCameInCard + 1)
-                }
-                if ((cardPositions - 6) % 5 === 0) {
-                    ChangeCard(4, lastCameInCard + 1)
-                }
-                if ((cardPositions - 7) % 5 === 0) {
-                    ChangeCard(3, lastCameInCard + 1)
-                }
-                if ((cardPositions - 8) % 5 === 0) {
-                    ChangeCard(2, lastCameInCard + 1)
-                }
-                if ((cardPositions - 4) % 5 === 0) {
-                    ChangeCard(1, lastCameInCard + 1)
-                }
-            }
-            if (cardPositions === cardElements.length) {
-                // openPlansSectionHandler()
-                cardPositions = cardPositions - 1
-                openPlansSectionHandler()
-                return 1
-            }
-        }
-    }
-
-    let ChangeCard = (cardElementNumber, newCardNumber) => {
-        let card = document.getElementById('card' + (cardElementNumber)) ? document.getElementById('card' + cardElementNumber).firstChild : console.log('Data:card not found')
-        gsap.to("#card" + cardElementNumber, {
-            opacity: 0,
-            scale: 0.5,
-            duration: 0.2,
-            ease: 'Power4.out',
-            onComplete: () => {
-                if (cardElements[newCardNumber]) {
-                    card.replaceWith(document.createRange().createContextualFragment(ReactDOMServer.renderToStaticMarkup(cardElements[newCardNumber])))
-                    lastCameInCard = newCardNumber;
-                } else {
-                    card.replaceWith(document.createRange().createContextualFragment(ReactDOMServer.renderToStaticMarkup(cardElements[0])))
-                    lastCameInCard = 0;
-                }
-                gsap.to("#card" + cardElementNumber, {
-                    duration: 0.2,
-                    opacity: 1,
-                    scale: defaultCardsScale,
-                })
-            }
-        })
-        lastCameInCard = newCardNumber;
-
-    }
-
-    //
-    let closePlansSection = () => {
-        gsap.to('.main-desktop-wrapper', {
-            y: '0',
-        })
-        gsap.to('.plans-section', {
-            height: '0vh'
-        })
-        gsap.to('.plans-container ', {
-            opacity: '0',
-            y: '200',
-            duration: '0.2',
-            onComplete: () => {
-                gsap.to('.plans-container', {
-                    display: 'none'
-                })
-            }
-        })
-
-
-    }
-
-    let openPlansSection = () => {
-        gsap.to('.main-desktop-wrapper', {
-            y: '-100%'
-        })
-        gsap.to('.plans-section', {
-            height: '100vh',
-            width: '100vw',
-            onComplete: () => {
-                gsap.to('.plans-container', {
-                    display: 'flex',
-                    opacity: '1',
-                    y: 0,
-                })
-            },
-            ease: 'power2.out'
-        })
-    }
-
-    function isPlansSectionOpened() {
-        return !!parseInt(document.getElementsByClassName('plans-section')[0].style.height);
-    }
-
-    let openPlansSectionHandler = () => {
-        if (isPlansSectionOpened()) {
-            closePlansSection()
-            changeScrollStatus(true)
-            allowForNextCard = true;
-            allowToScroll = true;
-
-        } else {
-            openPlansSection()
-            changeScrollStatus(false)
-            allowForNextCard = false;
-            allowToScroll = false;
-        }
-    }
-
-    let changeScrollStatus = (enable) => {
-        if (enable) {
-            document.body.style.overflowY = 'scroll'
-        } else {
-            document.body.style.overflowY = 'hidden'
-        }
-    }
-
-    useEffect(() => {
-        window.addEventListener('mousemove', (e) => {
-            if (document.querySelector('.svgDots')) {
-                gsap.to('.svgDots', {
-                    x: e.clientX / 80,
-                    y: e.clientY / 80
-                })
-            }
-        })
-        // setSSClass('vw-100 h-999')
-
-
-        window.addEventListener("scroll", (e) => {
-            e.preventDefault()
-
-            if (window.scrollY > lastScrollPosition) {
-            } else {
-                if (plansVisible === false) {
-                    allowToScroll = true;
-                    changeScrollStatus(true)
-                }
-            }
-
-
-            if (allowToScroll) {
-                if (window.scrollY > lastScrollPosition) {
-                    nextCard(true)
-                } else {
-                    nextCard(false)
-                }
-                changeScrollStatus(false)
-
-            } else {
-                if (window.scrollY < lastScrollPosition) {
-                    nextCard(false)
-                    changeScrollStatus(true)
-                    allowToScroll = true;
-                }
-            }
-
-            lastScrollPosition = window.scrollY;
-        })
-
-
-    }, [])
-
-    let publicContent = <div style={{display:'content'}}>
-
-    </div>
-
     return (
+
         <main className={' main-desktop vw-100 '}>
             <div
                 className={' plans-toggle-button d-flex justify-content-center align-content-center'}
                 onClick={() => {
-                    openPlansSectionHandler()
 
                 }}>
                 <span className={'Iransans'}>پلن ها</span>
@@ -525,7 +114,7 @@ const Desktop = () => {
 
                     </div>
                 </div>
-                {plans}
+                {/*{plans}*/}
 
             </div>
             <div className={'demo-button-desktop'} style={{zIndex: '100'}}>
@@ -542,7 +131,7 @@ const Desktop = () => {
                 <span className={'Iransans info-margin mt-2'}>menu</span>
             </div>
             <div
-                className={'d-flex main-desktop-wrapper  justify-content-center align-items-center vh-100 vw-100 position-fixed '}>
+                className={'d-flex main-desktop-wrapper justify-content-center align-items-center vh-100 vw-100 position-fixed '}>
 
                 <div className={'position-absolute'}
                      style={{width: "55%", height: '55%', right: '0px', top: '10rem', zIndex: '-1'}}>
@@ -570,140 +159,43 @@ const Desktop = () => {
                         </g>
                     </svg>
                 </div>
-                <div className={'left-side-desktop w-auto w-50'} style={{marginTop: '-250px'}}>
-                    <div className={'intro-desktop-texts '}>
+                <div className={' mobile-container'} style={{marginTop: '-250px'}}>
+                    <div className={'intro-desktop-texts w-100 '}>
                         <h2 className={'intro-desktop-head mb-2 IransansBold'}>
-                            {texts.mainIntro}
+                            دیگه وقت <br/> راحت تر شدن کارهاست
                         </h2>
-                        <h5 className={'t-r mt-4 Iransans intro-desktop-title'}>
-                            {texts.mainDetail}
+                        <h5 className={' mt-4 Iransans intro-desktop-title'}>
 
+                            کوکی برای رفع نیاز ها و سرعت دهی به
+                            کار
+                            ها طراحی شده
+                            <br/>
+                            که هم مشتری ها راضی باشن هم صاحبان کسب وکار
                         </h5>
                     </div>
-                    <div className={'contact-us-button-desktop mt-3'}>
+                    <div className={'contact-us-button-mobile mt-3'}>
                         <span> ارتباط با ما</span>
                         <div className={'w-75 h-75'} style={{display: 'none'}}>
                             {svgs.contactUs}
                         </div>
                     </div>
                 </div>
-                <div className={'right-side-desktop w-50'}>
-                    <div className={'main-desktop-container'} id={'cont'}>
-                        <div id={'card1'} style={{
-                            opacity: 0,
-                            // scale: '0.5',
-                            position: 'absolute',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            transform: `scale(${defaultCardsScale})`
-                        }}>
-                            <div/>
-                        </div>
-                        <div id={'card2'} style={{
-                            opacity: 0,
-                            // scale: '0.5',
-                            position: 'absolute',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            transform: `scale(${defaultCardsScale})`
-                        }}>
-                            <div/>
-                        </div>
-                        <div id={'card3'} style={{
-                            opacity: 0,
-                            // scale: '0.5',
-                            position: 'absolute',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            transform: `scale(${defaultCardsScale})`
-                        }}>
-                            <div/>
-                        </div>
-                        <div id={'card4'} style={{
-                            opacity: 0,
-                            // scale: '0.5',
-                            position: 'absolute',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            transform: `scale(${defaultCardsScale})`
-                        }}>
-                            <div/>
-                        </div>
-                        <div id={'card5'} style={{
-                            opacity: 0,
-                            // scale: '0.5',
-                            position: 'absolute',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            transform: `scale(${defaultCardsScale})`
-                        }}>
-                            <div/>
-                        </div>
-                    </div>
-                    <div className={'position-absolute'} style={{width: "30%", right: '10rem', top: '15rem'}}>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 671.637 410.275">
-                            <path id={'path'}
-                                  d="M1598.761,240.337s-571.235-160.224-670.5,285.617C1501.233,851.627,1598.761,240.337,1598.761,240.337Z"
-                                  transform="translate(-927.688 -211.751)" fill="none" stroke="#707070"
-                                  strokeWidth="0"/>
-                        </svg>
-                    </div>
-                    <div className={'allCards'} id={'allCards'}>
-                    </div>
-                    <div className={'position-absolute'} style={{
-                        transition: 'all 0.5s ease',
-                        zIndex: '-1',
-                        width: '10%',
-                        height: '10%',
-                        right: '56%',
-                        top: '50%',
-                    }}>
-                        {svgs.centerOrangeDots}
-                    </div>
-                    <div className={'position-absolute'} style={{
-                        transition: 'all 0.5s ease',
-                        zIndex: '-1',
-                        width: '10%',
-                        height: '10%',
-                        left: '10%',
-                        top: '10%',
-                    }}>
-                        {svgs.upOrangeDots}
-                    </div>
-                    <div className={'position-absolute'} style={{
-                        transition: 'all 0.5s ease',
-                        zIndex: '-1',
-                        width: '5%',
-                        height: '5%',
-                        left: '0',
-                        top: '70%',
-                    }}>
-                        {svgs.blueDots}
-                    </div>
-                </div>
             </div>
 
             {/*__________ Just For Scroll Section __________*/}
-            <div className={scrollSectionsClass}/>
-            <div className={scrollSectionsClass}/>
-            <div className={scrollSectionsClass}/>
-            <div className={scrollSectionsClass}/>
-            <div className={scrollSectionsClass}/>
-            <div className={scrollSectionsClass}/>
-            <div className={scrollSectionsClass}/>
-            <div className={scrollSectionsClass}/>
-            <div className={scrollSectionsClass}/>
+
+            {/*<div className={scrollSectionsClass}/>*/}
+            {/*<div className={scrollSectionsClass}/>*/}
+            {/*<div className={scrollSectionsClass}/>*/}
+            {/*<div className={scrollSectionsClass}/>*/}
+            {/*<div className={scrollSectionsClass}/>*/}
+            {/*<div className={scrollSectionsClass}/>*/}
+            {/*<div className={scrollSectionsClass}/>*/}
+            {/*<div className={scrollSectionsClass}/>*/}
+            {/*<div className={scrollSectionsClass}/>*/}
 
 
         </main>
-        // <h1>Desktop file </h1>
     )
-
 }
-export default Desktop
-
+export default Mobile

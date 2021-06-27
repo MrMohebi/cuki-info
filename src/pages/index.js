@@ -5,7 +5,7 @@ const IndexPage = (props) => {
 
     let checkScreenSize = () => {
         if (window.innerWidth <= 700) {
-            window.location.pathname = '/Mobile'
+            window.location.pathname = '/Desktop'
         } else {
             window.location.pathname = '/Desktop'
         }

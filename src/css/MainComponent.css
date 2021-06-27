@@ -53,6 +53,24 @@
   margin-right: 10px;
 }
 
+.contact-us-button-mobile {
+  transition: all 0.2s ease;
+  cursor: pointer;
+  width: 130px;
+  right: 50%;
+  height: 40px;
+  border: 2px solid;
+  color: white;
+  border-radius: 200px 0 300px 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: AppIranSansBold, sans-serif;
+  font-size: 0.8rem;
+  background-size: 200% 200%;
+  background: black 200%;
+}
+
 .contact-us-button-desktop {
   position: absolute;
   transition: all 0.2s ease;
@@ -75,6 +93,14 @@
 .contact-us-button-desktop:hover {
   box-shadow: #ffc9d2 0 0 10px;
   transform: scale(1.05);
+}
+
+.mobile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  width: 90%;
 }
 
 .demo-button-desktop {
@@ -104,6 +130,21 @@
   line-height: 2.5rem;
 }
 
+@media only screen and (max-width: 700px) {
+  .intro-desktop-head {
+    height: 70px;
+    width: 70%;
+    margin: auto;
+    text-align: center;
+  }
+
+  .intro-desktop-title {
+    width: 70%;
+    margin: auto;
+    font-size: 0.5rem;
+    text-align: center;
+  }
+}
 .h-999 {
   height: 999px;
 }
