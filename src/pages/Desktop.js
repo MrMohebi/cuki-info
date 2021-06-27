@@ -76,7 +76,6 @@ const Desktop = () => {
     let getCards = () => {
         cardsDom = document.getElementById('cont').childNodes
         if (document.getElementById('allCards') && initialized) {
-
             afterCardsFetched(cardsDom)
             clearInterval(CheckCardsInterval)
         }
@@ -109,6 +108,7 @@ const Desktop = () => {
         }
         lastCameInCard = cards.length
 
+
     }
     //
     let cardPositions = 0;
@@ -116,17 +116,17 @@ const Desktop = () => {
 
     let nextCard = (next) => {
 
-
-
         let animDuration = 1;
+        console.log(allowForNextCard)
         if (!next && cardPositions === 0) {
-
+            // console.log('prev card position 0')
         } else if (allowForNextCard && cardPositions >= 0) {
+            console.log('next card should call')
             allowForNextCard = false;
             if (!next) {
                 cardPositions--;
             }
-            console.log('here up of the for to turn')
+            // console.log('here up of the for to turn')
             for (let i = 0; i < cardsDom.length; i++) {
                 let startPosition,
                     endPosition
@@ -250,11 +250,11 @@ const Desktop = () => {
 
             }
             setTimeout(() => {
-                if (!isPlansSectionOpened()) {
-                    allowForNextCard = true;
-                    changeScrollStatus(true)
-                    allowToScroll = true;
-                }
+                // if (!isPlansSectionOpened()) {
+                allowForNextCard = true;
+                changeScrollStatus(true)
+                allowToScroll = true;
+                // }
 
             }, animDuration * 1000)
             if (next) {
@@ -284,6 +284,7 @@ const Desktop = () => {
             }
             if (cardPositions === cardElements.length) {
                 // openPlansSectionHandler()
+                cardPositions = cardPositions - 1
                 openPlansSectionHandler()
                 return 1
             }
@@ -356,11 +357,11 @@ const Desktop = () => {
         })
     }
 
-    function isPlansSectionOpened () {
+    function isPlansSectionOpened() {
         return !!parseInt(document.getElementsByClassName('plans-section')[0].style.height);
     }
 
-    let openPlansSectionHandler = (open) => {
+    let openPlansSectionHandler = () => {
         if (isPlansSectionOpened()) {
             closePlansSection()
             changeScrollStatus(true)
@@ -384,7 +385,6 @@ const Desktop = () => {
     }
 
     useEffect(() => {
-
         window.addEventListener('mousemove', (e) => {
             if (document.querySelector('.svgDots')) {
                 gsap.to('.svgDots', {
@@ -393,8 +393,8 @@ const Desktop = () => {
                 })
             }
         })
+        // setSSClass('vw-100 h-999')
 
-        setSSClass('vw-100 h-999')
 
         window.addEventListener("scroll", (e) => {
             e.preventDefault()
