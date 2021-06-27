@@ -4,7 +4,6 @@
 }
 
 
-
 @font-face {
   font-family: AppIranSansBold;
   src: url(/fonts/MobileFonts/IRANSansMobile_Bold.ttf) format('truetype') ;
@@ -24,7 +23,6 @@
   font-family: "Yellowtail";
   src: url("../fonts/Yellowtail.ttf") format("truetype");
 }
-
 
 
 .cuki-info {
@@ -62,15 +60,28 @@
   margin-right: 10px;
 }
 
-.contact-us-button-desktop {
-  position: absolute;
-  //padding-right: 10px;
+.contact-us-button-mobile {
   transition: all 0.2s ease;
   cursor: pointer;
-  //padding-top: 0.2rem;
+  width: 130px;
+  right: 50%;
+  height: 40px;
+  border: 2px solid;
+  color: white;
+  border-radius: 200px 0 300px 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: AppIranSansBold, sans-serif;
+  font-size: 0.8rem;
+  background-size: 200% 200%;
+  background: black 200%;
+}
 
-  //top: 20px;
-  //right: 30px;
+.contact-us-button-desktop {
+  position: absolute;
+  transition: all 0.2s ease;
+  cursor: pointer;
   width: 130px;
   margin-left: 320px;
   height: 40px;
@@ -89,6 +100,14 @@
 .contact-us-button-desktop:hover {
   box-shadow: #ffc9d2 0 0 10px;
   transform: scale(1.05);
+}
+
+.mobile-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  width: 90%;
 }
 
 .demo-button-desktop {
@@ -117,6 +136,21 @@
 .intro-desktop-head {
   text-align: right;
   line-height: 2.5rem;
+}
+@media only screen and (max-width: 700px) {
+  .intro-desktop-head {
+    height: 70px;
+    width: 70%;
+    margin: auto;
+    text-align: center;
+  }
+  .intro-desktop-title{
+    width: 70%;
+    margin: auto;
+    font-size: 0.5rem;
+    text-align: center;
+  }
+
 }
 
 .h-999 {
@@ -235,7 +269,7 @@ br {
   direction: rtl;
   margin-top: 20px;
   text-align: right;
-  font-family: AppIranSansLight , sans-serif;
+  font-family: AppIranSansLight, sans-serif;
   white-space: nowrap;
   font-size: 0.55rem;
 }
@@ -404,13 +438,14 @@ br {
   }
 }
 
-.plans-container{
+.plans-container {
   display: none;
   opacity: 0;
-  transform: translate(0,200px);
+  transform: translate(0, 200px);
 
 }
-.plans-toggle-button{
+
+.plans-toggle-button {
   //margin-top: 10px;
   cursor: pointer;
   width: 50px;
@@ -422,11 +457,12 @@ br {
   flex-flow: column;
   align-items: center;
   bottom: 20px;
-  transform: translate(50%,0);
-  right:50% ;
+  transform: translate(50%, 0);
+  right: 50%;
   position: fixed;
   z-index: 9999;
 }
+
 .main-desktop {
   position: initial;
 }
@@ -446,7 +482,7 @@ br {
 .plans-section {
   z-index: 99;
   height: 0vh;
-  transform: translate(50%,0);
+  transform: translate(50%, 0);
   right: 50%;
   width: 400px;
   background-color: white;
@@ -464,7 +500,7 @@ br {
   background-color: white;
   box-shadow: 0 0 3px 0 #a0a0a0;
   position: relative;
-  overflow:hidden;
+  overflow: hidden;
   margin: 0 20px;
 }
 
@@ -472,7 +508,8 @@ br {
   transform: translateY(-10px) scale(1.01);
 
   box-shadow: 0 0 10px 1px #b3a9e7;
-  .plan-submit-button{
+
+  .plan-submit-button {
     background-color: #4476FE;
     color: white;
   }
@@ -499,8 +536,9 @@ br {
   overflow-y: scroll;
 
 }
+
 .plan-options::-webkit-scrollbar {
-display: none;
+  display: none;
 }
 
 .plan-option-circle {
@@ -514,21 +552,23 @@ display: none;
 .plan-option {
   margin: 2px 0;
 }
-.plan-submit-button{
+
+.plan-submit-button {
   transition: all 0.2s ease;
   cursor: pointer;
   width: 90%;
   margin: auto;
   background-color: #DAE4FF;
   height: 50px;
- position: absolute;
+  position: absolute;
   right: 50%;
-  transform: translate(50%,0);
+  transform: translate(50%, 0);
   bottom: 20px;
   border-radius: 10px;
   color: #416FEE;
 }
-.plan-price{
+
+.plan-price {
   position: absolute;
   bottom: 80px;
   right: 20px;
