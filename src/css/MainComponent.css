@@ -101,6 +101,7 @@
   align-items: center;
   flex-flow: column;
   width: 90%;
+  margin-top: -100px;
 }
 
 .demo-button-desktop {
@@ -136,6 +137,11 @@
     width: 70%;
     margin: auto;
     text-align: center;
+  }
+
+  .demo-button-desktop {
+    height: 30px;
+    width: 90px;
   }
 
   .intro-desktop-title {
@@ -200,7 +206,7 @@ body {
   max-width: 450px;
   background: white;
   border: none;
-  box-shadow: 1px 0 17px 4px #dcdcdc;
+  box-shadow: 1px 0 10px 4px #dcdcdc;
   border-radius: 12px;
   margin-left: 100px;
 }

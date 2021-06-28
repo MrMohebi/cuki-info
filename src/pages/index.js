@@ -7,7 +7,7 @@ const IndexPage = (props) => {
         if (window.innerWidth <= 700) {
             window.location.pathname = '/Mobile'
         } else {
-            window.location.pathname = '/Desktop.js'
+            window.location.pathname = '/Desktop'
         }
     }
     useEffect(()=>{

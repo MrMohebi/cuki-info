@@ -1,6 +1,4 @@
 import React, {useEffect} from "react";
-import * as svgs from "../svg/svgs";
-import * as texts from '../texts'
 import 'bootstrap/dist/css/bootstrap.css'
 import * as ReactDOMServer from "react-dom/server";
 import {cardElements} from "../cards/cards";
@@ -26,10 +24,18 @@ const Mobile = () => {
     let [plans, setPlans] = React.useState(<div/>)
     let [scrollSectionsClass, setSSClass] = React.useState('')
     let cardsPrepared = false;
+    let cards;
 
+    let changeScrollStatus = (state)=>{
+        if (state){
+            document.body.style.overflowY = 'scroll'
+        }else{
+            document.body.style.overflowY = 'hidden'
+
+        }
+    }
     let prepareCards = () => {
-        let cards = document.querySelector('.mobile-cards-container').childNodes
-
+        cards = document.querySelector('.mobile-cards-container').childNodes
 
 
         for (let i = 0; i < cards.length; i++) {
@@ -38,35 +44,48 @@ const Mobile = () => {
                 // opacity:0,
                 // delay:i*0.2
             })
+
+
         }
 
         for (let i = 0; i < cards.length; i++) {
             gsap.to(cards[i], {
-                scale: '0.' + (cards.length - i),
+                // scale: '0.' + (cards.length - i),
+                scale: i === 0 ? 0.9 : '0.' + (cards.length - i),
                 opacity: "1 !important",
             })
+
+
+            let tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#m-trigger-' + (i+1),
+                    scrub:0.5,
+                    snap:1,
+
+
+                }
+            })
+            tl.to(cards[i], 1, {
+                x: "-300%",
+                y: '20%',
+                // scale: 0.5,
+            }).to(cards[i + 1], 0.5, {
+                transform: "scale(1)",
+                onComplete:()=>{
+                    // changeScrollStatus(false)
+                }
+            }, 0)
         }
 
         for (let i = 0; i < cards.length; i++) {
             console.log('#m-trigger-' + i)
-
-            let tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: '#m-trigger-' + (i),
-                    scrub: true,
-                    markers: true,
-                    start: "0",
-                    end: '+=' + (400 * (i+1)),
-                    snap:1/(9)
-                }
+            cards[i].addEventListener('click', () => {
+                nextCardAnimations(i)
             })
 
-            tl.to(cards[i], {
-                scale: '1',
-                transform: 'scale(1)',
-            }).to(cards[i], {
-                x: 500
-            })
+            setTimeout(() => {
+                // console.log(tl.progress());
+            }, 2000)
             // gsap.to(cards[i], {
             //     y: 500,
             //     scrollTrigger: {
@@ -83,7 +102,28 @@ const Mobile = () => {
 
 
     }
-    let nextCardAnimations = () => {
+    let nextCardAnimations = (current) => {
+        if (allowForNextCard) {
+            setTimeout(() => {
+                allowForNextCard = true;
+            }, 600)
+            allowForNextCard = false;
+
+
+            if (current === cardElements.length - 1) {
+                for (let o = 0; o <= cards.length; o++) {
+                    gsap.to(cards[o], 0.3, {
+                        x: 0,
+                        y: 0,
+                        ease: "expo.out",
+                        scale: o === 0 ? 0.9 : '0.' + (cards.length - o),
+                        delay: o * 0.1
+                    })
+                }
+            }
+
+        }
+
 
     }
     gsap.registerPlugin(ScrollTrigger)
@@ -97,7 +137,7 @@ const Mobile = () => {
             prepareCards()
             cardsPrepared = true;
         }
-        setSSClass('vw-100 h-m')
+        setSSClass('vw-100 h-999')
 
         //  for (let i = 0; i< cards.length;i++){
         //     gsap.to(cards[i],{
@@ -259,15 +299,15 @@ const Mobile = () => {
                             که هم مشتری ها راضی باشن هم صاحبان کسب وکار
                         </h5>
                     </div>
-                    <div className={'contact-us-button-mobile mt-3'}>
-                        <span> ارتباط با ما</span>
-                        <div className={'w-75 h-75'} style={{display: 'none'}}>
-                            {svgs.contactUs}
-                        </div>
-                    </div>
+                    {/*<div className={'contact-us-button-mobile mt-3'}>*/}
+                    {/*    <span> ارتباط با ما</span>*/}
+                    {/*    <div className={'w-75 h-75'} style={{display: 'none'}}>*/}
+                    {/*        {svgs.contactUs}*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
 
                     <div className={'mobile-cards-container d-flex justify-content-center align-items-center w-100'}
-                         style={{height: "200px"}}>
+                         style={{height: "100px", marginTop: '100px'}}>
 
 
                     </div>
@@ -285,7 +325,8 @@ const Mobile = () => {
             <div id={'m-trigger-6'} className={scrollSectionsClass}/>
             <div id={'m-trigger-7'} className={scrollSectionsClass}/>
             <div id={'m-trigger-8'} className={scrollSectionsClass}/>
-            <div id={'m-trigger-9'} className={scrollSectionsClass}/>
+            {/*<div id={'m-trigger-9'} className={scrollSectionsClass}/>*/}
+
 
 
         </main>

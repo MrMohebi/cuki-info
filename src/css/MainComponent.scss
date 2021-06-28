@@ -102,12 +102,13 @@
   transform: scale(1.05);
 }
 
-.mobile-container{
+.mobile-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column;
   width: 90%;
+  margin-top: -100px;
 }
 
 .demo-button-desktop {
@@ -137,6 +138,7 @@
   text-align: right;
   line-height: 2.5rem;
 }
+
 @media only screen and (max-width: 700px) {
   .intro-desktop-head {
     height: 70px;
@@ -144,16 +146,20 @@
     margin: auto;
     text-align: center;
   }
-  .intro-desktop-title{
+  .demo-button-desktop {
+    height: 30px;
+    width: 90px;
+  }
+  .intro-desktop-title {
     width: 70%;
     margin: auto;
     font-size: 0.5rem;
     text-align: center;
   }
-  .sample-card{
+  .sample-card {
     margin-left: 0 !important;
     transform: scale(0.8);
-    opacity: 0 ;
+    opacity: 0;
   }
 
 }
@@ -161,6 +167,7 @@
 .h-999 {
   height: 999px;
 }
+
 .h-m {
   height: 200px;
 }
@@ -211,7 +218,7 @@ body {
   max-width: 450px;
   background: white;
   border: none;
-  box-shadow: 1px 0 17px 4px #dcdcdc;
+  box-shadow: 1px 0 10px 4px #dcdcdc;
   border-radius: 12px;
   margin-left: 100px;
 }
