@@ -1,9 +1,13 @@
-import React from "react";
+import React, {useEffect} from "react";
 import * as svgs from "../svg/svgs";
 import * as texts from '../texts'
 import 'bootstrap/dist/css/bootstrap.css'
+import * as ReactDOMServer from "react-dom/server";
+import {cardElements} from "../cards/cards";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
-const Mobile = ()=>{
+const Mobile = () => {
 
     let plansVisible = false;
     let allowToScroll = true;
@@ -21,6 +25,88 @@ const Mobile = ()=>{
     let [arrowStop, setArrowStop] = React.useState(false)
     let [plans, setPlans] = React.useState(<div/>)
     let [scrollSectionsClass, setSSClass] = React.useState('')
+    let cardsPrepared = false;
+
+    let prepareCards = () => {
+        let cards = document.querySelector('.mobile-cards-container').childNodes
+
+
+
+        for (let i = 0; i < cards.length; i++) {
+            gsap.to(cards[i], {
+                zIndex: cards.length - i,
+                // opacity:0,
+                // delay:i*0.2
+            })
+        }
+
+        for (let i = 0; i < cards.length; i++) {
+            gsap.to(cards[i], {
+                scale: '0.' + (cards.length - i),
+                opacity: "1 !important",
+            })
+        }
+
+        for (let i = 0; i < cards.length; i++) {
+            console.log('#m-trigger-' + i)
+
+            let tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#m-trigger-' + (i),
+                    scrub: true,
+                    markers: true,
+                    start: "0",
+                    end: '+=' + (400 * (i+1)),
+                    snap:1/(9)
+                }
+            })
+
+            tl.to(cards[i], {
+                scale: '1',
+                transform: 'scale(1)',
+            }).to(cards[i], {
+                x: 500
+            })
+            // gsap.to(cards[i], {
+            //     y: 500,
+            //     scrollTrigger: {
+            //         trigger: '#m-trigger-' + i,
+            //         scrub: true,
+            //         markers: true,
+            //         start: '+=0',
+            //         end: '+=' + (600 * i)
+            //     }
+            //     // opacity:0,
+            //     // delay:i*0.2
+            // })
+        }
+
+
+    }
+    let nextCardAnimations = () => {
+
+    }
+    gsap.registerPlugin(ScrollTrigger)
+    useEffect(() => {
+        for (let i = 0; i < cardElements.length; i++) {
+            document.querySelector('.mobile-cards-container').append(document.createRange().createContextualFragment(ReactDOMServer.renderToStaticMarkup(cardElements[i])));
+        }
+
+        // console.log(cards.length)
+        if (!cardsPrepared) {
+            prepareCards()
+            cardsPrepared = true;
+        }
+        setSSClass('vw-100 h-m')
+
+        //  for (let i = 0; i< cards.length;i++){
+        //     gsap.to(cards[i],{
+        //         opacity:0,
+        //         delay:i*0.2
+        //     })
+        // }
+
+    }, [])
 
 
     return (
@@ -159,7 +245,7 @@ const Mobile = ()=>{
                         </g>
                     </svg>
                 </div>
-                <div className={' mobile-container'} style={{marginTop: '-250px'}}>
+                <div className={' mobile-container'}>
                     <div className={'intro-desktop-texts w-100 '}>
                         <h2 className={'intro-desktop-head mb-2 IransansBold'}>
                             دیگه وقت <br/> راحت تر شدن کارهاست
@@ -179,20 +265,27 @@ const Mobile = ()=>{
                             {svgs.contactUs}
                         </div>
                     </div>
+
+                    <div className={'mobile-cards-container d-flex justify-content-center align-items-center w-100'}
+                         style={{height: "200px"}}>
+
+
+                    </div>
                 </div>
             </div>
 
             {/*__________ Just For Scroll Section __________*/}
 
-            {/*<div className={scrollSectionsClass}/>*/}
-            {/*<div className={scrollSectionsClass}/>*/}
-            {/*<div className={scrollSectionsClass}/>*/}
-            {/*<div className={scrollSectionsClass}/>*/}
-            {/*<div className={scrollSectionsClass}/>*/}
-            {/*<div className={scrollSectionsClass}/>*/}
-            {/*<div className={scrollSectionsClass}/>*/}
-            {/*<div className={scrollSectionsClass}/>*/}
-            {/*<div className={scrollSectionsClass}/>*/}
+            <div id={'m-trigger-0'} className={scrollSectionsClass}/>
+            <div id={'m-trigger-1'} className={scrollSectionsClass}/>
+            <div id={'m-trigger-2'} className={scrollSectionsClass}/>
+            <div id={'m-trigger-3'} className={scrollSectionsClass}/>
+            <div id={'m-trigger-4'} className={scrollSectionsClass}/>
+            <div id={'m-trigger-5'} className={scrollSectionsClass}/>
+            <div id={'m-trigger-6'} className={scrollSectionsClass}/>
+            <div id={'m-trigger-7'} className={scrollSectionsClass}/>
+            <div id={'m-trigger-8'} className={scrollSectionsClass}/>
+            <div id={'m-trigger-9'} className={scrollSectionsClass}/>
 
 
         </main>
