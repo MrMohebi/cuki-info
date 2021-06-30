@@ -4,23 +4,12 @@ import * as ReactDOMServer from "react-dom/server";
 import {cardElements} from "../cards/cards";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-
+import ScrollToPlugin from "gsap/ScrollToPlugin";
+import * as plansGen from '../functions/plansGen'
 const Mobile = () => {
 
-    let plansVisible = false;
     let allowToScroll = true;
-    let lastScrollPosition = 0;
-    let currentSlide = 0;
-    // let [plans, setPlans] = React.useState(<div/>)
-    let viewMode2 = 'null';
     let allowForNextCard = true;
-    let endReached = false;
-    let initialized = true;
-    let cardsDom = [];
-    let defaultCardsScale = 0.7;
-    let lastCameInCard = 0;
-    let [arrowDirection, setArrowDirection] = React.useState(1)
-    let [arrowStop, setArrowStop] = React.useState(false)
     let [plans, setPlans] = React.useState(<div/>)
     let [scrollSectionsClass, setSSClass] = React.useState('')
     let cardsPrepared = false;
@@ -31,9 +20,68 @@ const Mobile = () => {
             document.body.style.overflowY = 'scroll'
         }else{
             document.body.style.overflowY = 'hidden'
-
         }
     }
+
+    let closePlansSection = () => {
+        gsap.to('.main-desktop-wrapper', {
+            y: '0',
+        })
+        gsap.to('.plans-section', {
+            height: '0vh'
+        })
+        gsap.to('.plans-container ', {
+            opacity: '0',
+            y: '200',
+            duration: '0.2',
+            onComplete: () => {
+                gsap.to('.plans-container', {
+                    display: 'none'
+                })
+            }
+        })
+
+
+    }
+
+    let openPlansSection = () => {
+        gsap.to('.main-desktop-wrapper', {
+            y: '-100%'
+        })
+        gsap.to('.plans-section', {
+            height: '100vh',
+            width: '100vw',
+            onComplete: () => {
+                gsap.to('.plans-container', {
+                    display: 'flex',
+                    opacity: '1',
+                    flexFlow:'column',
+                    y: 0,
+                })
+            },
+            ease: 'power2.out'
+        })
+    }
+
+    function isPlansSectionOpened() {
+        return !!parseInt(document.getElementsByClassName('plans-section')[0].style.height);
+    }
+
+    let openPlansSectionHandler = () => {
+        if (isPlansSectionOpened()) {
+            closePlansSection()
+            changeScrollStatus(true)
+            allowForNextCard = true;
+            allowToScroll = true;
+
+        } else {
+            openPlansSection()
+            changeScrollStatus(false)
+            allowForNextCard = false;
+            allowToScroll = false;
+        }
+    }
+
     let prepareCards = () => {
         cards = document.querySelector('.mobile-cards-container').childNodes
 
@@ -60,7 +108,37 @@ const Mobile = () => {
                 scrollTrigger: {
                     trigger: '#m-trigger-' + (i+1),
                     scrub:0.5,
-                    snap:1,
+                    // onEnterBack:()=>{
+                    //     gsap.to(window,{
+                    //         scrollTo:{
+                    //             y:"#m-trigger-"+(i+2),
+                    //             autoKill:false,
+                    //         },
+                    //         duration:0.2
+                    //     })
+                    // },
+                    onEnter:()=>{
+                        gsap.to(window,{
+                            scrollTo:{
+                                y:"#m-trigger-"+(i+1),
+                                autoKill:false,
+                            },
+                            duration:0.1,
+                            ease:"expo.out"
+                        })
+                    },
+                    onEnterBack:()=>{
+                        gsap.to(window,{
+                            scrollTo:{
+                                y:"#m-trigger-"+(i+1),
+                                autoKill:false,
+
+                            },
+                            duration:0.1,
+                            ease:"expo.out"
+                        })
+                    }
+                    // snap:1,
 
 
                 }
@@ -68,12 +146,8 @@ const Mobile = () => {
             tl.to(cards[i], 1, {
                 x: "-300%",
                 y: '20%',
-                // scale: 0.5,
             }).to(cards[i + 1], 0.5, {
                 transform: "scale(1)",
-                onComplete:()=>{
-                    // changeScrollStatus(false)
-                }
             }, 0)
         }
 
@@ -85,6 +159,7 @@ const Mobile = () => {
 
             setTimeout(() => {
                 // console.log(tl.progress());
+
             }, 2000)
             // gsap.to(cards[i], {
             //     y: 500,
@@ -127,11 +202,29 @@ const Mobile = () => {
 
     }
     gsap.registerPlugin(ScrollTrigger)
+    gsap.registerPlugin(ScrollToPlugin)
+    let afterPlansGot = (plans)=>{
+        console.log(plans)
+        setPlans(plans)
+    }
+
     useEffect(() => {
+        plansGen.plansGen(afterPlansGot)
+
         for (let i = 0; i < cardElements.length; i++) {
             document.querySelector('.mobile-cards-container').append(document.createRange().createContextualFragment(ReactDOMServer.renderToStaticMarkup(cardElements[i])));
         }
 
+
+        setTimeout(()=>{
+            gsap.to(window,{
+                scrollTo:{
+                    y:"#m-trigger-4",
+                    autoKill:false,
+                },
+                duration:0.2
+            })
+        },2000)
         // console.log(cards.length)
         if (!cardsPrepared) {
             prepareCards()
@@ -152,95 +245,15 @@ const Mobile = () => {
     return (
 
         <main className={' main-desktop vw-100 '}>
-            <div
-                className={' plans-toggle-button d-flex justify-content-center align-content-center'}
-                onClick={() => {
+            <div className={'top-header-white'}/>
 
-                }}>
-                <span className={'Iransans'}>پلن ها</span>
-            </div>
+
+
             <div className={'plans-section d-flex justify-content-center align-items-center '}>
+
                 <div className={'plans-container '}>
-                    <div className={'plan-container'}>
-                        <h4 className={'plan-header IransansMedium'}>پکیج شماره 2</h4>
-                        <span className={'plan-details mt-2'}>
-                            پکیج ویژه و بسیار کاربردی کوکی
-                        </span>
-                        <div className={'plan-options'}>
-
-                            <div
-                                className={'plan-option d-flex justify-content-end align-items-center Iransans flex-row'}>
-                                <span style={{paddingTop: '5px'}}> مکالمه رایگان</span>
-                                <div className={'plan-option-circle'}/>
-                            </div>
-
-                        </div>
-                        <div className={'plan-price Iransans'}>
-                            <span className={'m-1'}>15000</span>
-
-                            <span>:قیمت</span>
-                        </div>
-                        <div className={'plan-submit-button d-flex align-items-center justify-content-center'}>
-                            <span className={'plan-default-text IransansBold pt-1'}>
-                                ثبت سفارش
-                            </span>
-                        </div>
-
-                    </div>
-                    <div className={'plan-container'}>
-                        <h4 className={'plan-header IransansMedium'}>پکیج شماره 2</h4>
-                        <span className={'plan-details mt-2'}>
-                            پکیج ویژه و بسیار کاربردی کوکی
-                        </span>
-                        <div className={'plan-options'}>
-
-                            <div
-                                className={'plan-option d-flex justify-content-end align-items-center Iransans flex-row'}>
-                                <span style={{paddingTop: '5px'}}> مکالمه رایگان</span>
-                                <div className={'plan-option-circle'}/>
-                            </div>
-
-                        </div>
-                        <div className={'plan-price Iransans'}>
-                            <span className={'m-1'}>15000</span>
-
-                            <span>:قیمت</span>
-                        </div>
-                        <div className={'plan-submit-button d-flex align-items-center justify-content-center'}>
-                            <span className={'plan-default-text IransansBold pt-1'}>
-                                ثبت سفارش
-                            </span>
-                        </div>
-
-                    </div>
-                    <div className={'plan-container'}>
-                        <h4 className={'plan-header IransansMedium'}>پکیج شماره 2</h4>
-                        <span className={'plan-details mt-2'}>
-                            پکیج ویژه و بسیار کاربردی کوکی
-                        </span>
-                        <div className={'plan-options'}>
-
-                            <div
-                                className={'plan-option d-flex justify-content-end align-items-center Iransans flex-row'}>
-                                <span style={{paddingTop: '5px'}}> مکالمه رایگان</span>
-                                <div className={'plan-option-circle'}/>
-                            </div>
-
-                        </div>
-                        <div className={'plan-price Iransans'}>
-                            <span className={'m-1'}>15000</span>
-
-                            <span>:قیمت</span>
-                        </div>
-                        <div className={'plan-submit-button d-flex align-items-center justify-content-center'}>
-                            <span className={'plan-default-text IransansBold pt-1'}>
-                                ثبت سفارش
-                            </span>
-                        </div>
-
-                    </div>
+                    {plans}
                 </div>
-                {/*{plans}*/}
 
             </div>
             <div className={'demo-button-desktop'} style={{zIndex: '100'}}>
@@ -313,7 +326,13 @@ const Mobile = () => {
                     </div>
                 </div>
             </div>
-
+            <div
+                className={' plans-toggle-button d-flex justify-content-center align-content-center'}
+                onClick={() => {
+                    openPlansSectionHandler()
+                }}>
+                <span className={'Iransans'}>پلن ها</span>
+            </div>
             {/*__________ Just For Scroll Section __________*/}
 
             <div id={'m-trigger-0'} className={scrollSectionsClass}/>

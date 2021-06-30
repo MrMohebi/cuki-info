@@ -7,6 +7,7 @@ import {MotionPathPlugin} from "gsap/MotionPathPlugin";
 import ScrollTo from "gsap/ScrollToPlugin";
 import TextPlugin from "gsap/TextPlugin";
 import tippy from "tippy.js";
+//assets
 import * as svgs from '../svg/svgs';
 import * as texts from '../texts'
 // import tippy from "tippy.js";
@@ -21,28 +22,19 @@ import 'tippy.js/animations/shift-toward.css';
 //included files
 import {cardElements} from "../cards/cards";
 import * as ReactDOMServer from "react-dom/server";
+import {plansGen} from "../functions/plansGen";
 
 const Desktop = () => {
-    let ShowTheDemo = () => {
-    }
-
     let plansVisible = false;
     let allowToScroll = true;
     let lastScrollPosition = 0;
-    let currentSlide = 0;
-    // let [plans, setPlans] = React.useState(<div/>)
-    let viewMode2 = 'null';
     let allowForNextCard = true;
-    let endReached = false;
     let initialized = true;
     let cardsDom = [];
     let defaultCardsScale = 0.7;
     let lastCameInCard = 0;
-    let [arrowDirection, setArrowDirection] = React.useState(1)
-    let [arrowStop, setArrowStop] = React.useState(false)
     let [plans, setPlans] = React.useState(<div/>)
     let [scrollSectionsClass, setSSClass] = React.useState('')
-
 
     //register Gsap Plugins
     gsap.registerPlugin(ScrollTrigger)
@@ -54,25 +46,6 @@ const Desktop = () => {
         getCards()
     }, 1000)
 
-
-    let plansData = [
-        {
-            price: 1900000,
-            details: 'با هزینه اندک میتوانید منوی آنلاین اختصاصی خود را داشته باشید',
-            options: [
-                'منو',
-                "کامنت و نظرات",
-                "منوی همراه"
-            ]
-        }
-        ,
-    ]
-
-    function createPlans() {
-
-
-    }
-
     let getCards = () => {
         cardsDom = document.getElementById('cont').childNodes
         if (document.getElementById('allCards') && initialized) {
@@ -80,7 +53,6 @@ const Desktop = () => {
             clearInterval(CheckCardsInterval)
         }
     }
-
 
     let afterCardsFetched = (cards) => {
         document.getElementById('card1').firstChild.replaceWith(document.createRange().createContextualFragment(ReactDOMServer.renderToStaticMarkup(cardElements[0])))
@@ -107,26 +79,19 @@ const Desktop = () => {
             })
         }
         lastCameInCard = cards.length
-
-
     }
-    //
     let cardPositions = 0;
     let cusToolTipped = false;
-
     let nextCard = (next) => {
-
         let animDuration = 1;
         console.log(allowForNextCard)
         if (!next && cardPositions === 0) {
-            // console.log('prev card position 0')
         } else if (allowForNextCard && cardPositions >= 0) {
             console.log('next card should call')
             allowForNextCard = false;
             if (!next) {
                 cardPositions--;
             }
-            // console.log('here up of the for to turn')
             for (let i = 0; i < cardsDom.length; i++) {
                 let startPosition,
                     endPosition
@@ -260,10 +225,6 @@ const Desktop = () => {
             if (next) {
                 cardPositions++;
             }
-            // if (cardPositions === 10) {
-            //     cardPositions = 5;
-            // }
-
 
             if (cardPositions > 3) {
                 if ((cardPositions - 5) % 5 === 0) {
@@ -316,8 +277,6 @@ const Desktop = () => {
         lastCameInCard = newCardNumber;
 
     }
-
-    //
     let closePlansSection = () => {
         gsap.to('.main-desktop-wrapper', {
             y: '0',
@@ -335,8 +294,6 @@ const Desktop = () => {
                 })
             }
         })
-
-
     }
 
     let openPlansSection = () => {
@@ -383,8 +340,12 @@ const Desktop = () => {
             document.body.style.overflowY = 'hidden'
         }
     }
-
+    let afterPlansGot = (plans)=>{
+        console.log('plans got')
+        setPlans(plans)
+    }
     useEffect(() => {
+        plansGen(afterPlansGot)
         window.addEventListener('mousemove', (e) => {
             if (document.querySelector('.svgDots')) {
                 gsap.to('.svgDots', {
@@ -393,8 +354,7 @@ const Desktop = () => {
                 })
             }
         })
-        // setSSClass('vw-100 h-999')
-
+        setSSClass('vw-100 h-999')
 
         window.addEventListener("scroll", (e) => {
             e.preventDefault()
@@ -430,7 +390,6 @@ const Desktop = () => {
 
     }, [])
 
-    let publicContent = <div style={{display:'content'}}>
 
     </div>
 
@@ -440,92 +399,13 @@ const Desktop = () => {
                 className={' plans-toggle-button d-flex justify-content-center align-content-center'}
                 onClick={() => {
                     openPlansSectionHandler()
-
                 }}>
                 <span className={'Iransans'}>پلن ها</span>
             </div>
             <div className={'plans-section d-flex justify-content-center align-items-center '}>
                 <div className={'plans-container '}>
-                    <div className={'plan-container'}>
-                        <h4 className={'plan-header IransansMedium'}>پکیج شماره 2</h4>
-                        <span className={'plan-details mt-2'}>
-                            پکیج ویژه و بسیار کاربردی کوکی
-                        </span>
-                        <div className={'plan-options'}>
-
-                            <div
-                                className={'plan-option d-flex justify-content-end align-items-center Iransans flex-row'}>
-                                <span style={{paddingTop: '5px'}}> مکالمه رایگان</span>
-                                <div className={'plan-option-circle'}/>
-                            </div>
-
-                        </div>
-                        <div className={'plan-price Iransans'}>
-                            <span className={'m-1'}>15000</span>
-
-                            <span>:قیمت</span>
-                        </div>
-                        <div className={'plan-submit-button d-flex align-items-center justify-content-center'}>
-                            <span className={'plan-default-text IransansBold pt-1'}>
-                                ثبت سفارش
-                            </span>
-                        </div>
-
-                    </div>
-                    <div className={'plan-container'}>
-                        <h4 className={'plan-header IransansMedium'}>پکیج شماره 2</h4>
-                        <span className={'plan-details mt-2'}>
-                            پکیج ویژه و بسیار کاربردی کوکی
-                        </span>
-                        <div className={'plan-options'}>
-
-                            <div
-                                className={'plan-option d-flex justify-content-end align-items-center Iransans flex-row'}>
-                                <span style={{paddingTop: '5px'}}> مکالمه رایگان</span>
-                                <div className={'plan-option-circle'}/>
-                            </div>
-
-                        </div>
-                        <div className={'plan-price Iransans'}>
-                            <span className={'m-1'}>15000</span>
-
-                            <span>:قیمت</span>
-                        </div>
-                        <div className={'plan-submit-button d-flex align-items-center justify-content-center'}>
-                            <span className={'plan-default-text IransansBold pt-1'}>
-                                ثبت سفارش
-                            </span>
-                        </div>
-
-                    </div>
-                    <div className={'plan-container'}>
-                        <h4 className={'plan-header IransansMedium'}>پکیج شماره 2</h4>
-                        <span className={'plan-details mt-2'}>
-                            پکیج ویژه و بسیار کاربردی کوکی
-                        </span>
-                        <div className={'plan-options'}>
-
-                            <div
-                                className={'plan-option d-flex justify-content-end align-items-center Iransans flex-row'}>
-                                <span style={{paddingTop: '5px'}}> مکالمه رایگان</span>
-                                <div className={'plan-option-circle'}/>
-                            </div>
-
-                        </div>
-                        <div className={'plan-price Iransans'}>
-                            <span className={'m-1'}>15000</span>
-
-                            <span>:قیمت</span>
-                        </div>
-                        <div className={'plan-submit-button d-flex align-items-center justify-content-center'}>
-                            <span className={'plan-default-text IransansBold pt-1'}>
-                                ثبت سفارش
-                            </span>
-                        </div>
-
-                    </div>
+                    {plans}
                 </div>
-                {plans}
 
             </div>
             <div className={'demo-button-desktop'} style={{zIndex: '100'}}>
@@ -687,7 +567,6 @@ const Desktop = () => {
                     </div>
                 </div>
             </div>
-
             {/*__________ Just For Scroll Section __________*/}
             <div className={scrollSectionsClass}/>
             <div className={scrollSectionsClass}/>
@@ -698,10 +577,7 @@ const Desktop = () => {
             <div className={scrollSectionsClass}/>
             <div className={scrollSectionsClass}/>
             <div className={scrollSectionsClass}/>
-
-
         </main>
-        // <h1>Desktop file </h1>
     )
 
 }

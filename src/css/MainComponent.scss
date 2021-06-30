@@ -24,6 +24,9 @@
   src: url("../fonts/Yellowtail.ttf") format("truetype");
 }
 
+* {
+  user-select: none;
+}
 
 .cuki-info {
   position: fixed;
@@ -111,6 +114,15 @@
   margin-top: -100px;
 }
 
+.top-header-white {
+  background: #ffffff;
+  z-index: 100;
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  top: 0;
+}
+
 .demo-button-desktop {
   padding-right: 10px;
   transition: all 0.2s ease;
@@ -146,6 +158,9 @@
     margin: auto;
     text-align: center;
   }
+  .plans-toggle-button {
+    width: 100% !important;
+  }
   .demo-button-desktop {
     height: 30px;
     width: 90px;
@@ -161,7 +176,38 @@
     transform: scale(0.8);
     opacity: 0;
   }
+  .plans-container {
+    display: none;
+    opacity: 0;
+    transform: translate(0, 200px);
+    overflow-x: scroll;
+    margin-top: 100px;
+    margin-bottom: 50px;
+  }
+  .plan-container:hover {
+    .plan-submit-button {
+      background-color: #4476FE;
+      color: white;
+    }
+  }
+}
 
+@media only screen and (min-width: 800px) {
+  .plans-container {
+    display: none;
+    opacity: 0;
+    transform: translate(0, 200px);
+  }
+  .plan-container:hover {
+    transform: translateY(-10px) scale(1.01);
+
+    box-shadow: 0 0 10px 1px #b3a9e7;
+
+    .plan-submit-button {
+      background-color: #4476FE;
+      color: white;
+    }
+  }
 }
 
 .h-999 {
@@ -225,7 +271,6 @@ body {
 
 .the-line-and-circle {
   position: absolute;
-  //overflow-y: hidden;
   overflow-x: visible;
   height: 100%;
   width: 10%;
@@ -271,7 +316,6 @@ br {
   width: 90%;
   float: right;
   padding-right: 1rem;
-  //font-size: 1.35rem;
 }
 
 .main-desktop-container {
@@ -288,7 +332,6 @@ br {
   white-space: nowrap;
   font-size: 0.55rem;
 }
-
 
 .test-divs {
   height: 100px;
@@ -316,7 +359,6 @@ br {
     top: 10px;
     background: url("/img/Logo.png") center;
     background-size: cover;
-    //background-color: red;
     transform: translateX(120px);
   }
 
@@ -453,28 +495,20 @@ br {
   }
 }
 
-.plans-container {
-  display: none;
-  opacity: 0;
-  transform: translate(0, 200px);
-
-}
 
 .plans-toggle-button {
-  //margin-top: 10px;
   cursor: pointer;
   width: 50px;
-  //backdrop-filter: blur(10px);
-  //border-radius: 20px;
   color: dimgray;
   height: 50px;
   display: flex;
   flex-flow: column;
   align-items: center;
-  bottom: 20px;
+  bottom: 0;
   transform: translate(50%, 0);
   right: 50%;
   position: fixed;
+  background: white;
   z-index: 9999;
 }
 
@@ -482,27 +516,39 @@ br {
   position: initial;
 }
 
-//.body::-webkit-scrollbar {
-//  display: none;
-//}
-//*::-webkit-scrollbar {
-//  display: none;
-//}
-//
-//* {
-//  -ms-overflow-style: none; /* IE and Edge */
-//  scrollbar-width: none; /* Firefox */
-//}
+.body::-webkit-scrollbar {
+  display: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.plan-discount {
+  background: rgba(98, 220, 172, 0.62);
+  color: white;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  margin-top: -10px;
+  margin-left: -10px;
+}
 
 .plans-section {
   z-index: 99;
-  height: 0vh;
+  height: 0;
   transform: translate(50%, 0);
   right: 50%;
   width: 400px;
   background-color: white;
   bottom: 0;
   position: fixed;
+  overflow-y: scroll;
 }
 
 .plan-container {
@@ -511,23 +557,13 @@ br {
   flex-flow: column;
   border-radius: 15px;
   height: 500px;
-  width: 300px;
+  min-width: 300px;
   background-color: white;
   box-shadow: 0 0 3px 0 #a0a0a0;
   position: relative;
-  overflow: hidden;
-  margin: 0 20px;
-}
+  overflow: visible;
+  margin: 20px 20px;
 
-.plan-container:hover {
-  transform: translateY(-10px) scale(1.01);
-
-  box-shadow: 0 0 10px 1px #b3a9e7;
-
-  .plan-submit-button {
-    background-color: #4476FE;
-    color: white;
-  }
 }
 
 .plan-header {
@@ -539,7 +575,7 @@ br {
 .plan-details {
   text-align: right;
   padding: 5px 20px;
-  font-family: AppIranSans;
+  font-family: AppIranSans, serif;
 }
 
 .plan-options {
