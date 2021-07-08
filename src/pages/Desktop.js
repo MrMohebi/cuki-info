@@ -321,7 +321,10 @@ const Desktop = () => {
     let openPlansSectionHandler = () => {
         if (isPlansSectionOpened()) {
             closePlansSection()
+            changeScrollStatus(false)
+            setTimeout(()=>{
             changeScrollStatus(true)
+            },1000)
             allowForNextCard = true;
             allowToScroll = true;
             plansVisible = false;
@@ -359,8 +362,17 @@ const Desktop = () => {
             e.preventDefault()
             if (allowToScroll) {
                 if (window.scrollY > lastScrollPosition) {
-                    nextCard(true)
+                    if (!isPlansSectionOpened()){
+                        nextCard(true)
+                    }else{
+                        setTimeout(()=>{
+                            changeScrollStatus(true)
+                        },500)
+                    }
                     changeScrollStatus(false)
+
+                    // window.scrollBy(0,2000)
+
 
                 } else {
                     changeScrollStatus(false)
@@ -401,11 +413,11 @@ const Desktop = () => {
                     {plans}
                 </div>
             </div>
-            <Link className={'demo-button-desktop'} style={{zIndex: '100'}} to={links.demoURL}>
+            <a className={'demo-button-desktop'} style={{zIndex: '100'}} href={links.demoURL}>
                         <span
                             style={{fontSize: "0.8rem", marginRight: '5px', marginTop: '5px', opacity: '0'}}> ;) </span>
                 دمو
-            </Link>
+            </a>
             <div className={'cuki-info align-items-center'} style={{zIndex: '100'}}>
                 <img src="/img/cuki.png" className={'cuki-image-desktop'} alt="Cuki Online menu "/>
                 <span className={'IransansBold info-margin mt-2'}>Cuki</span>

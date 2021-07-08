@@ -477,6 +477,21 @@ br {
   position: initial;
 }
 
+.body::-webkit-scrollbar {
+  display: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
 .plan-discount {
   background: #62dcac;
   color: white;
