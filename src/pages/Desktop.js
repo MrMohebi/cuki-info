@@ -24,6 +24,7 @@ import {cardElements} from "../cards/cards";
 import * as ReactDOMServer from "react-dom/server";
 import {plansGen} from "../functions/plansGen";
 import {Link} from "gatsby";
+import {Helmet} from "react-helmet";
 
 let links = require('../assets/links')
 
@@ -344,7 +345,6 @@ const Desktop = () => {
         setPlans(plans)
     }
     useEffect(() => {
-        document.title = "Cuki Info"
         plansGen(afterPlansGot)
         window.addEventListener('mousemove', (e) => {
             if (document.querySelector('.svgDots')) {
@@ -385,6 +385,9 @@ const Desktop = () => {
 
     return (
         <main className={' main-desktop vw-100 '}>
+            <Helmet>
+                <title>Cuki</title>
+            </Helmet>
             <div
                 className={' plans-toggle-button d-flex justify-content-center align-content-center'}
                 onClick={() => {

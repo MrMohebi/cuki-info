@@ -7,6 +7,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import * as plansGen from '../functions/plansGen'
 import {Link} from "gatsby";
+import {Helmet} from "react-helmet";
 
 let links = require('../assets/links')
 
@@ -175,7 +176,6 @@ const Mobile = () => {
     }
 
     useEffect(() => {
-        document.title = "Cuki Info"
         plansGen.plansGen(afterPlansGot)
         for (let i = 0; i < cardElements.length; i++) {
             document.querySelector('.mobile-cards-container').append(document.createRange().createContextualFragment(ReactDOMServer.renderToStaticMarkup(cardElements[i])));
@@ -198,6 +198,9 @@ const Mobile = () => {
 
     return (
         <main className={' main-desktop vw-100 '}>
+            <Helmet>
+                <title>Cuki</title>
+            </Helmet>
             <div className={'top-header-white'}/>
             <div className={'plans-section d-flex justify-content-center align-items-center '}>
                 <div className={'plans-container '}>
