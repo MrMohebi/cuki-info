@@ -477,21 +477,6 @@ br {
   position: initial;
 }
 
-.body::-webkit-scrollbar {
-  display: none;
-}
-
-*::-webkit-scrollbar {
-  display: none;
-}
-
-* {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
 .plan-discount {
   background: #62dcac;
   color: white;
@@ -523,6 +508,7 @@ br {
   border-radius: 15px;
   height: 500px;
   min-width: 300px;
+  max-width: 300px;
   background-color: white;
   box-shadow: 0 0 3px 0 #a0a0a0;
   position: relative;
@@ -549,6 +535,7 @@ br {
   margin-top: 20px;
   max-height: 250px;
   overflow-y: scroll;
+  height: calc(100% - 270px);
 }
 
 .plan-options::-webkit-scrollbar {
@@ -594,6 +581,10 @@ br {
   bottom: 80px;
   right: 20px;
   text-align: right;
+}
+
+.plans-scroller {
+  height: 150vh;
 }
 
 /*# sourceMappingURL=MainComponent.css.map */

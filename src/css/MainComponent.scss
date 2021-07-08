@@ -517,18 +517,18 @@ br {
   position: initial;
 }
 
-.body::-webkit-scrollbar {
-  display: none;
-}
-
-*::-webkit-scrollbar {
-  display: none;
-}
-
-* {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
+//.body::-webkit-scrollbar {
+//  display: none;
+//}
+//
+//*::-webkit-scrollbar {
+//  display: none;
+//}
+//
+//* {
+//  -ms-overflow-style: none; /* IE and Edge */
+//  scrollbar-width: none; /* Firefox */
+//}
 
 .plan-discount {
   background: rgb(98 220 172);
@@ -561,6 +561,7 @@ br {
   border-radius: 15px;
   height: 500px;
   min-width: 300px;
+  max-width: 300px;
   background-color: white;
   box-shadow: 0 0 3px 0 #a0a0a0;
   position: relative;
@@ -588,13 +589,11 @@ br {
   margin-top: 20px;
   max-height: 250px;
   overflow-y: scroll;
-
+  height: calc(100% - 270px);
 }
-
 .plan-options::-webkit-scrollbar {
   display: none;
 }
-
 .plan-option-circle {
   height: 10px;
   width: 10px;
@@ -602,11 +601,9 @@ br {
   border-radius: 100%;
   margin-left: 10px;
 }
-
 .plan-option {
   margin: 2px 0;
 }
-
 .disabled-button{
   pointer-events: none;
   background-color: #6f6f6f !important;
@@ -627,10 +624,13 @@ br {
   border-radius: 10px;
   color: #416FEE;
 }
-
 .plan-price {
   position: absolute;
   bottom: 80px;
   right: 20px;
   text-align: right;
+}
+
+.plans-scroller{
+  height: 150vh;
 }
