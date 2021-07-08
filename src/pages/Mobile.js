@@ -6,6 +6,10 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import * as plansGen from '../functions/plansGen'
+import {demoURL} from "../assets/links";
+import {Link} from "gatsby";
+let links = require('../assets/links')
+
 const Mobile = () => {
 
     let allowToScroll = true;
@@ -256,11 +260,11 @@ const Mobile = () => {
                 </div>
 
             </div>
-            <div className={'demo-button-desktop'} style={{zIndex: '100'}}>
+            <Link className={'demo-button-desktop'} style={{zIndex: '100'}} to={links.demoURL}>
                         <span
                             style={{fontSize: "0.8rem", marginRight: '5px', marginTop: '5px', opacity: '0'}}> ;) </span>
                 دمو
-            </div>
+            </Link>
 
 
             <div className={'cuki-info align-items-center'} style={{zIndex: '100'}}>

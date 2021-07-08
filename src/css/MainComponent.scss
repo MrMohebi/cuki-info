@@ -124,6 +124,7 @@
 }
 
 .demo-button-desktop {
+  text-decoration: none;
   padding-right: 10px;
   transition: all 0.2s ease;
   $buttonColor: #505050;
@@ -530,13 +531,15 @@ br {
 }
 
 .plan-discount {
-  background: rgba(98, 220, 172, 0.62);
+  background: rgb(98 220 172);
   color: white;
   border-radius: 100%;
   width: 30px;
   height: 30px;
   margin-top: -10px;
+  text-align: center;
   margin-left: -10px;
+  line-height: 1.7rem;
 }
 
 .plans-section {
@@ -604,6 +607,12 @@ br {
   margin: 2px 0;
 }
 
+.disabled-button{
+  pointer-events: none;
+  background-color: #6f6f6f !important;
+  color: whitesmoke !important;
+  cursor: none !important;
+}
 .plan-submit-button {
   transition: all 0.2s ease;
   cursor: pointer;

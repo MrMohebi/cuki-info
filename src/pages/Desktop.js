@@ -23,6 +23,9 @@ import 'tippy.js/animations/shift-toward.css';
 import {cardElements} from "../cards/cards";
 import * as ReactDOMServer from "react-dom/server";
 import {plansGen} from "../functions/plansGen";
+import {Link} from "gatsby";
+
+let links = require('../assets/links')
 
 const Desktop = () => {
     let plansVisible = false;
@@ -340,11 +343,12 @@ const Desktop = () => {
             document.body.style.overflowY = 'hidden'
         }
     }
-    let afterPlansGot = (plans)=>{
+    let afterPlansGot = (plans) => {
         console.log('plans got')
         setPlans(plans)
     }
     useEffect(() => {
+
         plansGen(afterPlansGot)
         window.addEventListener('mousemove', (e) => {
             if (document.querySelector('.svgDots')) {
@@ -391,8 +395,6 @@ const Desktop = () => {
     }, [])
 
 
-    </div>
-
     return (
         <main className={' main-desktop vw-100 '}>
             <div
@@ -408,11 +410,12 @@ const Desktop = () => {
                 </div>
 
             </div>
-            <div className={'demo-button-desktop'} style={{zIndex: '100'}}>
+            <Link className={'demo-button-desktop'} style={{zIndex: '100'}} to={links.demoURL}>
                         <span
                             style={{fontSize: "0.8rem", marginRight: '5px', marginTop: '5px', opacity: '0'}}> ;) </span>
                 دمو
-            </div>
+
+            </Link>
 
 
             <div className={'cuki-info align-items-center'} style={{zIndex: '100'}}>

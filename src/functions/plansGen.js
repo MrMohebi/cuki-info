@@ -33,7 +33,7 @@ export const plansGen = (plansGetCallback) => {
 
                             <span>:قیمت</span>
                         </div>
-                        <div className={'plan-submit-button d-flex align-items-center justify-content-center'}>
+                        <div className={'plan-submit-button disabled-button d-flex align-items-center justify-content-center'}>
                             <span className={'plan-default-text IransansBold pt-1'}>
                                 ثبت سفارش
                             </span>
