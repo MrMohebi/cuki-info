@@ -498,7 +498,7 @@ br {
 .plans-toggle-button {
   border:none;
   cursor: pointer;
-  width: 50px;
+  width: 60px;
   color: dimgray;
   height: 50px;
   display: flex;
@@ -516,18 +516,18 @@ br {
   position: initial;
 }
 
-//.body::-webkit-scrollbar {
-//  display: none;
-//}
-//
-//*::-webkit-scrollbar {
-//  display: none;
-//}
-//
-//* {
-//  -ms-overflow-style: none; /* IE and Edge */
-//  scrollbar-width: none; /* Firefox */
-//}
+.body::-webkit-scrollbar {
+  display: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 
 .plan-discount {
   background: rgb(98 220 172);

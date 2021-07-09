@@ -351,7 +351,7 @@ export let cardElements = [
                 مشاهده کامل محیط رستوران
                 <br/>
                 <br/>
-                به صورت 360 درجه در اپیکیشن
+                به صورت 360 درجه در اپلیکیشن
 
             </p>
             <div className={'card-svg mb-3'}>
@@ -520,10 +520,10 @@ export let cardElements = [
         <div className={'card-contents-container d-flex flex-column'}>
             <span className={'card-title'}>رابط کاربری زیبا و ساده</span>
             <p className={'card-details'} style={{fontSize: '0.7rem'}}>
-                طراحی اپیکیشن به صورتی بودهکه کاربر به راحتی
+                طراحی اپلیکیشن به صورتی بوده که کاربر به راحتی
                 <br/>
                 <br/>
-                بتواند سفارش خود را ثبت کند
+                و در محیطی زیبا بتواند غذای خود را سفارش دهد
             </p>
             <div className={'card-svg mb-3'}>
             </div>
@@ -537,13 +537,12 @@ export let cardElements = [
             <div className={'card-line'} style={{background: '#55C8DB'}}/>
         </div>
         <div className={'card-contents-container d-flex flex-column'}>
-            <span className={'card-title'}>جزعیات در اپیکیشن</span>
+            <span className={'card-title'}>جزئیات در اپلیکیشن</span>
             <p className={'card-details'} style={{fontSize: '0.6rem'}}>
                 قبل از هر سفارش کاربر میتواند عکس هر غذا را با بالاترین
                 <br/>
                 <br/>
-                <br/>
-                کیفیت ببیند، جزییات هر غذا را بداند و از نظرات و تجربه ی
+                کیفیت ببیند، جزئیات هر غذا را بداند و از نظرات و تجربه ی
                 <br/>
                 <br/>
                 سایر کاربران آگاه شود
@@ -583,7 +582,7 @@ export let cardElements = [
                 لینک های ارتباطی متصل به شبکه های ارتباطی شما مثل
                 <br/>
                 <br/>
-                اینستاگرام و سایر شبکه ها به راحتی در اپیکیشن
+                اینستاگرام و سایر شبکه ها به راحتی در اپلیکیشن
                 <br/>
                 <br/>
                 در دسترس کاربران قرار دارد

@@ -457,7 +457,7 @@ br {
 .plans-toggle-button {
   border: none;
   cursor: pointer;
-  width: 50px;
+  width: 60px;
   color: dimgray;
   height: 50px;
   display: flex;
@@ -473,6 +473,21 @@ br {
 
 .main-desktop {
   position: initial;
+}
+
+.body::-webkit-scrollbar {
+  display: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .plan-discount {
@@ -533,7 +548,7 @@ br {
   margin-top: 20px;
   max-height: 250px;
   overflow-y: scroll;
-  height: calc(100% - 300px);
+  height: calc(100% - 283px);
 }
 
 .plan-options::-webkit-scrollbar {

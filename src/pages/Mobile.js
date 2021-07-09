@@ -68,7 +68,7 @@ const Mobile = () => {
                     display: 'flex',
                     opacity: '1',
                     flexFlow: 'column',
-                    y: 0,
+                    y: 450,
                 })
             },
             ease: 'power2.out'
