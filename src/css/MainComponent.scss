@@ -188,6 +188,7 @@
     overflow-x: scroll;
     margin-top: 100px;
     margin-bottom: 50px;
+    padding-top: 1000px;
   }
   .plan-container:hover {
     .plan-submit-button {
@@ -202,6 +203,7 @@
     display: none;
     opacity: 0;
     transform: translate(0, 200px);
+    padding-top: 1000px;
   }
   .plan-container:hover {
     transform: translateY(-10px) scale(1.01);
