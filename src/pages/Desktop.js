@@ -26,7 +26,7 @@ import {Helmet} from "react-helmet";
 
 let links = require('../assets/links')
 let extraFunctions = require('../functions/externalFunctions')
-
+let _ = require('lodash')
 const Desktop = () => {
 
     let allowToScroll = true;
@@ -354,6 +354,9 @@ const Desktop = () => {
     }
     useEffect(() => {
         plansGen(afterPlansGot)
+        window.addEventListener('resize', _.debounce(() => {
+            extraFunctions.checkScreenSize()
+        }, 100))
         window.addEventListener('mousemove', (e) => {
             if (document.querySelector('.svgDots')) {
                 gsap.to('.svgDots', {

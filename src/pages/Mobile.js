@@ -7,8 +7,10 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import * as plansGen from '../functions/plansGen'
 import {Helmet} from "react-helmet";
+
 let links = require('../assets/links')
 let extraFunctions = require('../functions/externalFunctions')
+let _ = require('lodash')
 
 
 const Mobile = () => {
@@ -46,12 +48,10 @@ const Mobile = () => {
                 gsap.to('.plans-container', {
                     display: 'none'
                 })
-                window.scrollBy(0,-2000)
+                window.scrollBy(0, -2000)
 
             }
         })
-
-
 
 
     }
@@ -81,14 +81,14 @@ const Mobile = () => {
 
     let openPlansSectionHandler = () => {
         if (isPlansSectionOpened()) {
-            extraFunctions.changePlansButtonContent(false,setPlansButtonContent)
+            extraFunctions.changePlansButtonContent(false, setPlansButtonContent)
             closePlansSection()
             changeScrollStatus(true)
             allowForNextCard = true;
             // allowToScroll = true;
 
         } else {
-            extraFunctions.changePlansButtonContent(true,setPlansButtonContent)
+            extraFunctions.changePlansButtonContent(true, setPlansButtonContent)
             openPlansSection()
             changeScrollStatus(false)
             allowForNextCard = false;
@@ -98,7 +98,6 @@ const Mobile = () => {
 
     let prepareCards = () => {
         cards = document.querySelector('.mobile-cards-container').childNodes
-
 
 
         for (let i = 0; i < cards.length; i++) {
@@ -147,10 +146,10 @@ const Mobile = () => {
             tl.to(cards[i], {
                 x: "-300%",
                 y: '20%',
-                duration:1
+                duration: 1
             }).to(cards[i + 1], {
                 transform: "scale(1)",
-                duration:0.5
+                duration: 0.5
             }, 0)
         }
 
@@ -176,7 +175,7 @@ const Mobile = () => {
                         ease: "expo.out",
                         scale: o === 0 ? 0.9 : '0.' + (cards.length - o),
                         delay: o * 0.1,
-                        duration:0.3
+                        duration: 0.3
                     })
                 }
             }
@@ -189,13 +188,16 @@ const Mobile = () => {
     }
 
     useEffect(() => {
+        window.addEventListener('resize', _.debounce(() => {
+            extraFunctions.checkScreenSize()
+        }, 100))
         plansGen.plansGen(afterPlansGot)
         for (let i = 0; i < cardElements.length; i++) {
             document.querySelector('.mobile-cards-container').append(document.createRange().createContextualFragment(ReactDOMServer.renderToStaticMarkup(cardElements[i])));
         }
-        window.addEventListener('scroll',()=>{
-            if (window.scrollY > lastScrollPosition){
-                if (window.scrollY > 8000){
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > lastScrollPosition) {
+                if (window.scrollY > 8000) {
                     openPlansSectionHandler()
                 }
             }
@@ -221,7 +223,8 @@ const Mobile = () => {
                     {plans}
                 </div>
             </div>
-            <button  onKeyDown={()=>{}} className={'demo-button-desktop'} style={{zIndex: '100'}} onClick={()=>{
+            <button onKeyDown={() => {
+            }} className={'demo-button-desktop'} style={{zIndex: '100'}} onClick={() => {
                 window.location.assign(links.demoURL);
 
             }}>
@@ -280,12 +283,12 @@ const Mobile = () => {
                     </div>
                 </div>
             </div>
-            <button onKeyDown={()=>{
+            <button onKeyDown={() => {
 
-            }}  className={' plans-toggle-button d-flex justify-content-center align-content-center'}
-                onClick={() => {
-                    openPlansSectionHandler()
-                }}>
+            }} className={' plans-toggle-button d-flex justify-content-center align-content-center'}
+                    onClick={() => {
+                        openPlansSectionHandler()
+                    }}>
                 <span className={'Iransans'}>
                     {plansButtonContent}
 

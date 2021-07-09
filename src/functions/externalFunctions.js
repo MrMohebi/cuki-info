@@ -26,3 +26,12 @@ export let changePlansButtonContent = (close,setPlansButtonContent)=>{
         })
     }
 }
+
+
+export  let checkScreenSize = () => {
+    if (window.innerWidth <= 700) {
+        window.location.pathname = '/Mobile'
+    } else {
+        window.location.pathname = '/Desktop'
+    }
+}
