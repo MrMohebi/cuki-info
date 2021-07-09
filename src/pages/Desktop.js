@@ -10,7 +10,6 @@ import tippy from "tippy.js";
 //assets
 import * as svgs from '../svg/svgs';
 import * as texts from '../texts'
-// import tippy from "tippy.js";
 //css files
 import '../css/MainComponent.css'
 import '../css/reset.css'
@@ -23,14 +22,13 @@ import 'tippy.js/animations/shift-toward.css';
 import {cardElements} from "../cards/cards";
 import * as ReactDOMServer from "react-dom/server";
 import {plansGen} from "../functions/plansGen";
-import {Link} from "gatsby";
 import {Helmet} from "react-helmet";
 
 let links = require('../assets/links')
+let extraFunctions = require('../functions/externalFunctions')
 
 const Desktop = () => {
 
-    let plansVisible = false;
     let allowToScroll = true;
     let lastScrollPosition = 0;
     let allowForNextCard = true;
@@ -40,6 +38,9 @@ const Desktop = () => {
     let lastCameInCard = 0;
     let [plans, setPlans] = React.useState(<div/>)
     let [scrollSectionsClass, setSSClass] = React.useState('')
+    let [plansButtonContent, setPlansButtonContent] = React.useState('پلن ها')
+    let [cardsFirstGot,setCardsFirstGot] = React.useState(false);
+    let logoIMG = "/img/cuki.png"
 
 
     //register Gsap Plugins
@@ -51,12 +52,17 @@ const Desktop = () => {
     let CheckCardsInterval = setInterval(() => {
         getCards()
     }, 1000)
+
     let getCards = () => {
-        cardsDom = document.getElementById('cont').childNodes
-        if (document.getElementById('allCards') && initialized) {
-            afterCardsFetched(cardsDom)
-            clearInterval(CheckCardsInterval)
+        if (!cardsFirstGot){
+            cardsDom = document.getElementById('cont').childNodes
+            if (document.getElementById('allCards') && initialized) {
+                afterCardsFetched(cardsDom)
+                clearInterval(CheckCardsInterval)
+                setCardsFirstGot(true)
+            }
         }
+
     }
 
     let afterCardsFetched = (cards) => {
@@ -166,14 +172,14 @@ const Desktop = () => {
                         }
                     })
                 }
-                if (startPosition.toString().slice('.')[2][0] === '4' && next) {
+                if (startPosition.toString().slice()[2][0] === '4' && next) {
                     gsap.to(cardsDom[i], {
                         scale: defaultCardsScale,
                         duration: 0.2
                     })
                 }
 
-                if ((startPosition.toString().slice(".")[2][0] === '2' && next) || (startPosition.toString().slice('.')[2][0] === '6' && !next) && cardPositions !== 0) {
+                if ((startPosition.toString().slice()[2][0] === '2' && next) || (startPosition.toString().slice()[2][0] === '6' && !next) && cardPositions !== 0) {
                     gsap.to(cardsDom[i], {
                         zIndex: cardPositions,
                         duration: 0,
@@ -243,13 +249,13 @@ const Desktop = () => {
                 }
             }
             if (cardPositions === cardElements.length) {
-                // openPlansSectionHandler()
                 cardPositions = cardPositions - 1
                 openPlansSectionHandler()
                 return 1
             }
         }
     }
+
 
     let ChangeCard = (cardElementNumber, newCardNumber) => {
         let card = document.getElementById('card' + (cardElementNumber)) ? document.getElementById('card' + cardElementNumber).firstChild : () => {
@@ -320,20 +326,19 @@ const Desktop = () => {
 
     let openPlansSectionHandler = () => {
         if (isPlansSectionOpened()) {
+            extraFunctions.changePlansButtonContent(false,setPlansButtonContent)
             closePlansSection()
             changeScrollStatus(false)
-            setTimeout(()=>{
-            changeScrollStatus(true)
-            },1000)
+            setTimeout(() => {
+                changeScrollStatus(true)
+            }, 1000)
             allowForNextCard = true;
             allowToScroll = true;
-            plansVisible = false;
-
         } else {
+            extraFunctions.changePlansButtonContent(true,setPlansButtonContent)
             openPlansSection()
             allowForNextCard = false;
             allowToScroll = false;
-            console.log('opened')
         }
     }
 
@@ -362,22 +367,17 @@ const Desktop = () => {
             e.preventDefault()
             if (allowToScroll) {
                 if (window.scrollY > lastScrollPosition) {
-                    if (!isPlansSectionOpened()){
+                    if (!isPlansSectionOpened()) {
                         nextCard(true)
-                    }else{
-                        setTimeout(()=>{
+                    } else {
+                        setTimeout(() => {
                             changeScrollStatus(true)
-                        },500)
+                        }, 500)
                     }
                     changeScrollStatus(false)
-
-                    // window.scrollBy(0,2000)
-
-
                 } else {
                     changeScrollStatus(false)
                     if (!isPlansSectionOpened()) {
-                        console.log('next back')
                         nextCard(false)
                         changeScrollStatus(false)
                     } else {
@@ -400,26 +400,30 @@ const Desktop = () => {
             <Helmet>
                 <title>Cuki</title>
             </Helmet>
-            <div
+            <button onKeyDown={()=>{}}
                 className={' plans-toggle-button d-flex justify-content-center align-content-center'}
                 onClick={() => {
                     openPlansSectionHandler()
                 }}>
-                <span className={'Iransans'}>پلن ها</span>
-            </div>
+                <span className={'Iransans'}>
+                    {plansButtonContent}
+                </span>
+            </button>
             <div className={'plans-section d-flex justify-content-center align-items-center '}>
 
                 <div className={'plans-container '}>
                     {plans}
                 </div>
             </div>
-            <a className={'demo-button-desktop'} style={{zIndex: '100'}} href={links.demoURL}>
+            <button onKeyDown={()=>{}} className={'demo-button-desktop'} style={{zIndex: '100'}} onClick={()=>{
+                window.location.assign(links.demoURL);
+            }}>
                         <span
                             style={{fontSize: "0.8rem", marginRight: '5px', marginTop: '5px', opacity: '0'}}> ;) </span>
                 دمو
-            </a>
+            </button>
             <div className={'cuki-info align-items-center'} style={{zIndex: '100'}}>
-                <img src="/img/cuki.png" className={'cuki-image-desktop'} alt="Cuki Online menu "/>
+                <img src={logoIMG} className={'cuki-image-desktop'} alt="Cuki Online menu "/>
                 <span className={'IransansBold info-margin mt-2'}>Cuki</span>
                 <span className={'Iransans info-margin mt-2'}>online</span>
                 <span className={'Iransans info-margin mt-2'}>menu</span>
@@ -578,5 +582,5 @@ const Desktop = () => {
     )
 
 }
-export default Desktop
 
+export default Desktop

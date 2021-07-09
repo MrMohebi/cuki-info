@@ -1,4 +1,3 @@
-import React from "react";
 import $ from 'jquery';
 
 const BASE_URL = "https://api.cukim.ir/api/";

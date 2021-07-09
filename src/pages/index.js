@@ -1,8 +1,10 @@
 //react
 import React, {useEffect} from "react";
 import { Helmet } from "react-helmet"
+import Desktop from "./Desktop";
+import Mobile from "./Mobile";
 
-const IndexPage = (props) => {
+const IndexPage = () => {
     let checkScreenSize = () => {
         if (window.innerWidth <= 700) {
             window.location.pathname = '/Mobile'
@@ -13,6 +15,9 @@ const IndexPage = (props) => {
     useEffect(()=>{
         checkScreenSize()
     },[])
+    if (<Desktop/>&&<Mobile/>){
+
+    }
     return (
         <main>
             <Helmet>

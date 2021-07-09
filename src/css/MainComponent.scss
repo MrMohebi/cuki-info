@@ -1,22 +1,22 @@
 @font-face {
   font-family: AppIranSans;
-  src: url(/fonts/MobileFonts/IRANSansMobile.ttf) format('truetype') ;
+  src: url('../fonts/IRANSansMobile.ttf') format('truetype') ;
 }
 
 
 @font-face {
   font-family: AppIranSansBold;
-  src: url(/fonts/MobileFonts/IRANSansMobile_Bold.ttf) format('truetype') ;
+  src: url('../fonts/IRANSansMobile_Bold.ttf') format('truetype') ;
 }
 
 @font-face {
   font-family: AppIranSansLight;
-  src: url(/fonts/MobileFonts/IRANSansMobile_Light.ttf) format("truetype");
+  src: url('../fonts/IRANSansMobile_Light.ttf') format("truetype");
 }
 
 @font-face {
   font-family: AppIranSansMedium;
-  src: url(/fonts/MobileFonts/IRANSansMobile_Medium.ttf);
+  src: url('../fonts/IRANSansMobile_Medium.ttf');
 }
 
 @font-face {
@@ -144,8 +144,12 @@
   font-size: 1rem;
   background: linear-gradient(to right, black 50%, white 50%);
   background-size: 200% 200%;
-  background-position: 100%;
 }
+.demo-button-desktop{
+  background-position: 100%;
+
+}
+
 
 .intro-desktop-head {
   text-align: right;
@@ -344,21 +348,13 @@ br {
   width: 100%;
 
 
-  .bottom-waves {
-    width: 100%;
-    height: 50vh;
-    background: url("/img/waves.svg");
-    background-size: cover;
-    position: fixed;
-    bottom: 0;
-  }
-
   .little-logo {
     width: 40px;
     height: 40px;
     right: 10px;
     top: 10px;
-    background: url("/img/Logo.png") center;
+    $LOGO:"/img/Logo.png";
+    background: url($LOGO) center;
     background-size: cover;
     transform: translateX(120px);
   }
@@ -498,6 +494,7 @@ br {
 
 
 .plans-toggle-button {
+  border:none;
   cursor: pointer;
   width: 50px;
   color: dimgray;
@@ -517,18 +514,18 @@ br {
   position: initial;
 }
 
-.body::-webkit-scrollbar {
-  display: none;
-}
-
-*::-webkit-scrollbar {
-  display: none;
-}
-
-* {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
+//.body::-webkit-scrollbar {
+//  display: none;
+//}
+//
+//*::-webkit-scrollbar {
+//  display: none;
+//}
+//
+//* {
+//  -ms-overflow-style: none; /* IE and Edge */
+//  scrollbar-width: none; /* Firefox */
+//}
 
 .plan-discount {
   background: rgb(98 220 172);
@@ -589,7 +586,7 @@ br {
   margin-top: 20px;
   max-height: 250px;
   overflow-y: scroll;
-  height: calc(100% - 270px);
+  height: calc(100% - 300px);
 }
 .plan-options::-webkit-scrollbar {
   display: none;

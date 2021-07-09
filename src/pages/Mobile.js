@@ -6,19 +6,22 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import * as plansGen from '../functions/plansGen'
-import {Link} from "gatsby";
 import {Helmet} from "react-helmet";
-
 let links = require('../assets/links')
+let extraFunctions = require('../functions/externalFunctions')
+
 
 const Mobile = () => {
 
-    let allowToScroll = true;
+    // let [allowToScroll,setAllowToScroll] = React.useState(true);
     let allowForNextCard = true;
     let [plans, setPlans] = React.useState(<div/>)
     let [scrollSectionsClass, setSSClass] = React.useState('')
+    let [plansButtonContent, setPlansButtonContent] = React.useState('پلن ها')
     let cardsPrepared = false;
     let cards;
+    let lastScrollPosition;
+    let logoIMG = "/img/cuki.png";
 
     let changeScrollStatus = (state) => {
         if (state) {
@@ -43,8 +46,12 @@ const Mobile = () => {
                 gsap.to('.plans-container', {
                     display: 'none'
                 })
+                window.scrollBy(0,-2000)
+
             }
         })
+
+
 
 
     }
@@ -74,21 +81,24 @@ const Mobile = () => {
 
     let openPlansSectionHandler = () => {
         if (isPlansSectionOpened()) {
+            extraFunctions.changePlansButtonContent(false,setPlansButtonContent)
             closePlansSection()
             changeScrollStatus(true)
             allowForNextCard = true;
-            allowToScroll = true;
+            // allowToScroll = true;
 
         } else {
+            extraFunctions.changePlansButtonContent(true,setPlansButtonContent)
             openPlansSection()
             changeScrollStatus(false)
             allowForNextCard = false;
-            allowToScroll = false;
+            // allowToScroll = false;
         }
     }
 
     let prepareCards = () => {
         cards = document.querySelector('.mobile-cards-container').childNodes
+
 
 
         for (let i = 0; i < cards.length; i++) {
@@ -134,11 +144,13 @@ const Mobile = () => {
                     }
                 }
             })
-            tl.to(cards[i], 1, {
+            tl.to(cards[i], {
                 x: "-300%",
                 y: '20%',
-            }).to(cards[i + 1], 0.5, {
+                duration:1
+            }).to(cards[i + 1], {
                 transform: "scale(1)",
+                duration:0.5
             }, 0)
         }
 
@@ -158,12 +170,13 @@ const Mobile = () => {
             allowForNextCard = false;
             if (current === cardElements.length - 1) {
                 for (let o = 0; o <= cards.length; o++) {
-                    gsap.to(cards[o], 0.3, {
+                    gsap.to(cards[o], {
                         x: 0,
                         y: 0,
                         ease: "expo.out",
                         scale: o === 0 ? 0.9 : '0.' + (cards.length - o),
-                        delay: o * 0.1
+                        delay: o * 0.1,
+                        duration:0.3
                     })
                 }
             }
@@ -180,26 +193,27 @@ const Mobile = () => {
         for (let i = 0; i < cardElements.length; i++) {
             document.querySelector('.mobile-cards-container').append(document.createRange().createContextualFragment(ReactDOMServer.renderToStaticMarkup(cardElements[i])));
         }
-        setTimeout(() => {
-            gsap.to(window, {
-                scrollTo: {
-                    y: "#m-trigger-4",
-                    autoKill: false,
-                },
-                duration: 0.2
-            })
-        }, 2000)
+        window.addEventListener('scroll',()=>{
+            if (window.scrollY > lastScrollPosition){
+                if (window.scrollY > 8000){
+                    openPlansSectionHandler()
+                }
+            }
+            lastScrollPosition = window.scrollY;
+        })
         if (!cardsPrepared) {
             prepareCards()
             cardsPrepared = true;
         }
         setSSClass('vw-100 h-999')
+
     }, [])
 
     return (
         <main className={' main-desktop vw-100 '}>
             <Helmet>
                 <title>Cuki</title>
+
             </Helmet>
             <div className={'top-header-white'}/>
             <div className={'plans-section d-flex justify-content-center align-items-center '}>
@@ -207,13 +221,16 @@ const Mobile = () => {
                     {plans}
                 </div>
             </div>
-            <Link className={'demo-button-desktop'} style={{zIndex: '100'}} to={links.demoURL}>
+            <button  onKeyDown={()=>{}} className={'demo-button-desktop'} style={{zIndex: '100'}} onClick={()=>{
+                window.location.assign(links.demoURL);
+
+            }}>
                         <span
                             style={{fontSize: "0.8rem", marginRight: '5px', marginTop: '5px', opacity: '0'}}> ;) </span>
                 دمو
-            </Link>
+            </button>
             <div className={'cuki-info align-items-center'} style={{zIndex: '100'}}>
-                <img src="/img/cuki.png" className={'cuki-image-desktop'} alt="Cuki Online menu "/>
+                <img src={logoIMG} className={'cuki-image-desktop'} alt="Cuki Online menu "/>
                 <span className={'IransansBold info-margin mt-2'}>Cuki</span>
                 <span className={'Iransans info-margin mt-2'}>online</span>
                 <span className={'Iransans info-margin mt-2'}>menu</span>
@@ -263,13 +280,18 @@ const Mobile = () => {
                     </div>
                 </div>
             </div>
-            <div
-                className={' plans-toggle-button d-flex justify-content-center align-content-center'}
+            <button onKeyDown={()=>{
+
+            }}  className={' plans-toggle-button d-flex justify-content-center align-content-center'}
                 onClick={() => {
                     openPlansSectionHandler()
                 }}>
-                <span className={'Iransans'}>پلن ها</span>
-            </div>
+                <span className={'Iransans'}>
+                    {plansButtonContent}
+
+                </span>
+
+            </button>
             {/*__________ Just For Scroll Section __________*/}
 
             <div id={'m-trigger-0'} className={scrollSectionsClass}/>
