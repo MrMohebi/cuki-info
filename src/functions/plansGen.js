@@ -1,13 +1,12 @@
 import React from "react";
 import * as requests from '../requests/requests'
 
-export const plansGen = (plansGetCallback) => {
+export const plansGen = (plansGetCallback,planSubmitFunction) => {
     requests.getPlans((plansData) => {
-        console.log(plansData)
         if (plansData) {
             let plans = plansData.data.map(eachPlan => {
                 return (
-                    <div key={eachPlan['englishName']} className={'plan-container'}>
+                    <div key={eachPlan['englishName']}  className={'plan-container'}>
                         <div className={'plan-discount'}>
                             {eachPlan['discountPercentage']}%
                         </div>
@@ -28,11 +27,14 @@ export const plansGen = (plansGetCallback) => {
                                 })
                             }
                         </div>
-                        <div className={'plan-price Iransans'}>
+                        <div className={'plan-price Iransans'}  >
                             <span className={'m-1'}>{eachPlan['price']}</span>
                             <span>:قیمت</span>
                         </div>
                         <div
+                            onPointerDownCapture={(e)=>{
+                            planSubmitFunction(e)
+                            }}
                             className={'plan-submit-button disabled-button d-flex align-items-center justify-content-center'}>
                             <span className={'plan-default-text IransansBold pt-1'}>
                                 ثبت سفارش

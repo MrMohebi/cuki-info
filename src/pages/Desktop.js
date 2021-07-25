@@ -23,6 +23,7 @@ import {cardElements} from "../cards/cards";
 import * as ReactDOMServer from "react-dom/server";
 import {plansGen} from "../functions/plansGen";
 import {Helmet} from "react-helmet";
+import UserInfoDialog from "../Components/UserInfoDialog/UserInfoDialog";
 
 let links = require('../assets/links')
 let extraFunctions = require('../functions/externalFunctions')
@@ -36,6 +37,7 @@ const Desktop = () => {
     let cardsDom = [];
     let defaultCardsScale = 0.7;
     let lastCameInCard = 0;
+    let [userInfoDialog,setUserInfoDialog] = React.useState(false)
     let [plans, setPlans] = React.useState(<div/>)
     let [scrollSectionsClass, setSSClass] = React.useState('')
     let [plansButtonContent, setPlansButtonContent] = React.useState('پلن ها')
@@ -352,8 +354,15 @@ const Desktop = () => {
     let afterPlansGot = (plans) => {
         setPlans(plans)
     }
+    let planSubmitFunction = (e)=>{
+        setUserInfoDialog(true)
+        setInterval(()=>{
+            console.log(userInfoDialog)
+        },500)
+
+    }
     useEffect(() => {
-        plansGen(afterPlansGot)
+        plansGen(afterPlansGot,planSubmitFunction)
         window.addEventListener('resize', _.debounce(() => {
             extraFunctions.checkScreenSize()
         }, 100))
@@ -396,10 +405,12 @@ const Desktop = () => {
             }
             lastScrollPosition = window.scrollY;
         })
+
     }, [])
 
     return (
         <main className={' main-desktop vw-100 '}>
+                    <UserInfoDialog setUserInfoDialog={setUserInfoDialog} show={userInfoDialog}/>
             <Helmet>
                 <title>Cuki</title>
             </Helmet>
@@ -519,7 +530,6 @@ const Desktop = () => {
                         </div>
                         <div id={'card5'} style={{
                             opacity: 0,
-                            // scale: '0.5',
                             position: 'absolute',
                             display: 'flex',
                             justifyContent: 'center',

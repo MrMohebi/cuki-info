@@ -145,7 +145,8 @@
   background: linear-gradient(to right, black 50%, white 50%);
   background-size: 200% 200%;
 }
-.demo-button-desktop{
+
+.demo-button-desktop {
   background-position: 100%;
 
 }
@@ -188,7 +189,7 @@
     overflow-x: scroll;
     margin-top: 100px;
     margin-bottom: 50px;
-    padding-top: 1000px;
+    //padding-top: 1000px;
   }
   .plan-container:hover {
     .plan-submit-button {
@@ -203,7 +204,6 @@
     display: none;
     opacity: 0;
     transform: translate(0, 200px);
-    padding-top: 1000px;
   }
   .plan-container:hover {
     transform: translateY(-10px) scale(1.01);
@@ -224,6 +224,7 @@
 .h-m {
   height: 200px;
 }
+
 
 .demo-button-desktop:hover {
   background-position: 200%;
@@ -355,7 +356,7 @@ br {
     height: 40px;
     right: 10px;
     top: 10px;
-    $LOGO:"/img/Logo.png";
+    $LOGO: "/img/Logo.png";
     background: url($LOGO) center;
     background-size: cover;
     transform: translateX(120px);
@@ -496,7 +497,7 @@ br {
 
 
 .plans-toggle-button {
-  border:none;
+  border: none;
   cursor: pointer;
   width: 60px;
   color: dimgray;
@@ -590,9 +591,11 @@ br {
   overflow-y: scroll;
   height: calc(100% - 300px);
 }
+
 .plan-options::-webkit-scrollbar {
   display: none;
 }
+
 .plan-option-circle {
   height: 10px;
   width: 10px;
@@ -600,15 +603,17 @@ br {
   border-radius: 100%;
   margin-left: 10px;
 }
+
 .plan-option {
   margin: 2px 0;
 }
-.disabled-button{
-  pointer-events: none;
+
+.disabled-button {
   background-color: #6f6f6f !important;
   color: whitesmoke !important;
   cursor: none !important;
 }
+
 .plan-submit-button {
   transition: all 0.2s ease;
   cursor: pointer;
@@ -623,6 +628,7 @@ br {
   border-radius: 10px;
   color: #416FEE;
 }
+
 .plan-price {
   position: absolute;
   bottom: 80px;
@@ -630,6 +636,6 @@ br {
   text-align: right;
 }
 
-.plans-scroller{
+.plans-scroller {
   height: 150vh;
 }
