@@ -354,7 +354,7 @@ const Desktop = () => {
     let afterPlansGot = (plans) => {
         setPlans(plans)
     }
-    let planSubmitFunction = (e)=>{
+    let planSubmitFunction = ()=>{
         setUserInfoDialog(true)
         setInterval(()=>{
             console.log(userInfoDialog)
@@ -414,7 +414,7 @@ const Desktop = () => {
             <Helmet>
                 <title>Cuki</title>
             </Helmet>
-            <button onKeyDown={()=>{}}
+            <button role={'button'} style={{background:'transparent'}} onKeyDown={()=>{}}
                 className={' plans-toggle-button d-flex justify-content-center align-content-center'}
                 onClick={() => {
                     openPlansSectionHandler()
