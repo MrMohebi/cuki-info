@@ -7,6 +7,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import * as plansGen from '../functions/plansGen'
 import {Helmet} from "react-helmet";
+import UserInfoDialog from "../Components/UserInfoDialog/UserInfoDialog";
 
 let links = require('../assets/links')
 let extraFunctions = require('../functions/externalFunctions')
@@ -20,11 +21,18 @@ const Mobile = () => {
     let [plans, setPlans] = React.useState(<div/>)
     let [scrollSectionsClass, setSSClass] = React.useState('')
     let [plansButtonContent, setPlansButtonContent] = React.useState('پلن ها')
+    let [userInfoDialog,setUserInfoDialog] = React.useState(false)
+    let [pickedPlanId,setPickedPlanId] = React.useState(false);
+
     let cardsPrepared = false;
     let cards;
     let lastScrollPosition;
     let logoIMG = "/img/cuki.png";
 
+    let planSubmitFunction = (planId)=>{
+        setUserInfoDialog(true)
+        setPickedPlanId(planId)
+    }
     let changeScrollStatus = (state) => {
         if (state) {
             document.body.style.overflowY = 'scroll'
@@ -64,11 +72,15 @@ const Mobile = () => {
             height: '100vh',
             width: '100vw',
             onComplete: () => {
-                gsap.to('.plans-container', {
+                let plansContainer = document.querySelector('.plans-container');
+                gsap.to(plansContainer,{
+                    flexFlow:'row',
+                    duration:0
+                })
+                gsap.to(plansContainer, {
                     display: 'flex',
                     opacity: '1',
-                    flexFlow: 'column',
-                    y: 450,
+                    overflowY:'scroll'
                 })
             },
             ease: 'power2.out'
@@ -191,7 +203,7 @@ const Mobile = () => {
         window.addEventListener('resize', _.debounce(() => {
             extraFunctions.checkScreenSize()
         }, 100))
-        plansGen.plansGen(afterPlansGot)
+        plansGen.plansGen(afterPlansGot,planSubmitFunction)
         for (let i = 0; i < cardElements.length; i++) {
             document.querySelector('.mobile-cards-container').append(document.createRange().createContextualFragment(ReactDOMServer.renderToStaticMarkup(cardElements[i])));
         }
@@ -215,8 +227,9 @@ const Mobile = () => {
         <main className={' main-desktop vw-100 '}>
             <Helmet>
                 <title>Cuki</title>
-
             </Helmet>
+            <UserInfoDialog setUserInfoDialog={setUserInfoDialog} show={userInfoDialog} pickedPlanId={pickedPlanId}/>
+
             <div className={'top-header-white'}/>
             <div className={'plans-section d-flex justify-content-center align-items-center '}>
                 <div className={'plans-container '}>
@@ -267,10 +280,10 @@ const Mobile = () => {
                 </div>
                 <div className={' mobile-container'}>
                     <div className={'intro-desktop-texts w-100 '}>
-                        <h2 className={'intro-desktop-head mb-2 IransansBold'}>
+                        <h2  className={'intro-desktop-head mb-2 text-center IransansBold'}>
                             دیگه وقت <br/> راحت تر شدن کارهاست
                         </h2>
-                        <h5 className={' mt-4 Iransans intro-desktop-title'}>
+                        <h5 className={' mt-4 Iransans intro-desktop-title text-center'}>
                             کوکی برای رفع نیاز ها و سرعت دهی به
                             کار
                             ها طراحی شده

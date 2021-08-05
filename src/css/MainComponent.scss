@@ -178,18 +178,12 @@
     text-align: center;
   }
   .sample-card {
-    margin-left: 0 !important;
     transform: scale(0.8);
     opacity: 0;
   }
-  .plans-container {
-    display: none;
-    opacity: 0;
-    transform: translate(0, 200px);
-    overflow-x: scroll;
-    margin-top: 100px;
-    margin-bottom: 50px;
-    //padding-top: 1000px;
+
+  .plan-container{
+    scroll-snap-align: center;
   }
   .plan-container:hover {
     .plan-submit-button {
@@ -203,13 +197,10 @@
   .plans-container {
     display: none;
     opacity: 0;
-    transform: translate(0, 200px);
   }
   .plan-container:hover {
     transform: translateY(-10px) scale(1.01);
-
     box-shadow: 0 0 10px 1px #b3a9e7;
-
     .plan-submit-button {
       background-color: #4476FE;
       color: white;
@@ -224,8 +215,6 @@
 .h-m {
   height: 200px;
 }
-
-
 .demo-button-desktop:hover {
   background-position: 200%;
   color: white;
@@ -274,7 +263,8 @@ body {
   border: none;
   box-shadow: 1px 0 10px 4px #dcdcdc;
   border-radius: 12px;
-  margin-left: 100px;
+
+
 }
 
 .the-line-and-circle {
@@ -638,4 +628,30 @@ br {
 
 .plans-scroller {
   height: 150vh;
+}
+
+
+@media all and (max-width: 900px) {
+  .plans-container{
+    transform: scale(0.7);
+    scroll-snap-type: x mandatory;
+    &::-webkit-scrollbar{
+      display: block !important;
+      width: 5px;
+    }
+    &::-webkit-scrollbar-thumb{
+      transition: .2s ease;
+      width: 5px;
+      background-color: #afafaf;
+      &:hover{
+        border-radius: 2px;
+        background-color: #8283e8;
+      }
+    }
+  }
+
+}
+
+.swal2-container {
+  z-index: 999999 !important;
 }

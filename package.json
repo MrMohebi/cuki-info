@@ -37,6 +37,7 @@
     "react-helmet": "^6.1.0",
     "react-lottie": "^1.2.3",
     "react-scroll-slider": "^1.0.1",
+    "sweetalert2": "^11.1.2",
     "tippy.js": "^6.3.1"
   },
   "devDependencies": {

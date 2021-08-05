@@ -42,6 +42,7 @@ const Desktop = () => {
     let [scrollSectionsClass, setSSClass] = React.useState('')
     let [plansButtonContent, setPlansButtonContent] = React.useState('پلن ها')
     let [cardsFirstGot,setCardsFirstGot] = React.useState(false);
+    let [pickedPlanId,setPickedPlanId] = React.useState(false);
     let logoIMG = "/img/cuki.png"
 
 
@@ -354,12 +355,9 @@ const Desktop = () => {
     let afterPlansGot = (plans) => {
         setPlans(plans)
     }
-    let planSubmitFunction = ()=>{
+    let planSubmitFunction = (planId)=>{
         setUserInfoDialog(true)
-        setInterval(()=>{
-            console.log(userInfoDialog)
-        },500)
-
+        setPickedPlanId(planId)
     }
     useEffect(() => {
         plansGen(afterPlansGot,planSubmitFunction)
@@ -410,7 +408,7 @@ const Desktop = () => {
 
     return (
         <main className={' main-desktop vw-100 '}>
-                    <UserInfoDialog setUserInfoDialog={setUserInfoDialog} show={userInfoDialog}/>
+                    <UserInfoDialog setUserInfoDialog={setUserInfoDialog} show={userInfoDialog} pickedPlanId={pickedPlanId}/>
             <Helmet>
                 <title>Cuki</title>
             </Helmet>
@@ -425,7 +423,9 @@ const Desktop = () => {
             </button>
             <div className={'plans-section d-flex justify-content-center align-items-center '}>
 
-                <div className={'plans-container '}>
+                <div style={{
+                    transform:'scale(0.7)'
+                }} className={'plans-container '}>
                     {plans}
                 </div>
             </div>

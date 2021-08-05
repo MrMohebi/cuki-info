@@ -6,7 +6,6 @@ import Mobile from "./Mobile";
 let extraFunctions = require('../functions/externalFunctions')
 
 const IndexPage = () => {
-    extraFunctions.checkScreenSize()
     useEffect(()=>{
         extraFunctions.checkScreenSize()
     },[])
