@@ -193,19 +193,20 @@
   }
 }
 
+
 @media only screen and (min-width: 800px) {
   //.plans-container {
   //  display: none;
   //  opacity: 0;
   //}
-  //.plan-container:hover {
-  //  transform: translateY(-10px) scale(1.01);
-  //  box-shadow: 0 0 10px 1px #b3a9e7;
-  //  .plan-submit-button {
-  //    background-color: #4476FE;
-  //    color: white;
-  //  }
-  //}
+  .plan-container:hover {
+    transform: translateY(-10px) scale(1.01);
+    box-shadow: 0 0 10px 1px #DCC4CC;
+    .plan-submit-button {
+      background-color: #4476FE;
+      color: white;
+    }
+  }
 }
 
 .h-999 {
