@@ -160,7 +160,6 @@
 @media only screen and (max-width: 700px) {
   .intro-desktop-head {
     height: 70px;
-    width: 70%;
     margin: auto;
     text-align: center;
   }
@@ -182,7 +181,8 @@
     opacity: 0;
   }
 
-  .plan-container{
+  .plan-container {
+    transform: scale(0.7);
     scroll-snap-align: center;
   }
   .plan-container:hover {
@@ -194,27 +194,28 @@
 }
 
 @media only screen and (min-width: 800px) {
-  .plans-container {
-    display: none;
-    opacity: 0;
-  }
-  .plan-container:hover {
-    transform: translateY(-10px) scale(1.01);
-    box-shadow: 0 0 10px 1px #b3a9e7;
-    .plan-submit-button {
-      background-color: #4476FE;
-      color: white;
-    }
-  }
+  //.plans-container {
+  //  display: none;
+  //  opacity: 0;
+  //}
+  //.plan-container:hover {
+  //  transform: translateY(-10px) scale(1.01);
+  //  box-shadow: 0 0 10px 1px #b3a9e7;
+  //  .plan-submit-button {
+  //    background-color: #4476FE;
+  //    color: white;
+  //  }
+  //}
 }
 
 .h-999 {
-  height: 999px;
+  height: 100vh;
 }
 
 .h-m {
   height: 200px;
 }
+
 .demo-button-desktop:hover {
   background-position: 200%;
   color: white;
@@ -499,7 +500,7 @@ br {
   transform: translate(50%, 0);
   right: 50%;
   position: fixed;
-  background: white;
+  background: transparent;
   z-index: 9999;
 }
 
@@ -521,24 +522,25 @@ br {
 }
 
 .plan-discount {
-  background: rgb(98 220 172);
-  color: white;
+  background: #B9F6AF;
+  color: #18A902;
   border-radius: 100%;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   margin-top: -10px;
   text-align: center;
   margin-left: -10px;
   line-height: 1.7rem;
 }
 
+
 .plans-section {
   z-index: 99;
   height: 0;
   transform: translate(50%, 0);
   right: 50%;
-  width: 400px;
-  background-color: white;
+  width: 100vw;
+  background:linear-gradient(to top,#F0F8F2,rgba(0,0,0,0));
   bottom: 0;
   position: fixed;
   overflow-y: scroll;
@@ -557,7 +559,6 @@ br {
   position: relative;
   overflow: visible;
   margin: 20px 20px;
-
 }
 
 .plan-header {
@@ -630,20 +631,34 @@ br {
   height: 150vh;
 }
 
+.plans-container{
+  display: flex;
+}
 
-@media all and (max-width: 900px) {
-  .plans-container{
-    transform: scale(0.7);
+@media all and (max-width: 700px) {
+  .plans-container {
+    flex-flow: row;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    opacity: 1;
+    height: calc(100% - 108px);
+    /* margin: 305px 0px; */
+    display: flex;
+    align-items: center;
+
     scroll-snap-type: x mandatory;
-    &::-webkit-scrollbar{
+
+    &::-webkit-scrollbar {
       display: block !important;
       width: 5px;
     }
-    &::-webkit-scrollbar-thumb{
+
+    &::-webkit-scrollbar-thumb {
       transition: .2s ease;
       width: 5px;
       background-color: #afafaf;
-      &:hover{
+
+      &:hover {
         border-radius: 2px;
         background-color: #8283e8;
       }
@@ -655,3 +670,32 @@ br {
 .swal2-container {
   z-index: 999999 !important;
 }
+
+.plans-button {
+    text-decoration: none;
+    padding-right: 10px;
+    transition: all 0.2s ease;
+    $buttonColor: #505050;
+    cursor: pointer;
+    position: fixed;
+    width: 110px;
+    height: 35px;
+    border: $buttonColor 2px solid;
+    color: $buttonColor;
+    border-radius: 200px 200px 200px 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: AppIranSansBold, sans-serif;
+    font-size: 1rem;
+    background: white;
+    bottom: 10px;
+}
+
+.main-mobile{
+  scroll-snap-type: y mandatory;
+}
+.mobile-triggers{
+scroll-snap-align: center;
+}
+

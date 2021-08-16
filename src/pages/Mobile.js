@@ -8,6 +8,7 @@ import ScrollToPlugin from "gsap/ScrollToPlugin";
 import * as plansGen from '../functions/plansGen'
 import {Helmet} from "react-helmet";
 import UserInfoDialog from "../Components/UserInfoDialog/UserInfoDialog";
+import lottie from "lottie-web";
 
 let links = require('../assets/links')
 let extraFunctions = require('../functions/externalFunctions')
@@ -68,6 +69,13 @@ const Mobile = () => {
         gsap.to('.main-desktop-wrapper', {
             y: '-100%'
         })
+
+        gsap.to('.plans-container ', {
+            opacity: '1',
+            y: '0',
+            duration: '0.2',
+        })
+
         gsap.to('.plans-section', {
             height: '100vh',
             width: '100vw',
@@ -80,13 +88,13 @@ const Mobile = () => {
                 gsap.to(plansContainer, {
                     display: 'flex',
                     opacity: '1',
-                    overflowY:'scroll'
+                    overflowY:'hidden',
+                    overflowX:'scroll'
                 })
             },
             ease: 'power2.out'
         })
     }
-
     function isPlansSectionOpened() {
         return !!parseInt(document.getElementsByClassName('plans-section')[0].style.height);
     }
@@ -95,13 +103,17 @@ const Mobile = () => {
         if (isPlansSectionOpened()) {
             extraFunctions.changePlansButtonContent(false, setPlansButtonContent)
             closePlansSection()
+            a.stop()
             changeScrollStatus(true)
             allowForNextCard = true;
             // allowToScroll = true;
-
         } else {
             extraFunctions.changePlansButtonContent(true, setPlansButtonContent)
             openPlansSection()
+            if (document.querySelector('#congrats svg')){
+                a.stop()
+                a.play()
+            }
             changeScrollStatus(false)
             allowForNextCard = false;
             // allowToScroll = false;
@@ -133,6 +145,7 @@ const Mobile = () => {
                     trigger: '#m-trigger-' + (i + 1),
                     scrub: 0.5,
                     onEnter: () => {
+                        console.log('entered '+i)
                         gsap.to(window, {
                             scrollTo: {
                                 y: "#m-trigger-" + (i + 1),
@@ -142,17 +155,18 @@ const Mobile = () => {
                             ease: "expo.out"
                         })
                     },
-                    onEnterBack: () => {
-                        gsap.to(window, {
-                            scrollTo: {
-                                y: "#m-trigger-" + (i + 1),
-                                autoKill: false,
-
-                            },
-                            duration: 0.1,
-                            ease: "expo.out"
-                        })
-                    }
+                    // onLeaveBack: () => {
+                    //     console.log('entered back '+i)
+                    //
+                    //     gsap.to(window, {
+                    //         scrollTo: {
+                    //             y: "#m-trigger-" + (i -1),
+                    //             autoKill: false,
+                    //         },
+                    //         duration: 0.1,
+                    //         ease: "expo.out"
+                    //     })
+                    // }
                 }
             })
             tl.to(cards[i], {
@@ -195,8 +209,19 @@ const Mobile = () => {
     }
     gsap.registerPlugin(ScrollTrigger)
     gsap.registerPlugin(ScrollToPlugin)
+
+    let a =lottie;
     let afterPlansGot = (plans) => {
         setPlans(plans)
+        a.loadAnimation({
+                container: document.getElementById('congrats'),
+                loop: false,
+                autoplay: true,
+                renderer: 'svg',
+                path: '/lottie/congrats.json'
+            }
+        )
+        a.stop()
     }
 
     useEffect(() => {
@@ -219,12 +244,15 @@ const Mobile = () => {
             prepareCards()
             cardsPrepared = true;
         }
-        setSSClass('vw-100 h-999')
-
+        setSSClass('vw-100 h-999 ')
     }, [])
-
     return (
-        <main className={' main-desktop vw-100 '}>
+        <main className={' main-desktop main-mobile vw-100 '}>
+            <div style={{
+                scrollSnapType:'y mandatory'
+            }}>
+
+
             <Helmet>
                 <title>Cuki</title>
             </Helmet>
@@ -232,7 +260,7 @@ const Mobile = () => {
 
             <div className={'top-header-white'}/>
             <div className={'plans-section d-flex justify-content-center align-items-center '}>
-                <div className={'plans-container '}>
+                <div className={'plans-container w-100 '}>
                     {plans}
                 </div>
             </div>
@@ -283,7 +311,7 @@ const Mobile = () => {
                         <h2  className={'intro-desktop-head mb-2 text-center IransansBold'}>
                             دیگه وقت <br/> راحت تر شدن کارهاست
                         </h2>
-                        <h5 className={' mt-4 Iransans intro-desktop-title text-center'}>
+                        <h5 className={' Iransans intro-desktop-title text-center'}>
                             کوکی برای رفع نیاز ها و سرعت دهی به
                             کار
                             ها طراحی شده
@@ -309,16 +337,17 @@ const Mobile = () => {
 
             </button>
             {/*__________ Just For Scroll Section __________*/}
-
-            <div id={'m-trigger-0'} className={scrollSectionsClass}/>
-            <div id={'m-trigger-1'} className={scrollSectionsClass}/>
-            <div id={'m-trigger-2'} className={scrollSectionsClass}/>
-            <div id={'m-trigger-3'} className={scrollSectionsClass}/>
-            <div id={'m-trigger-4'} className={scrollSectionsClass}/>
-            <div id={'m-trigger-5'} className={scrollSectionsClass}/>
-            <div id={'m-trigger-6'} className={scrollSectionsClass}/>
-            <div id={'m-trigger-7'} className={scrollSectionsClass}/>
-            <div id={'m-trigger-8'} className={scrollSectionsClass}/>
+            <div id={'m-trigger-0'}  className={scrollSectionsClass + " "+"mobile-triggers"}/>
+            <div id={'m-trigger-1'}  className={scrollSectionsClass + " "+"mobile-triggers"}/>
+            <div id={'m-trigger-2'}  className={scrollSectionsClass + " "+"mobile-triggers"}/>
+            <div id={'m-trigger-3'}  className={scrollSectionsClass + " "+"mobile-triggers"}/>
+            <div id={'m-trigger-4'}  className={scrollSectionsClass + " "+"mobile-triggers"}/>
+            <div id={'m-trigger-5'}  className={scrollSectionsClass + " "+"mobile-triggers"}/>
+            <div id={'m-trigger-6'}  className={scrollSectionsClass + " "+"mobile-triggers"}/>
+            <div id={'m-trigger-7'}  className={scrollSectionsClass + " "+"mobile-triggers"}/>
+            <div id={'m-trigger-8'}  className={scrollSectionsClass + " "+"mobile-triggers"}/>
+            {/*<div id={'m-trigger-8'} className={scrollSectionsClass}/>*/}
+            </div>
         </main>
     )
 }

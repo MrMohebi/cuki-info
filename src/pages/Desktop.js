@@ -7,6 +7,7 @@ import {MotionPathPlugin} from "gsap/MotionPathPlugin";
 import ScrollTo from "gsap/ScrollToPlugin";
 import TextPlugin from "gsap/TextPlugin";
 import tippy from "tippy.js";
+import lottie from "lottie-web";
 //assets
 import * as svgs from '../svg/svgs';
 import * as texts from '../texts'
@@ -37,12 +38,12 @@ const Desktop = () => {
     let cardsDom = [];
     let defaultCardsScale = 0.7;
     let lastCameInCard = 0;
-    let [userInfoDialog,setUserInfoDialog] = React.useState(false)
+    let [userInfoDialog, setUserInfoDialog] = React.useState(false)
     let [plans, setPlans] = React.useState(<div/>)
     let [scrollSectionsClass, setSSClass] = React.useState('')
     let [plansButtonContent, setPlansButtonContent] = React.useState('پلن ها')
-    let [cardsFirstGot,setCardsFirstGot] = React.useState(false);
-    let [pickedPlanId,setPickedPlanId] = React.useState(false);
+    let [cardsFirstGot, setCardsFirstGot] = React.useState(false);
+    let [pickedPlanId, setPickedPlanId] = React.useState(false);
     let logoIMG = "/img/cuki.png"
 
 
@@ -57,7 +58,7 @@ const Desktop = () => {
     }, 1000)
 
     let getCards = () => {
-        if (!cardsFirstGot){
+        if (!cardsFirstGot) {
             cardsDom = document.getElementById('cont').childNodes
             if (document.getElementById('allCards') && initialized) {
                 afterCardsFetched(cardsDom)
@@ -169,7 +170,6 @@ const Desktop = () => {
                                 marginLeft: '',
                                 borderRadius: '',
                                 onComplete: () => {
-
                                 }
                             })
                         }
@@ -181,7 +181,6 @@ const Desktop = () => {
                         duration: 0.2
                     })
                 }
-
                 if ((startPosition.toString().slice()[2][0] === '2' && next) || (startPosition.toString().slice()[2][0] === '6' && !next) && cardPositions !== 0) {
                     gsap.to(cardsDom[i], {
                         zIndex: cardPositions,
@@ -329,8 +328,9 @@ const Desktop = () => {
 
     let openPlansSectionHandler = () => {
         if (isPlansSectionOpened()) {
-            extraFunctions.changePlansButtonContent(false,setPlansButtonContent)
+            extraFunctions.changePlansButtonContent(false, setPlansButtonContent)
             closePlansSection()
+            a.stop()
             changeScrollStatus(false)
             setTimeout(() => {
                 changeScrollStatus(true)
@@ -338,8 +338,12 @@ const Desktop = () => {
             allowForNextCard = true;
             allowToScroll = true;
         } else {
-            extraFunctions.changePlansButtonContent(true,setPlansButtonContent)
+            extraFunctions.changePlansButtonContent(true, setPlansButtonContent)
             openPlansSection()
+            if (document.querySelector('#congrats svg')){
+                a.stop()
+                a.play()
+            }
             allowForNextCard = false;
             allowToScroll = false;
         }
@@ -352,18 +356,33 @@ const Desktop = () => {
             document.body.style.overflowY = 'hidden'
         }
     }
+
+
+    let a =lottie;
     let afterPlansGot = (plans) => {
         setPlans(plans)
+        a.loadAnimation({
+                container: document.getElementById('congrats'),
+                loop: false,
+                autoplay: true,
+                renderer: 'svg',
+                path: '/lottie/congrats.json'
+            }
+        )
+        a.stop()
     }
-    let planSubmitFunction = (planId)=>{
+    let planSubmitFunction = (planId) => {
         setUserInfoDialog(true)
         setPickedPlanId(planId)
     }
+
     useEffect(() => {
-        plansGen(afterPlansGot,planSubmitFunction)
-        window.addEventListener('resize', _.debounce(() => {
-            extraFunctions.checkScreenSize()
-        }, 100))
+        plansGen(afterPlansGot, planSubmitFunction)
+        window.addEventListener('resize',
+            _.debounce(() => {
+                extraFunctions.checkScreenSize()
+            }, 100)
+        )
         window.addEventListener('mousemove', (e) => {
             if (document.querySelector('.svgDots')) {
                 gsap.to('.svgDots', {
@@ -408,28 +427,27 @@ const Desktop = () => {
 
     return (
         <main className={' main-desktop vw-100 '}>
-                    <UserInfoDialog setUserInfoDialog={setUserInfoDialog} show={userInfoDialog} pickedPlanId={pickedPlanId}/>
+            <UserInfoDialog setUserInfoDialog={setUserInfoDialog} show={userInfoDialog} pickedPlanId={pickedPlanId}/>
             <Helmet>
                 <title>Cuki</title>
             </Helmet>
-            <button role={'button'} style={{background:'transparent'}} onKeyDown={()=>{}}
-                className={' plans-toggle-button d-flex justify-content-center align-content-center'}
-                onClick={() => {
-                    openPlansSectionHandler()
-                }}>
-                <span className={'Iransans'}>
+            <button role={'button'}
+                    className={' plans-toggle-button plans-button  d-flex justify-content-center align-content-center'}
+                    onClick={() => {
+                        openPlansSectionHandler()
+                    }}>
+                <span className={'Iransans '}>
                     {plansButtonContent}
                 </span>
             </button>
-            <div className={'plans-section d-flex justify-content-center align-items-center '}>
+            <div style={{}} className={'plans-section d-flex justify-content-center align-items-center '}>
 
-                <div style={{
-                    transform:'scale(0.7)'
-                }} className={'plans-container '}>
+                <div className={'plans-container '}>
                     {plans}
                 </div>
             </div>
-            <button onKeyDown={()=>{}} className={'demo-button-desktop'} style={{zIndex: '100'}} onClick={()=>{
+            <button onKeyDown={() => {
+            }} className={'demo-button-desktop'} style={{zIndex: '100'}} onClick={() => {
                 window.location.assign(links.demoURL);
             }}>
                         <span
@@ -445,7 +463,8 @@ const Desktop = () => {
             <div
                 className={'d-flex main-desktop-wrapper  justify-content-center align-items-center vh-100 vw-100 position-fixed '}>
                 <div className={'position-absolute'}
-                     style={{width: "55%", height: '55%', right: '0px', top: '10rem', zIndex: '-1'}}>
+                     style={{width: "70%", height: '94%', right: '-124px', bottom: '-2rem', zIndex: '-1'}}>
+
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%"
                          height="100%" viewBox="0 0 1012 796.5">
                         <defs>

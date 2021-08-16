@@ -1,15 +1,36 @@
-import React from "react";
+import React, {useEffect} from "react";
 import * as requests from '../requests/requests'
 
 export const plansGen = (plansGetCallback, planSubmitFunction) => {
     requests.getPlans((plansData) => {
-        console.log(plansData)
         if (plansData) {
+
             let plans = plansData.data.map(eachPlan => {
                 return (
                     <div key={eachPlan['englishName']} className={'plan-container'}>
-                        <div className={'plan-discount'}>
-                            {eachPlan['discountPercentage']}%
+                        {
+                            eachPlan['id'] === 2 ?
+                                <div id={'congrats'} style={{
+                                    height: 50,
+                                    width: 50,
+                                    position: 'absolute',
+                                    background: 'transparent',
+                                    left: '30px',
+                                    top: '30px',
+                                }}/>
+                                :
+                                <div/>
+                        }
+                        <div className={'plan-discount IransansBold d-flex flex-column align-items-center'}>
+                            <span style={{
+                                fontSize: "0.7rem",
+                                height: '15px'
+                            }}>{eachPlan['discountPercentage']}%</span>
+                            <span style={{
+                                fontSize: "0.5rem",
+                                height: '15px',
+                                lineHeight: '15px'
+                            }}>تخفیف</span>
                         </div>
                         <h4 className={'plan-header IransansMedium'}>{eachPlan['persianName']}</h4>
                         <span className={'plan-details mt-2'}>
@@ -46,6 +67,7 @@ export const plansGen = (plansGetCallback, planSubmitFunction) => {
                 )
             })
             plansGetCallback(plans)
+
         }
     })
 }
