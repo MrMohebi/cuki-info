@@ -105,12 +105,13 @@
   align-items: center;
   flex-flow: column;
   width: 90%;
-  margin-top: -100px;
 }
 
 .top-header-white {
-  background: #ffffff;
+  background: #ffffff99;
   z-index: 100;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   position: fixed;
   width: 100%;
   height: 60px;
@@ -143,6 +144,16 @@
   background-position: 100%;
 }
 
+.scroller:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  right: 0;
+  background: linear-gradient(to bottom, #fbfbfb 0%, rgba(251, 251, 251, 0) 100%);
+}
+
 .intro-desktop-head {
   text-align: right;
   line-height: 2.5rem;
@@ -156,7 +167,8 @@
   }
 
   .plans-toggle-button {
-    width: 100% !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+    backdrop-filter: blur(5px);
   }
 
   .demo-button-desktop {
@@ -179,6 +191,7 @@
   .plan-container {
     transform: scale(0.7);
     scroll-snap-align: center;
+    min-height: 500px;
   }
 
   .plan-container:hover .plan-submit-button {
@@ -197,7 +210,7 @@
   }
 }
 .h-999 {
-  height: 100vh;
+  height: 50vh;
 }
 
 .h-m {
@@ -493,7 +506,7 @@ br {
   transform: translate(50%, 0);
   right: 50%;
   width: 100vw;
-  background: linear-gradient(to top, #F0F8F2, rgba(0, 0, 0, 0));
+  background: linear-gradient(to top, #F0F8F2, white);
   bottom: 0;
   position: fixed;
   overflow-y: scroll;
@@ -590,7 +603,7 @@ br {
 
 @media all and (max-width: 700px) {
   .plans-container {
-    flex-flow: row;
+    flex-flow: column !important;
     overflow-x: scroll;
     overflow-y: hidden;
     opacity: 1;
@@ -598,7 +611,7 @@ br {
     /* margin: 305px 0px; */
     display: flex;
     align-items: center;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: y mandatory;
   }
   .plans-container::-webkit-scrollbar {
     display: block !important;
@@ -643,6 +656,32 @@ br {
 }
 
 .mobile-triggers {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: end;
+  position: relative;
+}
+
+.scrollable:before {
+  content: "";
+  position: sticky;
+  display: block;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  background-image: linear-gradient(to bottom, white 50%, rgba(255, 255, 255, 0) 100%);
+  z-index: 999999;
+}
+
+.close-intro-mobile {
+  padding: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+.center-snap {
   scroll-snap-align: center;
 }
 
