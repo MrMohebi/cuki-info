@@ -36,9 +36,11 @@ export let checkScreenSize = () => {
         if(window.location.pathname!=='/Mobile'){
             window.location.pathname = '/Mobile'
         }
+        return 'mobile'
     } else {
         if(window.location.pathname!=='/Desktop'){
             window.location.pathname = '/Desktop'
         }
+        return 'desktop'
     }
 }

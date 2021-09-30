@@ -1,17 +1,21 @@
 //react
 import React, {useEffect} from "react";
-import { Helmet } from "react-helmet"
-import Desktop from "./Desktop";
-import Mobile from "./Mobile";
+import {Helmet} from "react-helmet"
+
+import _ from 'lodash';
+
 let extraFunctions = require('../functions/externalFunctions')
 
 const IndexPage = () => {
-    useEffect(()=>{
-        extraFunctions.checkScreenSize()
-    },[])
-    if (<Desktop/>&&<Mobile/>){
 
-    }
+    useEffect(() => {
+        extraFunctions.checkScreenSize()
+        window.addEventListener('resize', _.debounce(() => {
+            extraFunctions.checkScreenSize()
+            }, 100)
+        )
+    }, [])
+
     return (
         <main>
             <Helmet>
@@ -19,6 +23,7 @@ const IndexPage = () => {
             </Helmet>
         </main>
     )
+
 }
 export default IndexPage
 

@@ -1,5 +1,5 @@
 //react
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 //plugins
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -29,6 +29,7 @@ import UserInfoDialog from "../Components/UserInfoDialog/UserInfoDialog";
 let links = require('../assets/links')
 let extraFunctions = require('../functions/externalFunctions')
 let _ = require('lodash')
+
 const Desktop = () => {
 
     let allowToScroll = true;
@@ -45,6 +46,7 @@ const Desktop = () => {
     let [cardsFirstGot, setCardsFirstGot] = React.useState(false);
     let [pickedPlanId, setPickedPlanId] = React.useState(false);
     let logoIMG = "/img/cuki.png"
+    let scrollHolder = useRef(null)
 
 
     //register Gsap Plugins
@@ -98,6 +100,7 @@ const Desktop = () => {
     let cardPositions = 0;
     let cusToolTipped = false;
     let nextCard = (next) => {
+
         let animDuration = 1;
         if (!next && cardPositions === 0) {
         } else if (allowForNextCard && cardPositions >= 0) {
@@ -340,7 +343,7 @@ const Desktop = () => {
         } else {
             extraFunctions.changePlansButtonContent(true, setPlansButtonContent)
             openPlansSection()
-            if (document.querySelector('#congrats svg')){
+            if (document.querySelector('#congrats svg')) {
                 a.stop()
                 a.play()
             }
@@ -358,7 +361,7 @@ const Desktop = () => {
     }
 
 
-    let a =lottie;
+    let a = lottie;
     let afterPlansGot = (plans) => {
         setPlans(plans)
         a.loadAnimation({
@@ -377,6 +380,7 @@ const Desktop = () => {
     }
 
     useEffect(() => {
+
         plansGen(afterPlansGot, planSubmitFunction)
         window.addEventListener('resize',
             _.debounce(() => {
@@ -391,13 +395,15 @@ const Desktop = () => {
                 })
             }
         })
-        setSSClass('vw-100 h-999')
+        setSSClass('vw-100 h-999D')
+
         window.addEventListener("scroll", (e) => {
             e.preventDefault()
             if (allowToScroll) {
                 if (window.scrollY > lastScrollPosition) {
                     if (!isPlansSectionOpened()) {
                         nextCard(true)
+                        // window.scrollBy(0,200)
                     } else {
                         setTimeout(() => {
                             changeScrollStatus(true)
@@ -405,6 +411,7 @@ const Desktop = () => {
                     }
                     changeScrollStatus(false)
                 } else {
+                    window.scrollBy(0,100)
                     changeScrollStatus(false)
                     if (!isPlansSectionOpened()) {
                         nextCard(false)
@@ -442,12 +449,75 @@ const Desktop = () => {
             </button>
             <div style={{}} className={'plans-section d-flex justify-content-center align-items-center '}>
                 <div className={'svg'} style={{
-                    position:'absolute',
-                    left:-90,
-                    bottom:200,
-                    transform:'rotateZ(90deg)'
+                    position: 'absolute',
+                    left: -90,
+                    bottom: 200,
+                    transform: 'rotateZ(90deg)'
                 }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="202" height="115" viewBox="0 0 202 115"><g transform="translate(-423.882 213) rotate(-90)"><circle cx="3" cy="3" r="3" transform="translate(98 423.882)" fill="#3bba28"/><ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 423.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(141 423.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(163 423.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(185 423.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(207 423.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(207 445.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(207 467.882)" fill="#3bba28"/><ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(207 489.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(207 510.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(207 532.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(207 554.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(207 576.882)" fill="#3bba28"/><ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(207 598.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(207 619.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(185 619.882)" fill="#3bba28"/><ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(185 598.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(185 576.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(185 554.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(163 554.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(163 576.882)" fill="#3bba28"/><ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(163 598.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(163 619.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(141 619.882)" fill="#3bba28"/><ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(141 598.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(141 576.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(141 554.882)" fill="#3bba28"/><ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 554.882)" fill="#3bba28"/><ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 576.882)" fill="#3bba28"/><circle cx="2.5" cy="2.5" r="2.5" transform="translate(120 598.882)" fill="#3bba28"/><ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 619.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(98 619.882)" fill="#3bba28"/><ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(98 598.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(98 576.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(98 554.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(185 445.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(163 445.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(141 445.882)" fill="#3bba28"/><ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 445.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(98 445.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(98 467.882)" fill="#3bba28"/><ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 467.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(141 467.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(163 467.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(185 467.882)" fill="#3bba28"/><ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(185 489.882)" fill="#3bba28"/><ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(163 489.882)" fill="#3bba28"/><ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(141 489.882)" fill="#3bba28"/><circle cx="2.5" cy="2.5" r="2.5" transform="translate(120 489.882)" fill="#3bba28"/><ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(98 489.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(98 510.882)" fill="#3bba28"/><ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 510.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(141 510.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(163 510.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(185 510.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(185 532.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(163 532.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(141 532.882)" fill="#3bba28"/><ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 532.882)" fill="#3bba28"/><circle cx="3" cy="3" r="3" transform="translate(98 532.882)" fill="#3bba28"/></g></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="202" height="115" viewBox="0 0 202 115">
+                        <g transform="translate(-423.882 213) rotate(-90)">
+                            <circle cx="3" cy="3" r="3" transform="translate(98 423.882)" fill="#3bba28"/>
+                            <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 423.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(141 423.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(163 423.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(185 423.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(207 423.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(207 445.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(207 467.882)" fill="#3bba28"/>
+                            <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(207 489.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(207 510.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(207 532.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(207 554.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(207 576.882)" fill="#3bba28"/>
+                            <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(207 598.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(207 619.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(185 619.882)" fill="#3bba28"/>
+                            <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(185 598.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(185 576.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(185 554.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(163 554.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(163 576.882)" fill="#3bba28"/>
+                            <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(163 598.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(163 619.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(141 619.882)" fill="#3bba28"/>
+                            <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(141 598.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(141 576.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(141 554.882)" fill="#3bba28"/>
+                            <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 554.882)" fill="#3bba28"/>
+                            <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 576.882)" fill="#3bba28"/>
+                            <circle cx="2.5" cy="2.5" r="2.5" transform="translate(120 598.882)" fill="#3bba28"/>
+                            <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 619.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(98 619.882)" fill="#3bba28"/>
+                            <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(98 598.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(98 576.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(98 554.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(185 445.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(163 445.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(141 445.882)" fill="#3bba28"/>
+                            <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 445.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(98 445.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(98 467.882)" fill="#3bba28"/>
+                            <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 467.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(141 467.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(163 467.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(185 467.882)" fill="#3bba28"/>
+                            <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(185 489.882)" fill="#3bba28"/>
+                            <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(163 489.882)" fill="#3bba28"/>
+                            <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(141 489.882)" fill="#3bba28"/>
+                            <circle cx="2.5" cy="2.5" r="2.5" transform="translate(120 489.882)" fill="#3bba28"/>
+                            <ellipse cx="3" cy="2.5" rx="3" ry="2.5" transform="translate(98 489.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(98 510.882)" fill="#3bba28"/>
+                            <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 510.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(141 510.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(163 510.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(185 510.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(185 532.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(163 532.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(141 532.882)" fill="#3bba28"/>
+                            <ellipse cx="2.5" cy="3" rx="2.5" ry="3" transform="translate(120 532.882)" fill="#3bba28"/>
+                            <circle cx="3" cy="3" r="3" transform="translate(98 532.882)" fill="#3bba28"/>
+                        </g>
+                    </svg>
                 </div>
                 <div className={'plans-container '}>
                     {plans}
@@ -607,16 +677,12 @@ const Desktop = () => {
                     </div>
                 </div>
             </div>
-            {/*__________ Just For Scroll Section __________*/}
-            <div className={scrollSectionsClass}/>
-            <div className={scrollSectionsClass}/>
-            <div className={scrollSectionsClass}/>
-            <div className={scrollSectionsClass}/>
-            <div className={scrollSectionsClass}/>
-            <div className={scrollSectionsClass}/>
-            <div className={scrollSectionsClass}/>
-            <div className={scrollSectionsClass}/>
-            <div className={scrollSectionsClass}/>
+            <div id={'scrollHolder'} ref={scrollHolder}>
+                <div style={{
+                    border: 'solid 1px black'
+                }} className={scrollSectionsClass}/>
+            </div>
+
         </main>
     )
 
