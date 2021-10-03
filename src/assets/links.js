@@ -1,2 +1,1 @@
-
-export let demoURL = 'https://cuki.ir/c-cuki'
+export let demoURL = 'https://cuki.ir/c-cuki/demo'

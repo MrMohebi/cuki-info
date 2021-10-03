@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useLayoutEffect, useRef} from "react";
 import 'bootstrap/dist/css/bootstrap.css'
 import * as ReactDOMServer from "react-dom/server";
 import {cardElements} from "../cards/cards";
@@ -22,19 +22,23 @@ const Mobile = () => {
     let [scrollSectionsClass, setSSClass] = React.useState('')
     let [plansButtonContent, setPlansButtonContent] = React.useState('پلن ها')
     let [userInfoDialog, setUserInfoDialog] = React.useState(false)
+    let [basePrice, setBP] = React.useState(0)
     let [pickedPlanId, setPickedPlanId] = React.useState(false);
     let reachedBottom = useRef(false)
     let introHide = useRef(false)
+    let headerClosedByPlansBtn = useRef(false)
 
     let cardsPrepared = false;
-    let cards;
     let touchStartScroll = useRef(0);
     let logoIMG = "/img/cuki.png";
+
+
 
     let planSubmitFunction = (planId) => {
         setUserInfoDialog(true)
         setPickedPlanId(planId)
     }
+
     let changeScrollStatus = (state) => {
         if (state) {
             document.body.style.overflowY = 'scroll'
@@ -44,6 +48,10 @@ const Mobile = () => {
     }
 
     let closePlansSection = () => {
+        let intro = document.getElementById('intro-mobile')
+        if (headerClosedByPlansBtn.current&&intro.classList.contains('close-intro-mobile')){
+            intro.classList.remove('close-intro-mobile')
+        }
         gsap.to('.main-desktop-wrapper', {
             y: '0',
         })
@@ -64,6 +72,11 @@ const Mobile = () => {
     }
 
     let openPlansSection = () => {
+        let intro = document.getElementById('intro-mobile')
+        if (!intro.classList.contains('close-intro-mobile')){
+            intro.classList.add('close-intro-mobile')
+            headerClosedByPlansBtn.current = true
+        }
         gsap.to('.plans-container ', {
             opacity: '1',
             y: '0',
@@ -148,11 +161,15 @@ const Mobile = () => {
             <Helmet>
                 <title>Cuki</title>
             </Helmet>
-            <UserInfoDialog setUserInfoDialog={setUserInfoDialog} show={userInfoDialog} pickedPlanId={pickedPlanId}/>
+            <UserInfoDialog setUserInfoDialog={setUserInfoDialog} show={userInfoDialog} price={basePrice} pickedPlanId={pickedPlanId}/>
 
-            <div className={'top-header-white'}/>
-            <div className={'plans-section d-flex justify-content-center align-items-center '}>
-                <div className={'plans-container w-100 '}>
+            <div  className={'top-header-white'}/>
+            <div style={{
+                background:'#fcfcfc'
+            }} className={'plans-section d-flex justify-content-center align-items-center '}>
+                <div style={{
+                    marginTop:'-108px'
+                }} className={'plans-container w-100 '}>
                     {plans}
                 </div>
             </div>
@@ -222,9 +239,8 @@ const Mobile = () => {
                              if (!introHide.current) {
                                  document.getElementById('intro-mobile').classList.add('close-intro-mobile')
                                  let cards = Array.from(document.getElementById('scroller').children)
-                                 cards.forEach(card => {
-                                     card.classList.add('center-snap')
-                                 })
+
+                                 headerClosedByPlansBtn.current = false;
                                  introHide.current = true
                              }
                          } else {
@@ -253,8 +269,8 @@ const Mobile = () => {
 
                     {/*__________ Just For Scroll Section __________*/}
                     <div style={{
-                        height: '45vh'
-                    }} id={'m-trigger'} className={scrollSectionsClass + " " + "mobile-triggers"}/>
+                        height: '51vh'
+                    }} id={'m-trigger'} className={scrollSectionsClass + " " + "mobile-triggers mt-first"}/>
                     <div id={'m-trigger-0'} className={scrollSectionsClass + " " + "mobile-triggers"}/>
                     <div id={'m-trigger-1'} className={scrollSectionsClass + " " + "mobile-triggers"}/>
                     <div id={'m-trigger-2'} className={scrollSectionsClass + " " + "mobile-triggers"}/>
@@ -262,7 +278,10 @@ const Mobile = () => {
                     <div id={'m-trigger-4'} className={scrollSectionsClass + " " + "mobile-triggers"}/>
                     <div id={'m-trigger-5'} className={scrollSectionsClass + " " + "mobile-triggers"}/>
                     <div id={'m-trigger-6'} className={scrollSectionsClass + " " + "mobile-triggers"}/>
-                    <div id={'m-trigger-7'} className={scrollSectionsClass + " " + "mobile-triggers"}/>
+                    <div style={{
+                        height:'50vh'
+                    }} id={'m-trigger-7'} className={scrollSectionsClass + " " + "mobile-triggers"}/>
+
                 </div>
             </div>
 

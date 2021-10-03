@@ -4,6 +4,13 @@ module.exports = {
         siteUrl: `https://cukim.ir`,
         description: `What do you eat? :)`,
     },
+    flags: {
+        // FAST_REFRESH:true,
+        PRESERVE_FILE_DOWNLOAD_CACHE:true,
+        FAST_DEV:true,
+        PARALLEL_SOURCING:true,
+        DEV_SSR:true,
+    },
     plugins: [
         {
             resolve: `gatsby-plugin-manifest`,

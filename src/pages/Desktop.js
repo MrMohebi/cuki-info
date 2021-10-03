@@ -47,6 +47,8 @@ const Desktop = () => {
     let [pickedPlanId, setPickedPlanId] = React.useState(false);
     let logoIMG = "/img/cuki.png"
     let scrollHolder = useRef(null)
+    let [basePrice, setBP] = React.useState(0)
+
 
 
     //register Gsap Plugins
@@ -434,7 +436,7 @@ const Desktop = () => {
 
     return (
         <main className={' main-desktop vw-100 '}>
-            <UserInfoDialog setUserInfoDialog={setUserInfoDialog} show={userInfoDialog} pickedPlanId={pickedPlanId}/>
+            <UserInfoDialog setUserInfoDialog={setUserInfoDialog} price={basePrice} show={userInfoDialog} pickedPlanId={pickedPlanId}/>
             <Helmet>
                 <title>Cuki</title>
             </Helmet>
