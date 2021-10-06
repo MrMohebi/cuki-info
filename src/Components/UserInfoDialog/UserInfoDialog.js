@@ -152,6 +152,7 @@ const UserInfoDialog = (props) => {
             ease: 'power3.out',
             stagger: 0.02
         })
+        $('#success-container')[0].style.zIndex = '999'
         $('#btn-div-inner')[0]?.remove()
         let btn = $('#submit-btn')[0]
         btn.style.border = '2px solid #00cf92'
@@ -257,7 +258,7 @@ const UserInfoDialog = (props) => {
                          className={'pt-3 px-3 d-flex flex-column align-items-center justify-content-center'} style={{
                         position: 'absolute',
                         width: '100%',
-                        zIndex:999
+
                     }}>
                         <h4>عملیات <span style={{
                             color: '#00cf92'
@@ -296,7 +297,6 @@ const UserInfoDialog = (props) => {
                         if ((isNaN(parseInt(e.currentTarget.value[e.currentTarget.value.length-1]))) || e.currentTarget.value.length>11){
                             e.currentTarget.value = e.currentTarget.value.slice(0,e.currentTarget.value.length-1)
                         }
-
                         }} type="input" className="form__field" placeholder="Phone" name="name" id='phone'
                                required/>
                         <label htmlFor="phone" className="form__label">شماره تماس (11 رقمی)</label>
