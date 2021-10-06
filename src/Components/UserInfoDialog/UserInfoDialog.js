@@ -273,7 +273,7 @@ const UserInfoDialog = (props) => {
                                     <div/>
                             }
                         </div>
-                        <div className={'d-flex mt-3  flex-column align-items-center justify-content-center '}>
+                        <div className={'d-flex mt-3 flex-column align-items-center justify-content-center '}>
                             <span>
                                 :هزینه منو
                             </span>
@@ -292,7 +292,12 @@ const UserInfoDialog = (props) => {
                     </div>
 
                     <div dir="rtl" className="form__group field mt-3 w-75">
-                        <input type="input" className="form__field" placeholder="Phone" name="name" id='phone'
+                        <input onChange={(e)=>{
+                        if ((isNaN(parseInt(e.currentTarget.value[e.currentTarget.value.length-1]))) || e.currentTarget.value.length>11){
+                            e.currentTarget.value = e.currentTarget.value.slice(0,e.currentTarget.value.length-1)
+                        }
+
+                        }} type="input" className="form__field" placeholder="Phone" name="name" id='phone'
                                required/>
                         <label htmlFor="phone" className="form__label">شماره تماس (11 رقمی)</label>
                     </div>
