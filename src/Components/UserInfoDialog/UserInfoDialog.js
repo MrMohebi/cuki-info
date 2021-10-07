@@ -27,6 +27,7 @@ const UserInfoDialog = (props) => {
     let [englishResNames,setERN] = useState([])
     let [persianResNames,setpRN] = useState([])
     let [basePrice,setBP] = useState(0)
+    let [payURL,setPURL] = useState('')
 
     let persianCurrency = (number) => {
         let tempArray = [];
@@ -126,6 +127,8 @@ const UserInfoDialog = (props) => {
         if (res !=='error'){
             if (res['statusCode'] === 200) {
                 setBP(res['data']['amount'])
+                setPURL(res['data']['url'])
+                setSubmitEnabled(true)
                 signUpSuccess()
             }
         }else{
@@ -260,20 +263,20 @@ const UserInfoDialog = (props) => {
                         width: '100%',
 
                     }}>
-                        <h4>عملیات <span style={{
+                        <h4 className={'mt-5'}>عملیات <span style={{
                             color: '#00cf92'
                         }}>موفق</span></h4>
 
-                        <span className={'text-black-50 mt-4'}>گزینه های دلخواه</span>
+                        {/*<span className={'text-black-50 mt-4'}>گزینه های دلخواه</span>*/}
 
-                        <div className={'d-flex mt-3 flex-column align-items-center justify-content-center text-end'}>
-                            {
-                                optionsUi ?
-                                    optionsUi
-                                    :
-                                    <div/>
-                            }
-                        </div>
+                        {/*<div className={'d-flex mt-3 flex-column align-items-center justify-content-center text-end'}>*/}
+                        {/*    {*/}
+                        {/*        optionsUi ?*/}
+                        {/*            optionsUi*/}
+                        {/*            :*/}
+                        {/*            <div/>*/}
+                        {/*    }*/}
+                        {/*</div>*/}
                         <div className={'d-flex mt-3 flex-column align-items-center justify-content-center '}>
                             <span>
                                 :هزینه منو
@@ -316,7 +319,14 @@ const UserInfoDialog = (props) => {
                         <label htmlFor="res-e-name" className="form__label">نام اینگلیسی مجموعه</label>
                     </div>
 
-                    <ButtonBase id={'submit-btn'} onClick={submitHandler} disabled={!submitEnabled} style={{
+                    <ButtonBase id={'submit-btn'} onClick={()=>{
+                    if (payURL.length>5){
+                        window.location = payURL;
+
+                    }else{
+                        submitHandler()
+                    }
+                    }} disabled={!submitEnabled} style={{
                         width: '80%',
                         height: '40px',
                         position: 'absolute',

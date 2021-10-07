@@ -31,7 +31,6 @@ export let changePlansButtonContent = (close, setPlansButtonContent) => {
 }
 
 export let checkScreenSize = () => {
-    console.log(window.location.pathname)
     if (window.innerWidth <= 900) {
         if(window.location.pathname!=='/Mobile'){
             window.location.pathname = '/Mobile'
