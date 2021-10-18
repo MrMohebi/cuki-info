@@ -167,9 +167,11 @@ const Mobile = () => {
             <div style={{
                 background:'#fcfcfc'
             }} className={'plans-section d-flex justify-content-center align-items-center '}>
+                <div style={{minHeight:'108px'}}></div>
+
                 <div style={{
-                    marginTop:'-108px'
                 }} className={'plans-container w-100 '}>
+                    <div style={{minHeight:'100px'}}></div>
                     {plans}
                 </div>
             </div>
@@ -195,7 +197,7 @@ const Mobile = () => {
                 <div style={{
                     transition: '0.4s ease',
                     paddingTop: '80px',
-                    height: '50vh',
+                    height: '35vh',
                     background: 'rgba(255,255,255,0.84)',
                 }} id={'intro-mobile'} className={'w-100 mobile-container'}>
                     <div className={'intro-desktop-texts w-100 '}>
@@ -260,7 +262,7 @@ const Mobile = () => {
                              reachedBottom.current = false;
                          }
                      }} id={'scroller'} className={'scroller'} style={{
-                    scrollSnapType: 'y mandatory',
+                    // scrollSnapType: 'y proximity',
                     height: '100vh',
                     overflowY: 'scroll',
                     position: 'relative',
@@ -269,7 +271,7 @@ const Mobile = () => {
 
                     {/*__________ Just For Scroll Section __________*/}
                     <div style={{
-                        height: '51vh'
+                        height: '35vh'
                     }} id={'m-trigger'} className={scrollSectionsClass + " " + "mobile-triggers mt-first"}/>
                     <div id={'m-trigger-0'} className={scrollSectionsClass + " " + "mobile-triggers"}/>
                     <div id={'m-trigger-1'} className={scrollSectionsClass + " " + "mobile-triggers"}/>
@@ -279,7 +281,7 @@ const Mobile = () => {
                     <div id={'m-trigger-5'} className={scrollSectionsClass + " " + "mobile-triggers"}/>
                     <div id={'m-trigger-6'} className={scrollSectionsClass + " " + "mobile-triggers"}/>
                     <div style={{
-                        height:'50vh'
+                        // height:'50vh'
                     }} id={'m-trigger-7'} className={scrollSectionsClass + " " + "mobile-triggers"}/>
 
                 </div>

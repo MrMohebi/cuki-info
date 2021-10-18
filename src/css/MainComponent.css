@@ -20,6 +20,11 @@
 }
 * {
   user-select: none;
+  overscroll-behavior: contain;
+}
+
+body {
+  overscroll-behavior: contain;
 }
 
 .cuki-info {
@@ -159,46 +164,6 @@
   line-height: 2.5rem;
 }
 
-@media only screen and (max-width: 700px) {
-  .intro-desktop-head {
-    height: 70px;
-    margin: auto;
-    text-align: center;
-  }
-
-  .plans-toggle-button {
-    background: rgba(255, 255, 255, 0.5) !important;
-    backdrop-filter: blur(5px);
-  }
-
-  .demo-button-desktop {
-    height: 30px;
-    width: 90px;
-  }
-
-  .intro-desktop-title {
-    width: 70%;
-    margin: auto;
-    font-size: 0.5rem;
-    text-align: center;
-  }
-
-  .sample-card {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-
-  .plan-container {
-    transform: scale(0.7);
-    scroll-snap-align: center;
-    min-height: 500px;
-  }
-
-  .plan-container:hover .plan-submit-button {
-    background-color: #4476FE;
-    color: white;
-  }
-}
 @media only screen and (min-width: 800px) {
   .plan-container:hover {
     transform: translateY(-10px) scale(1.01);
@@ -210,7 +175,8 @@
   }
 }
 .h-999 {
-  height: 45vh;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .h-m {
@@ -608,7 +574,6 @@ br {
     overflow-y: hidden;
     opacity: 1;
     height: 100%;
-    padding-top: 108px;
     display: flex;
     align-items: center;
     scroll-snap-type: y mandatory;
@@ -704,6 +669,47 @@ br {
 
 .swal2-html-container {
   font-family: IranSans, serif;
+}
+
+@media only screen and (max-width: 700px) {
+  .intro-desktop-head {
+    height: 70px;
+    margin: auto;
+    text-align: center;
+  }
+
+  .plans-toggle-button {
+    background: rgba(255, 255, 255, 0.5) !important;
+    backdrop-filter: blur(5px);
+  }
+
+  .demo-button-desktop {
+    height: 30px;
+    width: 90px;
+  }
+
+  .intro-desktop-title {
+    width: 70%;
+    margin: auto;
+    font-size: 0.5rem;
+    text-align: center;
+  }
+
+  .sample-card {
+    transform: scale(0.85);
+    position: relative;
+  }
+
+  .plan-container {
+    transform: scale(0.8);
+    scroll-snap-align: center;
+    min-height: 500px;
+  }
+
+  .plan-container:hover .plan-submit-button {
+    background-color: #4476FE;
+    color: white;
+  }
 }
 
 /*# sourceMappingURL=MainComponent.css.map */
