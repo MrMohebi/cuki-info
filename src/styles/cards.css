@@ -1,0 +1,50 @@
+.c-card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: darkgrey 0 0 4px 0;
+  position: absolute;
+  padding: 10px 0;
+  overflow: hidden;
+}
+
+.c-card-inner-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.c-card-line {
+  position: absolute;
+  height: 100%;
+  width: 7px;
+  right: 10px;
+}
+
+.c-card-circle {
+  height: 13px;
+  width: 13px;
+  border-radius: 20px;
+  border: 3px solid;
+  right: 22px;
+  top: 8px;
+  position: absolute;
+}
+
+.c-card-inner-inner-wrapper {
+  width: 100%;
+  height: 100%;
+  padding-right: 20px;
+  padding-left: 10px;
+}
+
+.c-card-title {
+  padding-top: 3px;
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+.c-card-description {
+  font-size: 0.8rem;
+}
+
+/*# sourceMappingURL=cards.css.map */

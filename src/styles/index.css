@@ -1,0 +1,72 @@
+.trigger {
+  height: 1000px;
+  scroll-snap-align: center;
+  width: 100%;
+}
+
+.absolute-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 150px 50px 0 0;
+  pointerEvents: none;
+}
+
+.c-intro {
+  position: absolute;
+  left: 5%;
+}
+
+.go-to-plans {
+  width: 200px;
+  height: 40px;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 50px 0 50px 50px;
+}
+
+.plans-section {
+  margin-top: 100%;
+  background: linear-gradient(to bottom, #fff, #F6F4FA);
+}
+
+.c-plan {
+  transition: 0.2s ease;
+  background-color: #FCFCFF;
+  border-radius: 15px;
+  width: 250px;
+  height: 270px;
+  box-shadow: #cbcbcb 0 5px 6px;
+  z-index: 1;
+  transform: translateY(0) scale(1);
+  user-select: none;
+}
+.c-plan:hover {
+  transform: translateY(-20px) scale(1.02);
+}
+
+.c-plan-icon {
+  width: 80px;
+  background-size: cover;
+  margin-top: -50px;
+}
+
+.discount-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 8px;
+  border: 1px solid;
+}
+
+.order {
+  border: none;
+  width: 150px;
+  height: 45px;
+  border-radius: 10px;
+  z-index: 999;
+  color: white;
+}
+
+/*# sourceMappingURL=index.css.map */
