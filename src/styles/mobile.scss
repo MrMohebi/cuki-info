@@ -1,0 +1,55 @@
+.mobile-cards-section {
+  display: none;
+  //margin-top: 100%;
+}
+
+@media all and (max-width: 900px) {
+  #cards-wrapper {
+    display: none;
+  }
+  .c-intro {
+    //left: 50%;
+    //transform: translateX(-50%);
+    //
+    #intro-first-part {
+      text-align: center;
+    }
+  }
+  .intro-wrapper{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding-left: 0;
+    height: 100%;
+  }
+  .go-to-plans {
+    border-radius: 50px;
+    margin: auto;
+  }
+  .trigger {
+    height: 0%;
+  }
+  .absolute-wrapper {
+    position: relative;
+  }
+  #main-svg {
+    position: absolute;
+  }
+  .mobile-cards-section {
+    display: block;
+    margin-top: 200px;
+  }
+  .mobile-card {
+    position: relative;
+    width: 100%;
+  }
+  .absolute-wrapper{
+    padding: 150px 0 0 0;
+  }
+  .plans-section{
+    margin-top: 0;
+  }
+  .footer{
+    flex-flow: column;
+  }
+}

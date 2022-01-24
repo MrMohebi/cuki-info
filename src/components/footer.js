@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/footer.css';
 import logo from '../images/logo.png'
 import phone from '../images/social/phone.png'
 import instagram from '../images/social/instagram.png'
@@ -25,7 +24,7 @@ const socials = [
 const Footer = () => {
     return (
         <section className={'w-100 h-50 footer'}>
-            <div className={'w-100 d-flex flex-row-reverse justify-content-around align-items-center h-100'}>
+            <div className={'w-100 footer d-flex  justify-content-around align-items-center h-100'}>
                 <div className={'d-flex flex-column justify-content-center align-items-center '}>
                     <img className={'f-logo mb-2'} src={logo} alt="cuki"/>
                     <p className={'IranSansUltraLight w-100 text-center my-0 fs-5'}>تیم کوکی با ساخت منوی آنلاین</p>

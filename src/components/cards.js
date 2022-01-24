@@ -3,8 +3,7 @@ import vectors from "../vectors";
 import gsap from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import MotionPathPlugin from "gsap/MotionPathPlugin";
-import * as ReactDOMServer from "react-dom/server";
-import $ from 'jquery'
+
 
 
 export const cards = [
@@ -67,15 +66,15 @@ export const cards = [
         vector: 'not_in_stock',
         vector_position: 'bottom'
     },
-    {
-        title: 'ناموجود کردن غذا',
-        description: 'درلحظه غذاهارا ناموجود کنید',
-        height: 170,
-        width: 200,
-        color: '#FDA4A4',
-        vector: 'not_in_stock',
-        vector_position: 'bottom'
-    },
+    // {
+    //     title: 'ناموجود کردن غذا',
+    //     description: 'درلحظه غذاهارا ناموجود کنید',
+    //     height: 170,
+    //     width: 200,
+    //     color: '#FDA4A4',
+    //     vector: 'not_in_stock',
+    //     vector_position: 'bottom'
+    // },
 
 ]
 const Cards = () => {
@@ -94,17 +93,6 @@ const Cards = () => {
                     end: '+=2000 top',
                     scrub: 0.7,
                 },
-                onUpdate: () => {
-
-                    let progress = timeLine.progress()
-                    console.log(card+":"+(progress/cards.length)*(card+1))
-                    last_progress.current = progress
-                },
-                onComplete: () => {
-                },
-                onReverseComplete: () => {
-                },
-
             }).to('#tc-' + card, {
                 motionPath: {
                     path: [{x: 0, y: 0}, {x: -500, y: 90}, {x: -200, y: 300}, {x: 0, y: 0}],
@@ -113,7 +101,6 @@ const Cards = () => {
                     end: 1 + card * 0.2,
                 },
                 ease: 'none',
-                // duration: 1,
                 scale:1,
             })
 
@@ -122,22 +109,11 @@ const Cards = () => {
 
     useEffect(() => {
         let wrapper = document.getElementById('wrapper')
-        // wrapper.style.width = window.innerWidth + 'px'
         wrapper.style.height = window.innerHeight + 'px'
 
         cards.map((each_card, index) => {
             setCardAnim(index, index)
         })
-
-        // gsap.to('#cards-wrapper',{
-        //     scrollTrigger:{
-        //         trigger:'#trigger0',
-        //         scrub:true
-        //     },
-        //     scale:1,
-        // })
-
-
     }, [])
 
     return (
@@ -169,7 +145,6 @@ const Cards = () => {
 
                                     <div className={'c-card-inner-inner-wrapper'}>
                                         <div className={'w-100 h-100 pe-2 d-flex flex-column align-items-center'}>
-
                                             <span
                                                 className={'IranSansBold c-card-title text-center'}>{each_card['title']}</span>
                                             <div

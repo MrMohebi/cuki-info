@@ -1,3 +1,11 @@
+@import "body";
+@import "cards";
+@import "footer";
+@import "header";
+@import "questions";
+
+
+
 .trigger {
   height: 1000px;
   scroll-snap-align: center;
@@ -13,9 +21,15 @@
 }
 
 .c-intro {
-  position: absolute;
-  left: 5%;
+  position: relative;
+  //left: 5%;
   //width: 30%;
+}
+.intro-wrapper{
+  display: flex;
+  flex-flow: row-reverse;
+  align-items: start;
+  padding-left: 30px;
 }
 
 .go-to-plans {
@@ -31,6 +45,7 @@
   //background-color: aliceblue;
   margin-top: 100%;
   background: linear-gradient(to bottom, #fff, #F6F4FA);
+  min-height: 100%;
 }
 
 .c-plan {
@@ -43,6 +58,7 @@
   z-index:1;
   transform: translateY(0) scale(1);
   user-select: none;
+  margin-bottom: 60px;
 
   &:hover{
     transform: translateY(-20px) scale(1.02);
@@ -69,3 +85,8 @@
   z-index: 999;
   color: white;
 }
+#main-svg{
+  position: fixed;
+}
+
+@import "mobile";

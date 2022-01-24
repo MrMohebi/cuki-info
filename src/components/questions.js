@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/questions.css'
 
 
 const questions=[
@@ -23,7 +22,7 @@ const questions=[
 ]
 const Questions = () => {
     return (
-        <section className={'w-100 h-100 questions'}>
+        <section className={'w-100 pt-5 questions'}>
             {
                 questions.map(q=>
                         <div className={'question'}>

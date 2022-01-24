@@ -1,7 +1,5 @@
 import React from 'react';
 import logo from '../images/logo.png'
-import '../styles/header.css'
-import '../styles/fonts/fonts.css'
 const Header = () => {
     return (
         <div className={'header-wrapper'}>

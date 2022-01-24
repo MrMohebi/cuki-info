@@ -1,3 +1,177 @@
+body::-webkit-scrollbar-thumb {
+  display: block;
+  background-color: #b6b6b6;
+  border-radius: 999px;
+}
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.c-card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: darkgrey 0 0 4px 0;
+  position: absolute;
+  padding: 10px 0;
+  overflow: hidden;
+}
+
+.c-card-inner-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.c-card-line {
+  position: absolute;
+  height: 100%;
+  width: 7px;
+  right: 10px;
+}
+
+.c-card-circle {
+  height: 13px;
+  width: 13px;
+  border-radius: 20px;
+  border: 3px solid;
+  right: 22px;
+  top: 8px;
+  position: absolute;
+}
+
+.c-card-inner-inner-wrapper {
+  width: 100%;
+  height: 100%;
+  padding-right: 20px;
+  padding-left: 10px;
+}
+
+.c-card-title {
+  padding-top: 3px;
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+.c-card-description {
+  font-size: 0.8rem;
+}
+
+.footer {
+  background-color: #FAFAFC;
+  flex-flow: row-reverse;
+}
+
+.f-logo {
+  width: 100px;
+}
+
+.header-wrapper {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  position: fixed;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 50px;
+  z-index: 99;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.78);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+
+.c-logo {
+  width: 40px;
+}
+
+.nav-links {
+  text-decoration: none;
+  font-family: IranSans, serif;
+  color: black;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+.nav-links:after {
+  transition: 0.2s ease;
+  content: " ";
+  width: 80%;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  height: 1px;
+  opacity: 0;
+  background-color: #151338;
+  left: 50%;
+  border-radius: 10px;
+  transform: scale(0) translateX(-50%);
+  transform-origin: left;
+}
+.nav-links:hover {
+  color: #151338;
+}
+.nav-links:hover:after {
+  opacity: 1;
+  transform: scale(1) translateX(-50%);
+}
+
+.demo-btn {
+  width: 110px;
+  height: 35px;
+  color: #000000;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-radius: 50px 0 50px 50px;
+}
+
+.questions {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #F6F4FA;
+  min-height: 100%;
+}
+
+.question {
+  position: relative;
+  width: 300px;
+  height: 280px;
+  border-radius: 20px;
+  box-shadow: #ebebf3 0 0 12px 5px;
+  background-color: #ffffff;
+  padding-top: 60px;
+  margin: 40px 50px;
+}
+
+.question-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  left: -10px;
+  top: -40px;
+  box-shadow: #ebebf3 0 0 12px 5px;
+}
+
+.q-title {
+  position: relative;
+}
+.q-title:after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: solid #8155DB 3px;
+  position: absolute;
+  top: 5px;
+  right: 8px;
+}
+
 .trigger {
   height: 1000px;
   scroll-snap-align: center;
@@ -13,8 +187,14 @@
 }
 
 .c-intro {
-  position: absolute;
-  left: 5%;
+  position: relative;
+}
+
+.intro-wrapper {
+  display: flex;
+  flex-flow: row-reverse;
+  align-items: start;
+  padding-left: 30px;
 }
 
 .go-to-plans {
@@ -29,6 +209,7 @@
 .plans-section {
   margin-top: 100%;
   background: linear-gradient(to bottom, #fff, #F6F4FA);
+  min-height: 100%;
 }
 
 .c-plan {
@@ -41,6 +222,7 @@
   z-index: 1;
   transform: translateY(0) scale(1);
   user-select: none;
+  margin-bottom: 60px;
 }
 .c-plan:hover {
   transform: translateY(-20px) scale(1.02);
@@ -67,6 +249,71 @@
   border-radius: 10px;
   z-index: 999;
   color: white;
+}
+
+#main-svg {
+  position: fixed;
+}
+
+.mobile-cards-section {
+  display: none;
+}
+
+@media all and (max-width: 900px) {
+  #cards-wrapper {
+    display: none;
+  }
+
+  .c-intro #intro-first-part {
+    text-align: center;
+  }
+
+  .intro-wrapper {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding-left: 0;
+    height: 100%;
+  }
+
+  .go-to-plans {
+    border-radius: 50px;
+    margin: auto;
+  }
+
+  .trigger {
+    height: 0%;
+  }
+
+  .absolute-wrapper {
+    position: relative;
+  }
+
+  #main-svg {
+    position: absolute;
+  }
+
+  .mobile-cards-section {
+    display: block;
+    margin-top: 200px;
+  }
+
+  .mobile-card {
+    position: relative;
+    width: 100%;
+  }
+
+  .absolute-wrapper {
+    padding: 150px 0 0 0;
+  }
+
+  .plans-section {
+    margin-top: 0;
+  }
+
+  .footer {
+    flex-flow: column;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

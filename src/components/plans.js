@@ -5,7 +5,6 @@ import third_plan from '../images/plans/3.png'
 
 const Plans = () => {
 
-
     let plans = [
         {
             name: '3 ماهه',
@@ -38,7 +37,7 @@ const Plans = () => {
     }
 
     return (
-        <div id={'c-plans'} className={'plans-section w-100 h-100 d-flex flex-column align-items-center pt-5'}
+        <div id={'c-plans'} className={'plans-section w-100 d-flex flex-column align-items-center pt-5'}
              style={{
                  zIndex: 99
              }}>
@@ -50,15 +49,16 @@ const Plans = () => {
                 آپدیت های منوی آنلاین خود را در اختیارتان قرار خواهد داد
             </p>
             <span className={'IranSansMedium mt-4'} style={{
-                fontSize: '1.5rem'
+                fontSize: '1.5rem',
+                textAlign:'center'
             }}>تعرفه منوی آنلاین کوکی برای هرماه 170 هزارتومان میباشد </span>
 
-            <section className={'plans-container d-flex flex-row-reverse  mt-5 pt-5'}>
+            <section className={'plans-container d-flex flex-wrap-reverse justify-content-center  mt-5 pt-5'}>
 
                 {
                     plans.map(plan=>{
                         return(
-                            <div className={'c-plan d-flex flex-column mx-5 align-items-center mt-2 '}>
+                            <div className={'c-plan d-flex flex-column mx-5 align-items-center mt-2  '}>
                                 <img src={plan.icon} className={'c-plan-icon'} alt="Cuki plan"/>
                                 <h4 className={'IranSansMedium mt-3'} dir={'rtl'}>{plan.name}</h4>
                                 <p className={'text-center IranSans'}>{plan.description}</p>
