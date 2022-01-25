@@ -27,10 +27,13 @@
     margin: auto;
   }
   .trigger {
-    height: 0%;
+    height: 0;
   }
   .absolute-wrapper {
     position: relative;
+    padding: 100px 0 0 0;
+    transform: translateY(0) !important;
+    opacity: 1 !important;
   }
   #main-svg {
     position: absolute;
@@ -43,13 +46,33 @@
     position: relative;
     width: 100%;
   }
-  .absolute-wrapper{
-    padding: 150px 0 0 0;
-  }
   .plans-section{
     margin-top: 0;
   }
   .footer{
     flex-flow: column;
+   #footer-address{
+     padding-top: 30px;
+   }
+  }
+  #intro-second-line{
+    text-align: center;
+  }
+  .nav-links{
+    display: none;
+  }
+  .header-wrapper {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0;
+  }
+  #background-svg{
+    display: none;
   }
 }

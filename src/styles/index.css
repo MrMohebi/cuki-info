@@ -59,6 +59,8 @@ body::-webkit-scrollbar {
 .footer {
   background-color: #FAFAFC;
   flex-flow: row-reverse;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .f-logo {
@@ -75,7 +77,7 @@ body::-webkit-scrollbar {
   padding-left: 50px;
   z-index: 99;
   width: 100%;
-  background: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.7);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
 }
@@ -282,11 +284,14 @@ body::-webkit-scrollbar {
   }
 
   .trigger {
-    height: 0%;
+    height: 0;
   }
 
   .absolute-wrapper {
     position: relative;
+    padding: 100px 0 0 0;
+    transform: translateY(0) !important;
+    opacity: 1 !important;
   }
 
   #main-svg {
@@ -303,16 +308,38 @@ body::-webkit-scrollbar {
     width: 100%;
   }
 
-  .absolute-wrapper {
-    padding: 150px 0 0 0;
-  }
-
   .plans-section {
     margin-top: 0;
   }
 
   .footer {
     flex-flow: column;
+  }
+  .footer #footer-address {
+    padding-top: 30px;
+  }
+
+  #intro-second-line {
+    text-align: center;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .header-wrapper {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0;
+  }
+
+  #background-svg {
+    display: none;
   }
 }
 

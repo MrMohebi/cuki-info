@@ -23,7 +23,7 @@ const socials = [
 
 const Footer = () => {
     return (
-        <section className={'w-100 h-50 footer'}>
+        <section className={'w-100 footer'}>
             <div className={'w-100 footer d-flex  justify-content-around align-items-center h-100'}>
                 <div className={'d-flex flex-column justify-content-center align-items-center '}>
                     <img className={'f-logo mb-2'} src={logo} alt="cuki"/>
@@ -51,7 +51,7 @@ const Footer = () => {
                             </div>
                             </div>
                             <div className={'d-flex flex-column justify-content-center align-items-center'}>
-                            <p dir={'rtl'} className={'IranSansBold'}>آدرس:</p>
+                            <p id={'footer-address'} dir={'rtl'} className={'IranSansBold'}>آدرس:</p>
                             <p className={'IranSansUltraLight'}> کرمان-خیابان 24 آذر-برج تاج-طبقه 5-واحد 502
                             </p>
                             </div>
